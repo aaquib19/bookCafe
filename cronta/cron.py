@@ -2,7 +2,6 @@ import sys, os
 from datetime import datetime
 from django.core.mail import send_mass_mail, mail_admins
 from cronta.models import EmailQueue
-from . import increment
 
 
 def send_emails():
