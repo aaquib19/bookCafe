@@ -127,7 +127,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 #to handle email and cron processes
 #just define cron process in CRONJOBS and run command python manage.py crotab add and to remove use remove insteat of add
