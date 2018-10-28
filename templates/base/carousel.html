@@ -1,0 +1,25 @@
+{% load static %}  
+<section>
+  <div id="boxgallery" class="boxgallery" data-effect="effect-1" style="position: static;">
+      <div class="panel"><img src="{% static 'img/1.jpg' %}" alt="Image 1"/></div>
+      <div class="panel"><img src="{% static 'img/2.jpg' %}" alt="Image 2"/></div>
+      <div class="panel"><img src="{% static 'img/3.jpg' %}" alt="Image 3"/></div>
+      <div class="panel"><img src="{% static 'img/4.jpg' %}" alt="Image 4"/></div>
+  </div>
+  <header class="codrops-header">
+    <h1>Book Cafe</h1>
+    <nav class="codrops-demos">
+      <a class="current-demo" href="index.html">Explore</a>
+    </nav>
+  </header>
+</section>
+
+  <script src="{% static 'js/classie.js' %}"></script>
+  <script src="{% static 'js/boxesFx.js' %}"></script>
+  <script>
+      new BoxesFx( document.getElementById( 'boxgallery' ) );
+  </script>
+
+<div class="container" >
+  <div class="container" style="position: absolute;left: 0;right: 0;bottom: 0;"></div>
+</div>
