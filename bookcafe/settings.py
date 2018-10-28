@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'cronta',               #handling email sending
+    'django_crontab',       #handling cron jobs add,remove,show
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -126,3 +128,17 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+#to handle email and cron processes
+#just define cron process in CRONJOBS and run command python manage.py crotab add and to remove use remove insteat of add
+CRONJOBS = [
+    ('*/1 * * * *','cronta.cron.my_jobs'),
+]
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'info.educardo@gmail.com'
+DEFAULT_FROM_EMAIL = 'info.educardo@gmail.com'
+DEFAULT_REPLYTO_EMAIL = 'info.educardo@gmail.com'
+EMAIL_HOST_PASSWORD = '********'
+EMAIL_PORT = 587
