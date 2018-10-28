@@ -1,9 +1,10 @@
+{% load static %}
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-default">
          <a class="navbar-brand" href="#">
-           <img src="2.png" width="150" height="50" alt="">
+           <img src="{% static 'img/2.png' %}" width="150" height="50" alt="">
          </a>
 
-        <div class="container">
+        <div class="container-fluid" style="padding-left: 170px">
             <a class="navbar-brand" href="#" style="color: white"><strong>BOOK CAFE</strong></a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,7 +14,7 @@
 
 
 
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02" data-aos="slide-up" data-aos-delay="800">
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02" >
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                          <a class="nav-link" href="#" style="color: white" ><i class="fa fa-fw fa-home"></i><strong>Home</strong> <span class="sr-only">(current)</span></a>
@@ -30,15 +31,15 @@
                     <!--       <li class="nav-item">
                             <a class="nav-link disabled" href="#" style="color: black">Disabled</a>
                     </li> -->
-                    <li style="padding-left: 70px"></li>
+                    <li style="padding-left: 50px"></li>
                     <li >
-                        <form class="form-inline my-2 my-lg-0" style="padding-right: 30px">
+                        <form class="form-inline my-2 my-lg-0" style="padding-right: 20px">
                             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="height: 20px">
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="color: white"><i class="fa fa-fw fa-search"></i>Search</button>
                         </form>
                     </li>
                     <li class="nav-item">
-                          <a class="nav-link" href="#" style="color: white"><i class="fa fa-fw fa-user"></i><strong>Sign Up</strong></a>
+                          <a class="nav-link" href="#" style="color: white"><i class="fa fa-fw fa-user" ></i><strong>Sign Up</strong></a>
                     </li>
                     <li class="nav-item">
                          <a class="nav-link" href="#" style="color: white"><i class="fa fa-fw fa-user"></i><strong>Log In</strong></a>
