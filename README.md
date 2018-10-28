@@ -1,2 +1,2 @@
 # bookCafe
-to use cronta app just import emailqueue and fill the fields
+to use cronta app just import emailqueue from models of cronta and fill the fields
