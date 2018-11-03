@@ -42,7 +42,6 @@ INSTALLED_APPS = [
 
     #USER INSTALLED APPS
     'book',
-    'home',
     'accounts',
 
 ]
