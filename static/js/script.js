@@ -6,10 +6,10 @@
             $('.navbar').css({ // reducing the vertical padding from 25px to 10px
                 'padding-top': '10px',
                 'padding-bottom': '10px',
-                'background': 'black',
+                'background': '#7386d5',
                 'color': 'black',
 
-                
+
             });
 
         } else {

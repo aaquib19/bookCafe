@@ -6,6 +6,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.db.models.signals import m2m_changed
+from django.db.models import Q
+
+from django.urls import reverse
 
 from bookcafe.utils import unique_slug_generator
 
@@ -58,6 +61,24 @@ class Author(models.Model):
     # def __str__(self):
     #     return str(self.name)
 
+class BookQuerySet(models.query.QuerySet):
+
+    def search(self,query):
+        lookups =   ( Q(title__icontains=query) |
+                      Q(isbn__icontains=query)
+
+        )
+        return self.filter(lookups).distinct()
+
+class BookManager(models.Manager):
+    def get_queryset(self):
+        return BookQuerySet(self.model,using=self._db)
+
+    def search(self,query):
+        return self.get_queryset().search(query)
+
+
+
 
 class Book(models.Model):
     title = models.CharField(max_length=150)
@@ -71,8 +92,13 @@ class Book(models.Model):
     category = models.ManyToManyField(Category)
     image = models.ImageField(upload_to=upload_image_path)
 
+    objects = BookManager()
+
     def __str__(self):
         return str(self.title)
+
+    # def get_absolute_url(self):
+    #     return reverse("book:detail",kwargs={"slug":self.slug})
 
 
 def book_pre_save_reciever(sender, instance, *args, **kwargs):
