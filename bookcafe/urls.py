@@ -23,6 +23,8 @@ from . import views
 
 urlpatterns = [
     path("",views.home,name="home"),
+    path("category/", views.category, name="category"),#this is temprory
+
     path('admin/', admin.site.urls),
     path('book/', include(('book.urls', 'book'), namespace='book')),
     path('accounts/', include(('accounts.urls', 'accounts'), namespace='accounts')),
