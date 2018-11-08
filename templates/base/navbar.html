@@ -1,23 +1,13 @@
 {% load static %}
-<style>
 
-@media (max-width: 908px) {
-  #login-btn {
-    display: block;
-  }
 
-  #sesion.collapse {
-    display: none !important;
-  }
-}
-</style>
 <nav class="navbar navbar-expand-xl  navbar-dark fixed-top navbar-default">
          <a class="navbar-brand" href="#">
-           <img src="{% static 'img/2.png' %}" width="150" height="50" alt="">
+           <img src="https://ubisafe.org/images/book-svg.png" width="64" height="64" alt="" style="margin-left: 10px;">
          </a>
 
 {#        <div class="container-fluid" >#}
-            <a class="navbar-brand" href="#" style="color: white">BOOK CAFE</a>
+            <a class="navbar-brand" href="#" style="color: white;margin-left: 10px;">BOOK CAFE</a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon" style="background-color:grey; "></span>
@@ -27,7 +17,7 @@
 
 
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02" >
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav mr-auto" style="padding: .25rem 1.5rem;">
 
                     <li class="nav-item">
                          <a class="nav-link" href="#" style="color: white">Issue A Book</a>
@@ -48,7 +38,7 @@
                 </ul>
 
                 <form method="GET" action="{% url 'search:query' %}" class="form-inline my-2 my-lg-0" style="padding-right: 20px">
-                            <input class="form-control mr-sm-2" name="q" type="search" placeholder="Search" aria-label="Search" style="height: 20px">
+                            <input id="search" class="form-control mr-sm-2" name="q" type="search" placeholder="Search" aria-label="Search" >
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="color: white"><i class="fa fa-fw fa-search"></i>Search</button>
                         </form>
             </div>

@@ -20,9 +20,13 @@ from .import settings
 from django.conf.urls.static import static
 
 from . import views
+from accounts.views import  login_page,register_page
 
 urlpatterns = [
     path("",views.home,name="home"),
+    path('login/', login_page, name='login'),
+    path('register/', register_page, name='register'),
+
     path("category/", views.category, name="category"),#this is temprory
 
     path('admin/', admin.site.urls),
