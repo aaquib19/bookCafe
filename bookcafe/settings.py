@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'search',
 
 ]
+AUTH_USER_MODEL = 'accounts.user'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -57,6 +58,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+LOGOUT_REDIRECT_URL = '/login/'
 ROOT_URLCONF = 'bookcafe.urls'
 
 TEMPLATES = [
@@ -88,6 +90,8 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+
 
 
 # Password validation

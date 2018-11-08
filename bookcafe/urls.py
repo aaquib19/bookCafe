@@ -18,14 +18,17 @@ from django.urls import include,path
 
 from .import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import LogoutView
 
 from . import views
-from accounts.views import  login_page,register_page
+from accounts.views import  LoginView,RegisterView
+
 
 urlpatterns = [
     path("",views.home,name="home"),
-    path('login/', login_page, name='login'),
-    path('register/', register_page, name='register'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('register/', RegisterView.as_view(), name='register'),
+    path('logout/', LogoutView.as_view(), name='logout'),
 
     path("category/", views.category, name="category"),#this is temprory
 

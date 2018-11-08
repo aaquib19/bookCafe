@@ -1,5 +1,6 @@
 {% load static %}
 
+{% url 'logout' as logout_url %}
 
 <nav class="navbar navbar-expand-xl  navbar-dark fixed-top navbar-default">
          <a class="navbar-brand" href="#">
@@ -28,13 +29,19 @@
                     <li class="nav-item">
                           <a class="nav-link" href="#" style="color: white">Contact Us</a>
                     </li>
+                    {% if not request.user.is_authenticated %}
+                        <li class="nav-item">
+                              <a class="nav-link" href="#" style="color: white">Sign Up</a>
+                        </li>
 
-                    <li class="nav-item">
-                          <a class="nav-link" href="#" style="color: white">Sign Up</a>
-                    </li>
-                    <li class="nav-item">
-                         <a class="nav-link" href="#" style="color: white"><i class="fa fa-fw fa-user"></i>Log In</a>
-                    </li>
+                        <li class="nav-item">
+                             <a class="nav-link" href="#" style="color: white"><i class="fa fa-fw fa-user"></i>Log In</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item {% if request.path == logout_url %}active{% endif %} ">
+                          <a class="nav-link" href="{{ logout_url }}">Logout</a>
+                        </li>
+                     {% endif %}
                 </ul>
 
                 <form method="GET" action="{% url 'search:query' %}" class="form-inline my-2 my-lg-0" style="padding-right: 20px">
