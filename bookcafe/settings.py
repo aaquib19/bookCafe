@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'search',
 
 ]
+
 AUTH_USER_MODEL = 'accounts.user'
 
 MIDDLEWARE = [

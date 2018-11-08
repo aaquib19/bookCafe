@@ -89,7 +89,7 @@ class Book(models.Model):
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE)
     no_of_actual_copy = models.IntegerField()
     no_of_copy_left = models.IntegerField()
-    category = models.ManyToManyField(Category)
+    category = models.ManyToManyField(Category,related_name="books")
     image = models.ImageField(upload_to=upload_image_path)
 
     objects = BookManager()
