@@ -35,14 +35,7 @@ class LoginView(FormView):
         user = authenticate(request, username=email, password=password)
         if user is not None:
             login(request, user)
-            try:
-                del request.session['guest_email_id']
-            except:
-                pass
-            if is_safe_url(redirect_path, request.get_host()):
-                return redirect(redirect_path)
-            else:
-                return redirect("/")
+            return redirect("/")
         return super(LoginView, self).form_invalid(form)
 
 
