@@ -97,9 +97,10 @@ class Book(models.Model):
     def __str__(self):
         return str(self.title)
 
-    # def get_absolute_url(self):
-    #     return reverse("book:detail",kwargs={"slug":self.slug})
-
+    def get_absolute_url(self):
+        # similar to "/books/{slug}/"
+        #return reverse("book:detail",kwargs={"slug":self.slug})
+        return f"/book/{self.slug}/"
 
 def book_pre_save_reciever(sender, instance, *args, **kwargs):
     if instance.no_of_actual_copy < instance.no_of_copy_left:
