@@ -46,7 +46,6 @@ background-color: white;
 <body>
 
     <div class="wrapper">
-        <div class="overlay" style="display: none;"></div>
         <!-- Sidebar  -->
         <nav id="sidebar" style="margin-top: 80px">
             <div id="dismiss">
@@ -241,9 +240,7 @@ background-color: white;
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
-                $('.overlay').css({
-                    "display": "block",
-                });
+
             });
         });
     </script>
