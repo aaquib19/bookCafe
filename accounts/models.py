@@ -3,6 +3,8 @@ from django.contrib.auth.models import (
     AbstractBaseUser,BaseUserManager
 )
 
+
+from book.models import Book
 #AUTH_USER_MODEL
 
 class UserManager(BaseUserManager):
@@ -51,7 +53,7 @@ class User(AbstractBaseUser):
     staff = models.BooleanField(default=False)
     admin = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
-
+    book_issued = models.ManyToManyField(Book)
     USERNAME_FIELD = 'email'
     #email and password field are required by default
 
