@@ -30,7 +30,8 @@ urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
     path('logout/', LogoutView.as_view(), name='logout'),
 
-    path("category/", views.category, name="category"),#this is temprory
+    path("category/", views.category, name="category"),
+    path("category/<str:subject>", views.category, name="category"),  # this is temprory subjects/science
 
     path('admin/', admin.site.urls),
     path('book/', include(('book.urls', 'book'), namespace='book')),

@@ -18,7 +18,11 @@ def get_filename_ext(filepath):
     name, ext = os.path.splitext(base_name)
     return name, ext
 
+ # this is temprory subjects/science
 
+    path('admin/', admin.site.urls),
+    path('book/', include(('book.urls', 'book'), namespace='book')),
+    path('accounts/', include(('accounts.urls', 'accounts'), namespace='accounts')),
 def upload_image_path(instance, filename):
     # print(instance)
     # print(filename)
@@ -32,34 +36,38 @@ def upload_image_path(instance, filename):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=150, unique=True)
-
-    # slug
+    title = models.CharField(max_length=150, unique=True)
+    slug = models.SlugField(blank=True, unique=True)
 
     def __str__(self):
-        return str(self.name)
+        return str(self.title)
+
+
+
+def category_pre_save_reciever(sender,instance,*args,**kwargs):
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
+
+pre_save.connect(category_pre_save_reciever,sender=Category)
 
 
 class Publisher(models.Model):
-    name = models.CharField(max_length=200, unique=True)
+    title = models.CharField(max_length=200, unique=True)
 
     # slug
 
     def __str__(self):
-        return str(self.name)
+        return str(self.title)
 
 
 class Author(models.Model):
-    name = models.CharField(max_length=100, unique=True)
+    title = models.CharField(max_length=100, unique=True)
     age = models.IntegerField()
 
     # slug
 
-    def __repr__(self):
-        return str(self.name)
-
-    # def __str__(self):
-    #     return str(self.name)
+    def __str__(self):
+        return str(self.title)
 
 class BookQuerySet(models.query.QuerySet):
 
@@ -107,7 +115,7 @@ def book_pre_save_reciever(sender, instance, *args, **kwargs):
     if instance.no_of_actual_copy < 0 or instance.no_of_copy_left < 0:
         raise ValidationError("check the number of copies")
     if not instance.slug:
-        print("url ", instance.image.url)
+        #print("url ", instance.image.url)
         instance.slug = unique_slug_generator(instance)
 
 
