@@ -6,6 +6,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.db.models.signals import m2m_changed
+
 from django.db.models import Q
 
 from django.urls import reverse
@@ -18,11 +19,7 @@ def get_filename_ext(filepath):
     name, ext = os.path.splitext(base_name)
     return name, ext
 
- # this is temprory subjects/science
 
-    path('admin/', admin.site.urls),
-    path('book/', include(('book.urls', 'book'), namespace='book')),
-    path('accounts/', include(('accounts.urls', 'accounts'), namespace='accounts')),
 def upload_image_path(instance, filename):
     # print(instance)
     # print(filename)
@@ -36,38 +33,34 @@ def upload_image_path(instance, filename):
 
 
 class Category(models.Model):
-    title = models.CharField(max_length=150, unique=True)
-    slug = models.SlugField(blank=True, unique=True)
-
-    def __str__(self):
-        return str(self.title)
-
-
-
-def category_pre_save_reciever(sender,instance,*args,**kwargs):
-    if not instance.slug:
-        instance.slug = unique_slug_generator(instance)
-
-pre_save.connect(category_pre_save_reciever,sender=Category)
-
-
-class Publisher(models.Model):
-    title = models.CharField(max_length=200, unique=True)
+    name = models.CharField(max_length=150, unique=True)
 
     # slug
 
     def __str__(self):
-        return str(self.title)
+        return str(self.name)
+
+
+class Publisher(models.Model):
+    name = models.CharField(max_length=200, unique=True)
+
+    # slug
+
+    def __str__(self):
+        return str(self.name)
 
 
 class Author(models.Model):
-    title = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=100, unique=True)
     age = models.IntegerField()
 
     # slug
 
-    def __str__(self):
-        return str(self.title)
+    def __repr__(self):
+        return str(self.name)
+
+    # def __str__(self):
+    #     return str(self.name)
 
 class BookQuerySet(models.query.QuerySet):
 
@@ -109,13 +102,21 @@ class Book(models.Model):
         # similar to f"/book/{self.slug}/"
         return reverse("book:detail",kwargs={"slug":self.slug})
 
+    #def get_issued_users(self):
+        
+
+
+
+    #def get_borrowed_users(self):
+
+
 def book_pre_save_reciever(sender, instance, *args, **kwargs):
     if instance.no_of_actual_copy < instance.no_of_copy_left:
         raise ValidationError("Number of actual copy is less than copy left")
     if instance.no_of_actual_copy < 0 or instance.no_of_copy_left < 0:
         raise ValidationError("check the number of copies")
     if not instance.slug:
-        #print("url ", instance.image.url)
+        print("url ", instance.image.url)
         instance.slug = unique_slug_generator(instance)
 
 

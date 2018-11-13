@@ -54,6 +54,7 @@ class User(AbstractBaseUser):
     admin = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
     book_issued = models.ManyToManyField(Book)
+
     USERNAME_FIELD = 'email'
     #email and password field are required by default
 
