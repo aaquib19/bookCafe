@@ -136,6 +136,16 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static_')
 
+#AUTH_USER_MODEL = 'acounts.User'
+
+LOGIN_URL = 'login'
+
+LOGOUT_URL = 'logout'
+
+LOGIN_REDIRECT_URL = 'home'
+
+LOGOUT_REDIRECT_URL = 'home'
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]

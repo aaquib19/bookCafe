@@ -21,14 +21,14 @@ from django.conf.urls.static import static
 from django.contrib.auth.views import LogoutView
 
 from . import views
-from accounts.views import  LoginView,RegisterView
+#from accounts.views import  LoginView,RegisterView
 
 
 urlpatterns = [
     path("",views.home,name="home"),
-    path('login/', LoginView.as_view(), name='login'),
-    path('register/', RegisterView.as_view(), name='register'),
-    path('logout/', LogoutView.as_view(), name='logout'),
+    #path('login/', LoginView.as_view(), name='login'),
+    #path('register/', RegisterView.as_view(), name='register'),
+    path('logout/', LogoutView.as_view(), name='logout'),#accounts:logout
 
     # path("category/", views.category, name="category"),
     # path("category/<str:subject>", views.category, name="category"),  # this is temprory subjects/science

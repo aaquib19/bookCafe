@@ -2,6 +2,15 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
+from django.contrib.auth.forms import UserCreationForm
+from django.db import transaction
+from django.forms.utils import ValidationError
+
+from accounts.models import (Student,
+                               User)
+
+
+
 User = get_user_model()
 
 
@@ -13,7 +22,7 @@ class UserAdminCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email',)
+        fields = ('email','first_name','last_name')
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -50,34 +59,53 @@ class UserAdminChangeForm(forms.ModelForm):
         return self.initial["password"]
 
 
-class LoginForm(forms.Form):
-    email = forms.EmailField(label="Email")
-    password = forms.CharField(widget=forms.PasswordInput)
 
 
-class RegisterForm(forms.ModelForm):
-    """A form for creating new users. Includes all the required
-    fields, plus a repeated password."""
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
 
-    class Meta:
+
+
+
+
+class TeacherSignUpForm(UserCreationForm):
+    def __init__(self,*args,**kwargs):
+        super(TeacherSignUpForm,self).__init__(*args,**kwargs)
+        self.fields['first_name'].required = True
+        
+    class Meta(UserAdminCreationForm.Meta):
         model = User
-        fields = ('first_name','last_name','email',)
-
-    def clean_password2(self):
-        # Check that the two password entries match
-        password1 = self.cleaned_data.get("password1")
-        password2 = self.cleaned_data.get("password2")
-        if password1 and password2 and password1 != password2:
-            raise forms.ValidationError("Passwords don't match")
-        return password2
 
     def save(self, commit=True):
-        # Save the provided password in hashed format
-        user = super(RegisterForm, self).save(commit=False)
-        user.set_password(self.cleaned_data["password1"])
-        # user.active = False # send confirmation email
+        user = super().save(commit=False)
+        user.is_teacher = True
         if commit:
             user.save()
         return user
+
+
+class StudentSignUpForm(UserCreationForm):
+    def __init__(self,*args,**kwargs):
+        super(StudentSignUpForm,self).__init__(*args,**kwargs)
+        self.fields['first_name'].required = True
+
+    class Meta(UserAdminCreationForm.Meta):
+        model = User
+        fiels = "__all__"
+
+    @transaction.atomic
+    def save(self):
+        user = super().save(commit=False)
+        user.is_student = True
+        user.save()
+        student = Student.objects.create(user=user)
+        return user
+
+
+# class StudentInterestsForm(forms.ModelForm):
+#     class Meta:
+#         model = Student
+#         fields = ('interests', )
+#         widgets = {
+#             'interests': forms.CheckboxSelectMultiple
+#         }
+
+
