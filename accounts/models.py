@@ -8,14 +8,14 @@ from book.models import Book
 #AUTH_USER_MODEL
 
 class UserManager(BaseUserManager):
-    def create_user(self,email,full_name=None,password=None,is_active=True,is_staff=False,is_admin=False):
+    def create_user(self,email,first_name=None,password=None,is_active=True,is_staff=False,is_admin=False):
         if not email:
             raise ValueError("users must have email address")
         if not password:
             raise ValueError("users must have a password")
         user_obj = self.model(
             email = self.normalize_email(email),
-            full_name=full_name
+            first_name=first_name
         )
         user_obj.set_password(password)
         user_obj.staff = is_staff
@@ -26,19 +26,19 @@ class UserManager(BaseUserManager):
         return user_obj
 
     # def create_stffuser
-    def create_staffuser(self,email,full_name=None,password=None):
+    def create_staffuser(self,email,first_name=None,password=None):
         user = self.create_user(
             email,
-            full_name=full_name,
+            first_name=first_name,
             password=password,
             is_staff=True
         )
         return user
 
-    def create_superuser(self,email,full_name=None,password=None):
+    def create_superuser(self,email,first_name=None,password=None):
         user = self.create_user(
             email,
-            full_name=full_name,
+            first_name=first_name,
             password=password,
             is_staff=True,
             is_admin=True
@@ -72,8 +72,8 @@ class User(AbstractBaseUser):
         return self.email
 
     def get_full_name(self):
-        if self.full_name:
-            return self.full_name
+        if self.first_name and self.last_name:
+            return self.first_name + self.last_name
         return self.email
 
     def get_short_name(self):
