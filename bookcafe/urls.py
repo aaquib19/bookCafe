@@ -28,7 +28,7 @@ urlpatterns = [
     path("",views.home,name="home"),
     #path('login/', LoginView.as_view(), name='login'),
     #path('register/', RegisterView.as_view(), name='register'),
-    path('logout/', LogoutView.as_view(), name='logout'),
+    path('logout/', LogoutView.as_view(), name='logout'),#accounts:logout
 
     path("category/", views.category, name="category"),
     path("category/<str:subject>", views.category, name="category"),  # this is temprory subjects/science

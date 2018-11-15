@@ -14,7 +14,8 @@
 .clearfix:after { clear: both; }
 
 body {
-	background: ##c6ddf1;
+		height: max-content;
+	 background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
 	color: #fff;
 	font-weight: 200;
 	font-size: 1em;
