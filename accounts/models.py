@@ -47,13 +47,18 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
+    username = models.CharField(max_length=255,null=True,blank=True)
     email = models.EmailField(unique=True,max_length=255)
-    full_name   = models.CharField(max_length=255, blank=True, null=True)
+    first_name   = models.CharField(max_length=255, blank=True, null=True)
+    last_name   = models.CharField(max_length=255, blank=True, null=True)
     active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False)
     admin = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
-    book_issued = models.ManyToManyField(Book)
+    book_issued = models.ManyToManyField(Book,blank=True)
+    #user_type=models.CharField(max_length=6,choices=USER_TYPE_CHOICES,blank=True,null=True)
+    is_student = models.BooleanField(default=False)
+    is_teacher = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
     #email and password field are required by default
