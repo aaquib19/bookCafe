@@ -28,7 +28,7 @@ class TeacherSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('teachers:welcome')
+        return redirect('accounts:teacher_signup')
 
 
 # @method_decorator([login_required, teacher_required], name='dispatch')

@@ -58,7 +58,7 @@ class User(AbstractBaseUser):
     staff = models.BooleanField(default=False)
     admin = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
-    book_issued = models.ManyToManyField(Book)
+    book_issued = models.ManyToManyField(Book,null=True,blank=True)
     user_type=models.CharField(max_length=6,choices=USER_TYPE_CHOICES,blank=True,null=True)
     is_student = models.BooleanField(default=False)
     is_teacher = models.BooleanField(default=False)

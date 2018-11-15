@@ -9,7 +9,7 @@ from .views.teachers import TeacherSignUpView
 urlpatterns = [
 path('', home1.home, name='home'),
 
-    path('signup/', home1.SignUpView.as_view()),
+    path('signup/', home1.SignUpView.as_view(),name="signup_all"),
     path('signup/student/', StudentSignUpView.as_view(), name='student_signup'),
     path('signup/teacher/', TeacherSignUpView.as_view(), name='teacher_signup'),
 

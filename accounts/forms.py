@@ -74,7 +74,7 @@ class UserAdminChangeForm(forms.ModelForm):
 
 
 class TeacherSignUpForm(UserCreationForm):
-    class Meta(UserCreationForm.Meta):
+    class Meta(UserAdminCreationForm.Meta):
         model = User
 
     def save(self, commit=True):
@@ -86,8 +86,9 @@ class TeacherSignUpForm(UserCreationForm):
 
 
 class StudentSignUpForm(UserCreationForm):
-    class Meta(UserCreationForm.Meta):
+    class Meta(UserAdminCreationForm.Meta):
         model = User
+        fiels = "__all__"
 
     @transaction.atomic
     def save(self):
