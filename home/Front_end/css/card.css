@@ -1,6 +1,6 @@
 body {
-  width: 100wh;
-  height: 90vh;
+  width: 100%;
+  height: 100%;
   color: #fff;
  background: linear-gradient(-45deg, #faeaee, #d0c3c6, #a79ea0, #817a7c, #5c5859);
   background-size: 400% 400%;
