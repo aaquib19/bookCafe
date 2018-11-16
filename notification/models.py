@@ -1,8 +1,10 @@
 from django.db import models
-from django.contrib.contenttypes.models import ContentType
 from django.db.models.query import QuerySet
 from django.conf import settings
 from django.utils import timezone
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from accounts.models import User
 
 
 class NotificationQuerySet(models.query.QuerySet):
@@ -44,10 +46,19 @@ class NotificationQuerySet(models.query.QuerySet):
 
 class Notification(models.Model):
     #user to whom notification to be sent
-    # recipient = models.ForeignKey(settings.AUTH_USER_MODEL,blank=False,related_name='notifications',on_delete=models.CASCADE)
+    recipient = models.ForeignKey(User,default='',related_name='notifications',on_delete=models.CASCADE)
     unread = models.BooleanField(default=True, blank=False, db_index=True)
-    notification_content = models.CharField(max_length=255)
+    notification_title = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
     timestamp = models.DateTimeField(default=timezone.now)
     emailed = models.BooleanField(default=False, db_index=True)
     objects = NotificationQuerySet.as_manager()
+
+@receiver(post_save,sender = User)
+def welcome_msg(sender,**kwargs):
+    if kwargs['created']:
+        Notification.objects.create(
+            recipient = kwargs['instance'],
+            notification_title = "Welcome to BOOKCAFE!!",
+            description="thanks for signing up :)",
+        )
