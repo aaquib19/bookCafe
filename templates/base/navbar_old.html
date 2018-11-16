@@ -1,0 +1,58 @@
+{% load static %}
+
+{% url 'logout' as logout_url %}
+{% url 'accounts:signup_all' as signup_url %}
+
+<nav class="navbar navbar-expand-xl  navbar-dark fixed-top navbar-default">
+         <a class="navbar-brand" href="#">
+           <img src="https://ubisafe.org/images/book-svg.png" width="64" height="64" alt="" style="margin-left: 10px;">
+         </a>
+
+{#        <div class="container-fluid" >#}
+            <a class="navbar-brand" href="#" style="color: white;margin-left: 10px;">BOOK CAFE</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon" style="background-color:grey; "></span>
+            </button>
+
+
+
+
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02" >
+                <ul class="navbar-nav mr-auto" style="padding: .25rem 1.5rem;">
+
+                    <li class="nav-item">
+                         <a class="nav-link" href="#" style="color: white">Issue A Book</a>
+                    </li>
+                    <li class="nav-item">
+                          <a class="nav-link" href="#" style="color: white">Catalog</a>
+                    </li>
+                    <li class="nav-item">
+                          <a class="nav-link" href="#" style="color: white">Contact Us</a>
+                    </li>
+                    {% if not request.user.is_authenticated %}
+                        <li class="nav-item">
+                              <a class="nav-link" href="{{ signup_url }}" style="color: white">Sign Up</a>
+                        </li>
+
+                        <li class="nav-item">
+                             <a class="nav-link" href="#" style="color: white"><i class="fa fa-fw fa-user"></i>Log In</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item {% if request.path == logout_url %}active{% endif %} ">
+                          <a class="nav-link" href="{{ logout_url }}">Logout</a>
+                        </li>
+                     {% endif %}
+                </ul>
+
+                <form method="GET" action="{% url 'search:query' %}" class="form-inline my-2 my-lg-0" style="padding-right: 20px">
+                            <input id="search" class="form-control mr-sm-2" name="q" type="search" placeholder="Search" aria-label="Search" >
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="color: white"><i class="fa fa-fw fa-search"></i>Search</button>
+                        </form>
+            </div>
+{#        </div>#}
+</nav>
+
+
+
+

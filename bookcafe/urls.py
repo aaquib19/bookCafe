@@ -26,6 +26,7 @@ from . import views
 
 urlpatterns = [
     path("",views.home,name="home"),
+    path("home",views.home1,name="home1"),
     #path('login/', LoginView.as_view(), name='login'),
     #path('register/', RegisterView.as_view(), name='register'),
     path('logout/', LogoutView.as_view(), name='logout'),#accounts:logout
