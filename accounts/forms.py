@@ -8,7 +8,7 @@ from django.forms.utils import ValidationError
 
 from accounts.models import (Student,
                                User)
-
+from django.contrib.auth.forms import  UserChangeForm
 
 
 User = get_user_model()
@@ -66,6 +66,8 @@ class UserAdminChangeForm(forms.ModelForm):
 
 
 
+
+
 class TeacherSignUpForm(UserCreationForm):
     def __init__(self,*args,**kwargs):
         super(TeacherSignUpForm,self).__init__(*args,**kwargs)
@@ -99,6 +101,17 @@ class StudentSignUpForm(UserCreationForm):
         student = Student.objects.create(user=user)
         return user
 
+class EditProfileForm(UserChangeForm):
+    template_name='/something/else'
+
+    class Meta:
+        model = User
+        fields = (
+            'email',
+            'first_name',
+            'last_name',
+            'password'
+        )
 
 # class StudentInterestsForm(forms.ModelForm):
 #     class Meta:
