@@ -135,10 +135,9 @@ class Student(models.Model):
 #     answer = models.ForeignKey(Answer, on_delete=models.CASCADE, related_name='+')
 
 
-
-
 '''notification related stuffs by dilip jat'''
 from django.contrib.contenttypes.models import ContentType
+from django.db.models.query import QuerySet
 
 class NotificationQuerySet(models.query.QuerySet):
     ''' Notification QuerySet '''
@@ -165,6 +164,12 @@ class NotificationQuerySet(models.query.QuerySet):
             qset = qset.filter(recipient=recipient)
         return qset.update(unread=False)
 
+    def mark_as_unsent(self, recipient=None):
+        qset = self.sent()
+        if recipient:
+            qset = qset.filter(recipient=recipient)
+        return qset.update(emailed=False)
+
     def mark_as_sent(self, recipient=None):
         qset = self.unsent()
         if recipient:
@@ -180,9 +185,7 @@ class Notification(models.Model):
     notification_content = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
     timestamp = models.DateTimeField(default=timezone.now)
-    deleted = models.BooleanField(default=False, db_index=True)
     emailed = models.BooleanField(default=False, db_index=True)
-    data = JSONField(blank=True, null=True)
     objects = NotificationQuerySet.as_manager()
 
 
