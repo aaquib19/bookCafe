@@ -135,3 +135,54 @@ class Student(models.Model):
 #     answer = models.ForeignKey(Answer, on_delete=models.CASCADE, related_name='+')
 
 
+
+
+'''notification related stuffs by dilip jat'''
+from django.contrib.contenttypes.models import ContentType
+
+class NotificationQuerySet(models.query.QuerySet):
+    ''' Notification QuerySet '''
+    def unsent(self):
+        return self.filter(emailed=False)
+
+    def sent(self):
+        return self.filter(emailed=True)
+
+    def unread(self, include_deleted=False):
+        """Return only unread items in the current queryset"""
+        return self.filter(unread=True)
+
+    def read(self, include_deleted=False):
+        """Return only read items in the current queryset"""
+        return self.filter(unread=False)
+
+    def mark_all_as_read(self, recipient=None):
+        """Mark as read any unread messages in the current queryset.
+        Optionally, filter these by recipient first.
+        """
+        qset = self.unread(True)
+        if recipient:
+            qset = qset.filter(recipient=recipient)
+        return qset.update(unread=False)
+
+    def mark_as_sent(self, recipient=None):
+        qset = self.unsent()
+        if recipient:
+            qset = qset.filter(recipient=recipient)
+        return qset.update(emailed=True)
+
+class Notification(models.Model):
+    LEVELS = Choices('success', 'info')
+    level = models.CharField(choices=LEVELS, default=LEVELS.info, max_length=20)
+    #user to whom notification to be sent
+    recipient = models.ForeignKey(settings.AUTH_USER_MODEL,blank=False,related_name='notifications',on_delete=models.CASCADE)
+    unread = models.BooleanField(default=True, blank=False, db_index=True)
+    notification_content = models.CharField(max_length=255)
+    description = models.TextField(blank=True, null=True)
+    timestamp = models.DateTimeField(default=timezone.now)
+    deleted = models.BooleanField(default=False, db_index=True)
+    emailed = models.BooleanField(default=False, db_index=True)
+    data = JSONField(blank=True, null=True)
+    objects = NotificationQuerySet.as_manager()
+
+
