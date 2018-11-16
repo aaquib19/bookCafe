@@ -6,6 +6,7 @@ from .views import home1, students, teachers
 
 from .views.students import StudentSignUpView
 from .views.teachers import TeacherSignUpView
+
 urlpatterns = [
 path('', home1.home, name='home'),
 

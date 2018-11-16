@@ -30,11 +30,13 @@ urlpatterns = [
     #path('register/', RegisterView.as_view(), name='register'),
     path('logout/', LogoutView.as_view(), name='logout'),#accounts:logout
 
-    path("category/", views.category, name="category"),
-    path("category/<str:subject>", views.category, name="category"),  # this is temprory subjects/science
+    # path("category/", views.category, name="category"),
+    # path("category/<str:subject>", views.category, name="category"),  # this is temprory subjects/science
 
     path('admin/', admin.site.urls),
     path('book/', include(('book.urls', 'book'), namespace='book')),
+    path('category/', include(('category.urls', 'category'), namespace='category')),
+
     path('accounts/', include(('accounts.urls', 'accounts'), namespace='accounts')),
     path('search/', include(('search.urls', 'search'), namespace='search')),
 ]

@@ -12,14 +12,14 @@ USER_TYPE_CHOICES=(
     ('Teacher','Teacher'),
 )
 class UserManager(BaseUserManager):
-    def create_user(self,email,full_name=None,password=None,is_active=True,is_staff=False,is_admin=False):
+    def create_user(self,email,first_name=None,password=None,is_active=True,is_staff=False,is_admin=False):
         if not email:
             raise ValueError("users must have email address")
         if not password:
             raise ValueError("users must have a password")
         user_obj = self.model(
             email = self.normalize_email(email),
-            full_name=full_name
+            first_name=first_name
         )
         user_obj.set_password(password)
         user_obj.staff = is_staff
@@ -30,19 +30,19 @@ class UserManager(BaseUserManager):
         return user_obj
 
     # def create_stffuser
-    def create_staffuser(self,email,full_name=None,password=None):
+    def create_staffuser(self,email,first_name=None,password=None):
         user = self.create_user(
             email,
-            full_name=full_name,
+            first_name=first_name,
             password=password,
             is_staff=True
         )
         return user
 
-    def create_superuser(self,email,full_name=None,password=None):
+    def create_superuser(self,email,first_name=None,password=None):
         user = self.create_user(
             email,
-            full_name=full_name,
+            first_name=first_name,
             password=password,
             is_staff=True,
             is_admin=True
@@ -51,17 +51,19 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
-    username = models.CharField(max_length=255)
+    username = models.CharField(max_length=255,null=True,blank=True)
     email = models.EmailField(unique=True,max_length=255)
-    full_name   = models.CharField(max_length=255, blank=True, null=True)
+    first_name   = models.CharField(max_length=255, blank=True, null=True)
+    last_name   = models.CharField(max_length=255, blank=True, null=True)
     active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False)
     admin = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
-    book_issued = models.ManyToManyField(Book,null=True,blank=True)
-    user_type=models.CharField(max_length=6,choices=USER_TYPE_CHOICES,blank=True,null=True)
+    book_issued = models.ManyToManyField(Book,blank=True)
+    #user_type=models.CharField(max_length=6,choices=USER_TYPE_CHOICES,blank=True,null=True)
     is_student = models.BooleanField(default=False)
     is_teacher = models.BooleanField(default=False)
+
     USERNAME_FIELD = 'email'
     #email and password field are required by default
 
@@ -74,8 +76,8 @@ class User(AbstractBaseUser):
         return self.email
 
     def get_full_name(self):
-        if self.full_name:
-            return self.full_name
+        if self.first_name and self.last_name:
+            return self.first_name + self.last_name
         return self.email
 
     def get_short_name(self):
@@ -106,6 +108,7 @@ from django.utils.html import escape, mark_safe
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    abc = models.CharField(max_length=12,null=True,blank=True)
     # quizzes = models.ManyToManyField(Quiz, through='TakenQuiz')
     # interests = models.ManyToManyField(Subject, related_name='interested_students')
 
