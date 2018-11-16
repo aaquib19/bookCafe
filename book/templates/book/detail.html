@@ -19,7 +19,7 @@
 {#                {% if check if the user has requested for issue or not %} make a function like get_absolute_url#}
                     Requested <button type='submit' class='btn btn-link'>undo the request</button>
 {#                {% else %}#}
-                    <button type='submit' formaction="{% url 'check_book' %}" class='btn btn-success'>Request to issue</button>
+                    <button type='submit' formaction="{% url 'book:check_book' %}" class='btn btn-success'>Request to issue</button>
 {#                {% endif %}#}
                 </span>
             </form>
