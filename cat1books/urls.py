@@ -2,6 +2,9 @@ from django.urls import path
 from . import views
 
 
+
+app_name = 'cat1books'
+
 urlpatterns = [
     path('', views.home,name='c1home'),
     path('desc',views.desc,name='desc'),
