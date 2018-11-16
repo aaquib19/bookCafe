@@ -10,43 +10,43 @@ from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 
-
 from django.contrib.auth import authenticate, login, get_user_model
-from django.shortcuts import render,redirect
-from django.views.generic import CreateView,FormView
+from django.shortcuts import render, redirect
+from django.views.generic import CreateView, FormView
 
-#import this for better redirection
+
+# import this for better redirection
 # from django.utils.http import is_safe_url
 
 # Create your views here.
 
 
-from .forms import LoginForm, RegisterForm
+# from accounts.forms import LoginForm, RegisterForm
 
-
-class RegisterView(CreateView):
-    form_class = RegisterForm
-    template_name = "accounts/register.html"
-    success_url = '/login/'
-
-
-
-
-class LoginView(FormView):
-    form_class = LoginForm
-    template_name = "accounts/login.html"
-    success_url = "/"
-
-    def form_valid(self, form):
-        request = self.request
-        #for advance redirecction
-        email = form.cleaned_data.get("email")
-        password = form.cleaned_data.get("password")
-        user = authenticate(request, username=email, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect("/")
-        return super(LoginView, self).form_invalid(form)
+#
+# class RegisterView(CreateView):
+#     form_class = RegisterForm
+#     template_name = "accounts/register.html"
+#     success_url = '/login/'
+#
+#
+#
+#
+# class LoginView(FormView):
+#     form_class = LoginForm
+#     template_name = "accounts/login.html"
+#     success_url = "/"
+#
+#     def form_valid(self, form):
+#         request = self.request
+#         #for advance redirecction
+#         email = form.cleaned_data.get("email")
+#         password = form.cleaned_data.get("password")
+#         user = authenticate(request, username=email, password=password)
+#         if user is not None:
+#             login(request, user)
+#             return redirect("/")
+#         return super(LoginView, self).form_invalid(form)
 
 def view_profile(request, pk=None):
     if pk:
@@ -55,6 +55,7 @@ def view_profile(request, pk=None):
         user = request.user
     args = {'user': user}
     return render(request, 'accounts/profile.html', args)
+
 
 def edit_profile(request):
     if request.method == 'POST':
@@ -67,6 +68,7 @@ def edit_profile(request):
         form = EditProfileForm(instance=request.user)
         args = {'form': form}
         return render(request, 'accounts/edit_profile.html', args)
+
 
 def change_password(request):
     if request.method == 'POST':
@@ -83,6 +85,8 @@ def change_password(request):
 
         args = {'form': form}
         return render(request, 'accounts/change_password.html', args)
+
+
 
 # def login_page(request):
 #     form = LoginForm(request.POST or None)
