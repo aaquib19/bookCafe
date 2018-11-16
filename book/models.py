@@ -13,6 +13,7 @@ from django.urls import reverse
 
 from bookcafe.utils import unique_slug_generator
 
+from bookcafe import settings
 
 def get_filename_ext(filepath):
     base_name = os.path.basename(filepath)
@@ -125,7 +126,13 @@ pre_save.connect(book_pre_save_reciever, sender=Book)
 
 
 
-
+class token(models.Model):
+    token=models.IntegerField()
+    user_name = models.ForeignKey(settings.AUTH_USER_MODEL,related_name="un",on_delete=models.CASCADE,null=True)
+    book_name = models.ForeignKey(Book,related_name="bn",on_delete=models.CASCADE,null=True,blank=True)
+    
+    class Meta:
+        unique_together=('user_name','book_name')
 
 
 

@@ -27,3 +27,35 @@ class BookDetailView(DetailView):
         except:
             raise Http404("some error has occured check detail view")
         return  instance
+
+def test(request, url_string):
+    print(url_string)
+    return HttpResponse("check terminal")
+
+
+def check_book(request,url_string):
+
+    book=Book.objects.get(slug=url_string)
+    placeholder = ""
+    values=[]
+    
+    user = request.user
+    book_name=book.name
+    authors=book.authors
+    publisher=book.publisher
+    values=book
+    
+
+    if not request.user.is_authenticated:
+        messages.error(request,"You need to login inorder to issue a book")
+        #return render(request,'bookissue/issue.html')
+        return redirect('desc')
+        
+    else:
+        if book.no_of_copy_left==0:
+            messages.error(request,"There is no stock available!")
+            return redirect('desc')
+        else:
+            return render(request, 'cat1books/bookform2.html',{'user':user,'values':values})
+
+
