@@ -10,5 +10,6 @@ urlpatterns = [
     #path("test/<str:url_string>/", views.test, name="test"),
 
     path("check_book/<str:url_string>/", views.check_book, name="check_book"),
+    path("token/<str:booktoken>/", views.token, name="token"),
 
 ]
