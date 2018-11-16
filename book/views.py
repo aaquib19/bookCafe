@@ -40,11 +40,11 @@ def check_book(request,url_string):
     values=[]
 
     user = request.user
-    #book_name=book.name
-    #authors=book.authors
-    #publisher=book.publisher
+    book_name=book.title
+    authors=book.authors.all()
+    publisher=book.publisher
     values=book
-    
+
 
     if not request.user.is_authenticated:
         messages.error(request,"You need to login inorder to issue a book")
