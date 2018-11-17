@@ -112,6 +112,10 @@ class EditProfileForm(UserChangeForm):
             'last_name',
             'password'
         )
+        
+class LoginForm(forms.Form):
+    email = forms.EmailField(label="Email")
+    password = forms.CharField(widget=forms.PasswordInput)
 
 # class StudentInterestsForm(forms.ModelForm):
 #     class Meta:
