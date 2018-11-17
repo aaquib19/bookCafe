@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, get_user_model
 from django.shortcuts import render,redirect
 from django.views.generic import CreateView,FormView
+from django.shortcuts import reverse
+from django.contrib.auth.forms import  UserChangeForm,PasswordChangeForm
 
 #import this for better redirection
 # from django.utils.http import is_safe_url
@@ -11,7 +13,9 @@ from django.views.generic import CreateView,FormView
 # Create your views here.
 
 
-from accounts.forms import LoginForm
+from accounts.forms import LoginForm, EditProfileForm
+
+
 #
 # class RegisterView(CreateView):
 #     form_class = RegisterForm
@@ -83,17 +87,16 @@ def change_password(request):
 
 # def login_page(request):
 #     form = LoginForm(request.POST or None)
-#     context = {
-#         "form":form
-#     }
+#     if request.POST and form.is_valid():
+#         user = form.login(request)
 #
 #     #for redirection
 #
 #     if form.is_valid():
-#         username = form.cleaned_data.get("username")
+#         email = form.cleaned_data.get("email")
 #         password = form.cleaned_data.get("password")
 #
-#         user = authenticate(request,username=username,password=password)
+#         user = authenticate(request,email=email,password=password)
 #         if user is not None:
 #             login(request,user)
 #             return redirect("/")
@@ -102,7 +105,7 @@ def change_password(request):
 #
 #     return render(request,"accounts/login.html",context)
 #
-#
+# #
 #
 # User = get_user_model()
 # def register_page(request):

@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
-
+{% if form.errors %}
+<p>Something is wrong</p>
+{% endif %}
 {% block content %}
 <div class="container">
+    <br><br><br>
     <h1>Welcome</h1>
     <p>
         You can log in here!
