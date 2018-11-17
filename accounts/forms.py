@@ -156,6 +156,15 @@ class LoginForm(forms.Form):
         user = authenticate(email=email, password=password)
         return user
 
+    helper = FormHelper()
+    helper.layout = Layout(
+        Field('email', css_class='form-control '),
+        Field('password', css_class='form-control'),
+        ButtonHolder(
+            Submit('submit', 'Submit', css_class='button white')
+        )
+    )
+
 # class StudentInterestsForm(forms.ModelForm):
 #     class Meta:
 #         model = Student
