@@ -5,6 +5,7 @@
 {% url 'accounts:view_profile' as profile_url %}
 {% url 'accounts:login' as login_url %}
 {% url 'accounts:edit_profile' as edit_url %}
+{% url 'category:home' 'all' as category_url %}
 <!--Navbar-->
 <nav class="navbar navbar-expand-xl navbar-dark fixed-top navbar-default">
 
@@ -28,7 +29,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link black-text" href="#">Categories</a>
+          <a class="nav-link black-text" href="{{ category_url }}">Categories</a>
         </li>
         <li class="nav-item">
           <a class="nav-link black-text" href="#">Issue A Book</a>
