@@ -8,7 +8,7 @@ from django.forms.utils import ValidationError
 
 from accounts.models import (Student,
                                User)
-from django.contrib.auth.forms import  UserChangeForm
+from django.contrib.auth.forms import  UserChangeForm,PasswordChangeForm
 
 
 User = get_user_model()

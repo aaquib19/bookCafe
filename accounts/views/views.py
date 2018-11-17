@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, get_user_model
 from django.shortcuts import render,redirect
 from django.views.generic import CreateView,FormView
+from django.shortcuts import reverse
+from django.contrib.auth.forms import  UserChangeForm,PasswordChangeForm
 
 #import this for better redirection
 # from django.utils.http import is_safe_url
