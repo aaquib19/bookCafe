@@ -2,7 +2,9 @@
 
 {% url 'logout' as logout_url %}
 {% url 'accounts:signup_all' as signup_url %}
-
+{% url 'accounts:view_profile' as profile_url %}
+{% url 'accounts:view_profile' as login_url %}
+{% url 'accounts:edit_profile' as edit_url %}
 <!--Navbar-->
 <nav class="navbar navbar-expand-xl navbar-dark fixed-top navbar-default" style="color:red">
 
@@ -50,22 +52,28 @@
       </form >
       </li>
       {% if not request.user.is_authenticated %}
+
           <li class="nav-item" style="padding-left: 10px;padding-right: 10px;">
                         <a class="nav-link  white-text" aria-hidden="true" href="{{ signup_url }}" ><i class="fa fa-fw fa-user"></i>Sign Up</a>
             </li>
             <li class="nav-item" style="padding-left: 10px;padding-right: 50px;">
-              <a class="nav-link  white-text" aria-hidden="true" href=""><i class="fa fa-fw fa-user"></i>Log In</a>
+              <a class="nav-link  white-text" aria-hidden="true" href="{{ login_url }}"><i class="fa fa-fw fa-user"></i>Log In</a>
             </li>
           {% else %}
-          <li class="nav-item" style="padding-left: 10px;padding-right: 20px;">
+           <li class="nav-item" style="padding-left: 10px;padding-right: 20px;">
               <a class="nav-link  white-text" aria-hidden="true" >Hello, {{ request.user.first_name }}</a>
             </li>
-          <li class="nav-item" style="padding-left: 10px;">
-              <a class="nav-link  white-text" aria-hidden="true" href="{{ logout_url }}"><i class="fa fa-fw fa-user"></i>My Profile</a>
-            </li>
-           <li class="nav-item" style="padding-left: 10px;padding-right: 20px;">
-              <a class="nav-link  white-text" aria-hidden="true" href="{{ logout_url }}"><i class="fa fa-fw fa-user"></i>Log out</a>
-            </li>
+           <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">Accounts</a>
+        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="{{ profile_url }}">My Profile</a>
+          <a class="dropdown-item" href="{{ edit_url }}">Edit</a>
+          <a class="dropdown-item" href="{{ logout_url }}">Logout</a>
+        </div>
+      </li>
+
+
           {% endif %}
 
       </ul>
