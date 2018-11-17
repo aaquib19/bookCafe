@@ -85,28 +85,27 @@ def change_password(request):
 
 
 
-def login_page(request):
-    form = LoginForm(request.POST or None)
-    context = {
-        "form":form
-    }
-
-    #for redirection
-
-    if form.is_valid():
-        username = form.cleaned_data.get("username")
-        password = form.cleaned_data.get("password")
-
-        user = authenticate(request,username=username,password=password)
-        if user is not None:
-            login(request,user)
-            return redirect("/")
-        else:
-            print("error !!!")
-
-    return render(request,"accounts/login.html",context)
-
+# def login_page(request):
+#     form = LoginForm(request.POST or None)
+#     if request.POST and form.is_valid():
+#         user = form.login(request)
 #
+#     #for redirection
+#
+#     if form.is_valid():
+#         email = form.cleaned_data.get("email")
+#         password = form.cleaned_data.get("password")
+#
+#         user = authenticate(request,email=email,password=password)
+#         if user is not None:
+#             login(request,user)
+#             return redirect("/")
+#         else:
+#             print("error !!!")
+#
+#     return render(request,"accounts/login.html",context)
+#
+# #
 #
 # User = get_user_model()
 # def register_page(request):
