@@ -62,7 +62,14 @@ class User(AbstractBaseUser):
     book_issued = models.ManyToManyField(Book,blank=True)
     #user_type=models.CharField(max_length=6,choices=USER_TYPE_CHOICES,blank=True,null=True)
     is_student = models.BooleanField(default=False)
+    is_general = models.BooleanField(default=False)
     is_teacher = models.BooleanField(default=False)
+    department = models.CharField(max_length=255)
+    address = models.CharField(max_length=255)
+    phone = models.IntegerField(null=True,blank=True)
+    pincode = models.IntegerField(null=True,blank=True)
+    city = models.CharField(max_length=255)
+
 
     USERNAME_FIELD = 'email'
     #email and password field are required by default
@@ -103,35 +110,27 @@ class User(AbstractBaseUser):
 
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.utils.html import escape, mark_safe
 
 
 class Student(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    abc = models.CharField(max_length=12,null=True,blank=True)
-    # quizzes = models.ManyToManyField(Quiz, through='TakenQuiz')
-    # interests = models.ManyToManyField(Subject, related_name='interested_students')
-
-    # def get_unanswered_questions(self, quiz):
-    #     answered_questions = self.quiz_answers \
-    #         .filter(answer__question__quiz=quiz) \
-    #         .values_list('answer__question__pk', flat=True)
-    #     questions = quiz.questions.exclude(pk__in=answered_questions).order_by('text')
-    #     return questions
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # dob = models.DateField(null=True,blank=True)
+    # bio  =models.TextField(null=True,blank=True)
+    # college = models.CharField(max_length=255,null=True,blank=True)
 
     def __str__(self):
         return self.user.username
 
 
-# class TakenQuiz(models.Model):
-#     student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='taken_quizzes')
-#     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name='taken_quizzes')
-#     score = models.FloatField()
-#     date = models.DateTimeField(auto_now_add=True)
+# class Teacher(models.Model):
+#     user = models.OneToOneField(User,on_delete=models.CASCADE)
+#     department = models.CharField(max_length=255)
 
-
-# class StudentAnswer(models.Model):
-#     student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='quiz_answers')
-#     answer = models.ForeignKey(Answer, on_delete=models.CASCADE, related_name='+')
-
-
+#
+# class General(models.Model):
+#     user = models.OneToOneField(User,on_delete=models.CASCADE)
+#     address = models.CharField(max_length=255)
+#     phone = models.IntegerField(null=True,blank=True)
+#     pincode = models.IntegerField(null=True,blank=True)
+#     city = models.CharField(max_length=255)
+#

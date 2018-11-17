@@ -3,10 +3,11 @@
 {% url 'logout' as logout_url %}
 {% url 'accounts:signup_all' as signup_url %}
 {% url 'accounts:view_profile' as profile_url %}
-{% url 'accounts:view_profile' as login_url %}
+{% url 'accounts:login' as login_url %}
 {% url 'accounts:edit_profile' as edit_url %}
+{% url 'category:home' 'all' as category_url %}
 <!--Navbar-->
-<nav class="navbar navbar-expand-xl navbar-dark fixed-top navbar-default" style="color:red">
+<nav class="navbar navbar-expand-xl navbar-dark fixed-top navbar-default">
 
     <!-- Navbar brand -->
     <a class="navbar-brand font-weight-bold white-text" href="#">Book Cafe</a>
@@ -28,7 +29,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link black-text" href="#">Categories</a>
+          <a class="nav-link black-text" href="{{ category_url }}">Categories</a>
         </li>
         <li class="nav-item">
           <a class="nav-link black-text" href="#">Issue A Book</a>
@@ -68,6 +69,7 @@
           aria-expanded="false">Accounts</a>
         <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="{{ profile_url }}">My Profile</a>
+            <a class="dropdown-item" href="{{ profile_url }}">Notifications</a>
           <a class="dropdown-item" href="{{ edit_url }}">Edit</a>
           <a class="dropdown-item" href="{{ logout_url }}">Logout</a>
         </div>

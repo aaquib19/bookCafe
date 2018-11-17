@@ -8,18 +8,18 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, UpdateView
 
-from ..decorators import student_required
-from ..forms import  StudentSignUpForm
+from ..decorators import general_required
+from ..forms import  generalSignUpForm
 from ..models import  Student, User
 
 
-class StudentSignUpView(CreateView):
+class GeneralSignUpView(CreateView):
     model = User
-    form_class = StudentSignUpForm
+    form_class = generalSignUpForm
     template_name = 'registration/signup_form.html'
 
     def get_context_data(self, **kwargs):
-        kwargs['user_type'] = 'student'
+        kwargs['user_type'] = 'general user'
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
