@@ -6,6 +6,7 @@ urlpatterns = [
     path("",views.BookListView.as_view(),name="list"),
     path("<slug:slug>/", views.BookDetailView.as_view(), name="detail"),
 
+
     #demo how to use string
     #path("test/<str:url_string>/", views.test, name="test"),
 

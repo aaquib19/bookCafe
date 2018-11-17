@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+<br><br><br>
+    <h1>Profile</h1>
+    <p>Username: {{ request.user }}</p>
+    <p>First name: {{ request.user.first_name }}</p>
+    <p>Last name: {{ request.user.last_name }}</p>
+    <p>Email: {{ request.user.email }}</p>
+    <p>Description: {{ request.user.userprofile.description }}</p>
+    <p>Phone: {{ request.user.userprofile.phone }}</p>
+    <p>City: {{ request.user.userprofile.city }}</p>
+    <p>Website: {{ request.user.userprofile.website }}</p>
+    {% if request.user.userprofile.image %}
+    <img src="{{ request.user.userprofile.image.url }}" width="240">
+    {% endif %}
+</div>
+{% endblock %}
+
