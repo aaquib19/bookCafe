@@ -11,15 +11,14 @@ from django.views.generic import CreateView,FormView
 # Create your views here.
 
 
-from .forms import LoginForm, RegisterForm
-
-
-class RegisterView(CreateView):
-    form_class = RegisterForm
-    template_name = "accounts/register.html"
-    success_url = '/login/'
-
-
+from accounts.forms import LoginForm
+#
+# class RegisterView(CreateView):
+#     form_class = RegisterForm
+#     template_name = "accounts/register.html"
+#     success_url = '/login/'
+#
+#
 
 
 class LoginView(FormView):
