@@ -3,7 +3,7 @@
 
 {% block content %}
 
-    <div class='row'>
+   <!--  <div class='row'>
         <div class='col-12 col-md-6'>
                 {% if messages %}
     {% for message in messages %}
@@ -11,7 +11,11 @@
             {{message}}
         </div>
     {% endfor %}
-    {% endif %}
+    {% endif %} -->
+
+    
+
+    <main style="padding-top: 5.5rem">
                 <h1>{{ object.title }}</h1>
                 {{ object.isbn|linebreaks }}<br/>
                 {% if object.image %}
@@ -30,15 +34,35 @@
                 {% endif %}
  -->
 
+<br><br>
+            <h2>Total Stock</h2>
+            <h3>{{ object.no_of_actual_copy }}</h3>
+
+        <h2>Available</h2>
+            <h3>{{ object.no_of_copy_left }}</h3>
+                
+
+
+{% if token %}
+
                 {% for t in token %}
                     {% ifequal  t.book_name|stringformat:"s" object.title  %}
                     Requested <button type='submit' formaction="{% url 'book:undo' object.slug %}" class='btn btn-link'>undo the request</button>
                     {% else %}
                     <button type='submit' formaction="{% url 'book:check_book' object.slug %}" class='btn btn-success'>Request to issue</button>
+
+                    <button type='submit' formaction="{% url 'book:check_bookp' object.slug %}" class='btn btn-success'>Book Pool</button>
                     {% endifequal %}
 
-    {% endfor %}
-    
+                {% endfor %}
+{% else %}
+                    
+
+                 <button type='submit' formaction="{% url 'book:check_book' object.slug %}" class='btn btn-success'>Request to issue</button>
+
+                <button type='submit' formaction="{% url 'book:check_bookp' object.slug %}" class='btn btn-success'>Book Pool</button>
+
+{% endif %}
     
 <!--
 {% for t in token %}
@@ -51,11 +75,9 @@
 -->
                 </span>
             </form>
-<br><br>
-            <h2>Stock</h2>
-            <h3>{{ object.no_of_copy_left }}</h3>
+
 
         </div>
 </div>
-
+</main>
 {% endblock %}

@@ -32,11 +32,13 @@ class BookDetailView(DetailView):
     def get_context_data(self,**kwargs):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
-        user = self.request.user
-        
+
+        if self.request.user.is_authenticated:
+            user = self.request.user
+            context['user'] = user
+            context['token'] = token.objects.filter(user_name=user)
         # Add in a QuerySet of all the books
-        context['user'] = user
-        context['token'] = token.objects.filter(user_name=user)
+        
         print(token.book_name)
         return context
 
@@ -75,6 +77,36 @@ def check_book(request,url_string):
             return render(request, 'book/bookform2.html',{'user':user,'values':values})
 
 
+def check_bookp(request,url_string):
+
+    book=Book.objects.get(slug=url_string)
+    placeholder = ""
+    values=[]
+
+    user = request.user
+    book_name=book.title
+    authors=book.authors.all()
+    publisher=book.publisher
+    values=book
+    # to=token.objects.filter(user_name=user)
+    # for t in to:
+    #     print(t.user_name)
+    # #print(user.id)
+    if not request.user.is_authenticated:
+        messages.error(request,"You need to login inorder to issue a book")
+        #return render(request,'bookissue/issue.html')
+        return redirect('book:list')
+        #return redirect('book:detail'+'/'+url_string)
+        
+    else:
+        if book.no_of_copy_left==0:
+            messages.error(request,"There is no stock available!")
+            return redirect('book:list')
+        else:
+            return render(request, 'book/bookformp2.html',{'user':user,'values':values})
+
+
+
 import random
 import time
 def gen_token(request,booktoken):
@@ -84,12 +116,12 @@ def gen_token(request,booktoken):
     tokens=random.randint(1, 3910209312)
     messages.success(request,"Your token is {}".format(tokens))
     user1 = request.user
-    user=User.objects.filter(username=user1)
-    token.objects.create(token=tokens,user_name_id=user1.id,book_name_id=book.id)
-    token.save()
+    #user=User.objects.filter(username=user1)
+    token.objects.create(token=tokens,user_name=user1,book_name=book)
+    #token.save()
     
     book.no_of_copy_left=book.no_of_copy_left-1
-    book.save()
+    #book.save()
     
     return redirect('book:list')
 
