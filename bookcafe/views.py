@@ -9,5 +9,5 @@ def home(request):
 def home1(request):
 
     #print("book issed by user",request.user.book_issued.all())
-    return render(request,"index.html")
+    return render(request,"category.html")
 
