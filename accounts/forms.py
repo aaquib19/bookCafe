@@ -10,7 +10,8 @@ from accounts.models import (Student,
                                User)
 from django.contrib.auth.forms import  UserChangeForm
 
-
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit,Field
 User = get_user_model()
 
 
@@ -76,6 +77,18 @@ class TeacherSignUpForm(UserCreationForm):
     class Meta(UserAdminCreationForm.Meta):
         model = User
 
+    helper = FormHelper()
+    helper.layout = Layout(
+        Field('email', css_class='form-control '),
+        Field('first_name', css_class='form-control'),
+        Field('last_name', css_class='form-control'),
+        Field('password1', css_class='form-control'),
+        Field('password2', css_class='form-control'),
+        ButtonHolder(
+            Submit('submit', 'Submit', css_class='button white')
+        )
+    )
+
     def save(self, commit=True):
         user = super().save(commit=False)
         user.is_teacher = True
@@ -91,7 +104,19 @@ class StudentSignUpForm(UserCreationForm):
 
     class Meta(UserAdminCreationForm.Meta):
         model = User
-        fiels = "__all__"
+        fields = ('email','first_name','last_name')
+
+    helper = FormHelper()
+    helper.layout = Layout(
+        Field('email', css_class='form-control '),
+        Field('first_name', css_class='form-control'),
+        Field('last_name', css_class='form-control'),
+        Field('password1', css_class='form-control'),
+        Field('password2', css_class='form-control'),
+        ButtonHolder(
+            Submit('submit', 'Submit', css_class='button white')
+        )
+    )
 
     @transaction.atomic
     def save(self):
