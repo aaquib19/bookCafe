@@ -3,6 +3,7 @@ from django.http import HttpResponse,Http404
 from django.views.generic import ListView,DetailView
 from django.contrib import messages
 from .models import Book,token
+from django.utils import timezone
 # Create your views here.
 
 class BookListView(ListView):
@@ -111,9 +112,24 @@ import random
 import time
 def gen_token(request,booktoken):
 
+    n=token.objects.all().last()
+
     book=Book.objects.get(slug=booktoken)
-    t0=time.time()
-    tokens=random.randint(1, 3910209312)
+    # t0=time.time()
+    # tokens=random.randint(1, 3910209312)
+
+    # for t in at.token:
+    #     if t == tokens:
+    #         tokens=random.randint(1, 3910209312)
+    if n:
+        date=n.date
+        if date==timezone.now:
+            tokens=n.token+1
+        else:
+            tokens=1
+    else:
+        tokens=0
+
     messages.success(request,"Your token is {}".format(tokens))
     user1 = request.user
     #user=User.objects.filter(username=user1)
@@ -121,7 +137,7 @@ def gen_token(request,booktoken):
     #token.save()
     
     book.no_of_copy_left=book.no_of_copy_left-1
-    #book.save()
+    book.save()
     
     return redirect('book:list')
 
@@ -133,7 +149,8 @@ def undo(request,booki):
     token.objects.get(book_name=book,user_name=user).delete()
     #token.save()
     messages.error(request,"You have cancelled your order!")
-
+    book.no_of_copy_left=book.no_of_copy_left+1
+    book.save()
     return redirect('book:list')
 
 

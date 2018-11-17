@@ -10,7 +10,7 @@ from django.db.models.signals import m2m_changed
 from django.db.models import Q
 
 from django.urls import reverse
-
+from django.utils import timezone
 from bookcafe.utils import unique_slug_generator
 
 from bookcafe import settings
@@ -130,7 +130,7 @@ class token(models.Model):
     token=models.IntegerField()
     user_name = models.ForeignKey(settings.AUTH_USER_MODEL,related_name="un",on_delete=models.CASCADE,null=True)
     book_name = models.ForeignKey(Book,related_name="bn",on_delete=models.CASCADE,null=True,blank=True)
-    
+    date = models.DateField(default=timezone.now)
     class Meta:
         unique_together=('user_name','book_name')
 
