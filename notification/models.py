@@ -52,7 +52,9 @@ class Notification(models.Model):
     description = models.TextField(blank=True, null=True)
     timestamp = models.DateTimeField(default=timezone.now)
     emailed = models.BooleanField(default=False, db_index=True)
+    description_view = models.BooleanField(default=False,db_index=True)
     objects = NotificationQuerySet.as_manager()
+
 
 @receiver(post_save,sender = User)
 def welcome_msg(sender,**kwargs):
