@@ -11,7 +11,9 @@ from django.views.generic import CreateView,FormView
 # Create your views here.
 
 
-from accounts.forms import LoginForm
+from accounts.forms import LoginForm, EditProfileForm
+
+
 #
 # class RegisterView(CreateView):
 #     form_class = RegisterForm
