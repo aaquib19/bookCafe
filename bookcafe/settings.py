@@ -163,10 +163,29 @@ CRONJOBS = [
     ('*/1 * * * *','cronta.cron.my_jobs'),
 ]
 
-EMAIL_USE_TLS = True
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'info.educardo@gmail.com'
+# DEFAULT_FROM_EMAIL = 'info.educardo@gmail.com'
+# DEFAULT_REPLYTO_EMAIL = 'info.educardo@gmail.com'
+# EMAIL_HOST_PASSWORD = '*********'
+# EMAIL_PORT = 587
+#
+
+import smtplib
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'info.educardo@gmail.com'
-DEFAULT_FROM_EMAIL = 'info.educardo@gmail.com'
-DEFAULT_REPLYTO_EMAIL = 'info.educardo@gmail.com'
-EMAIL_HOST_PASSWORD = '*********'
 EMAIL_PORT = 587
+smtp=smtplib.SMTP(host=EMAIL_HOST,port=EMAIL_PORT)
+
+EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smpt.gmail.com'
+EMAIL_HOST_USER = 'rehanmallick4080@gmail.com'
+EMAIL_HOST_PASSWORD = 'iamalilwayne'
+# EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'rehanmallick4080@gmail.com'
+
+# ADMINS = (
+#     ('You', 'you@email.com'),
+# )
+# MANAGERS = ADMINS

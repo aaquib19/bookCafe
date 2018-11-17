@@ -56,6 +56,7 @@ class User(AbstractBaseUser):
     first_name   = models.CharField(max_length=255, blank=True, null=True)
     last_name   = models.CharField(max_length=255, blank=True, null=True)
     active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False)
     admin = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
@@ -97,9 +98,9 @@ class User(AbstractBaseUser):
     @property
     def is_admin(self):
         return self.admin
-    @property
-    def is_active(self):
-        return  self.active
+    # @property
+    # def is_active(self):
+    #     return  self.active
 
 
 from django.contrib.auth.models import AbstractUser
