@@ -68,8 +68,10 @@ def edit_profile(request):
 
 
 def change_password(request):
+    print("fasfsad")
     if request.method == 'POST':
         form = PasswordChangeForm(data=request.POST, user=request.user)
+        print("POST")
 
         if form.is_valid():
             form.save()
@@ -78,6 +80,7 @@ def change_password(request):
         else:
             return redirect(reverse('accounts:change_password'))
     else:
+        print("not.POST")
         form = PasswordChangeForm(user=request.user)
 
         args = {'form': form}
