@@ -52,7 +52,7 @@ class Notification(models.Model):
     description = models.TextField(blank=True, null=True)
     timestamp = models.DateTimeField(default=timezone.now)
     emailed = models.BooleanField(default=False, db_index=True)
-    description_view = models.BooleanField(default=False,db_index=True)
+    description_view = models.BooleanFieldsearch_fields = ('mail_to', 'mail_subject', )(default=False,db_index=True)
     objects = NotificationQuerySet.as_manager()
 
 
