@@ -62,6 +62,7 @@ class User(AbstractBaseUser):
     book_issued = models.ManyToManyField(Book,blank=True)
     #user_type=models.CharField(max_length=6,choices=USER_TYPE_CHOICES,blank=True,null=True)
     is_student = models.BooleanField(default=False)
+    is_general = models.BooleanField(default=False)
     is_teacher = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
@@ -106,8 +107,24 @@ from django.db import models
 
 
 class Student(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE,null=True,blank=True)
+    dob = models.DateField(null=True,blank=True)
+    bio  =models.TextField(null=True,blank=True)
+    college = models.CharField(max_length=255,null=True,blank=True)
 
     def __str__(self):
         return self.user.username
+
+
+class Teacher(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    department = models.CharField(max_length=255)
+
+
+class General(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    address = models.CharField(max_length=255)
+    phone = models.IntegerField(null=True,blank=True)
+    pincode = models.IntegerField(null=True,blank=True)
+    city = models.CharField(max_length=255)
 
