@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 from django.contrib.auth.forms import UserCreationForm
@@ -109,13 +109,27 @@ class EditProfileForm(UserChangeForm):
         fields = (
             'email',
             'first_name',
-            'last_name',
-            'password'
+            'last_name'
+           # 'password'
         )
         
 class LoginForm(forms.Form):
-    email = forms.EmailField(label="Email")
+    email = forms.EmailField(label="email")
     password = forms.CharField(widget=forms.PasswordInput)
+
+    def clean(self):
+        email = self.cleaned_data.get('email')
+        password = self.cleaned_data.get('password')
+        user = authenticate(email=email, password=password)
+        if not user or not user.is_active:
+            raise forms.ValidationError("Your username or password is incorrect")
+        return self.cleaned_data
+
+    def login(self, request):
+        email = self.cleaned_data.get('email')
+        password = self.cleaned_data.get('password')
+        user = authenticate(email=email, password=password)
+        return user
 
 # class StudentInterestsForm(forms.ModelForm):
 #     class Meta:
