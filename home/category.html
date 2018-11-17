@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 <!-- saved from url=(0072)https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html# -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -11,14 +10,13 @@
     <!-- Font Awesome -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-{#    <link rel="stylesheet" href="./category_base/css/font-awesome.css">#}
-      <link rel="stylesheet" href="{% static 'category_base/css/font-awesome.css' %}">
+    <link rel="stylesheet" href="./category_base/css/font-awesome.css">
+
     <!-- Bootstrap core CSS -->
-{#    <link href="./category_base/css/bootstrap.min.css" rel="stylesheet">#}
-    <link rel="stylesheet" href="{% static 'category_base/css/bootstrap.min.css' %}">
+    <link href="./category_base/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Material Design Bootstrap -->
-{#    <link href="./category_base/css/mdb.min.css" rel="stylesheet">#}
-    <link rel="stylesheet" href="{% static 'category_base/css/mdb.min.css' %}">
+    <link href="./category_base/css/mdb.min.css" rel="stylesheet">
 
 <style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
@@ -193,8 +191,8 @@
     
     <!--Main layout-->
     <main>
-        {% block main %}
-        {% endblock %}
+        
+        
     </main>
     <!--/Main layout-->
 
@@ -343,21 +341,16 @@
 
     <!-- SCRIPTS -->
     <!-- JQuery -->
-{#    <script type="text/javascript" src="./category_base/js/jquery-3.3.1.min.js"></script>#}
-
-    <script type="text/javascript" src="{% static 'category_base/js/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="./category_base/js/jquery-3.3.1.min.js"></script>
 
     <!-- Tooltips -->
-{#    <script type="text/javascript" src="./category_base/js/popper.min.js"></script>#}
-    <script type="text/javascript" src="{% static 'category_base/js/popper.min.js' %}"></script>
+    <script type="text/javascript" src="./category_base/js/popper.min.js"></script>
 
     <!-- Bootstrap core JavaScript -->
-{#    <script type="text/javascript" src="./category_base/js/bootstrap.min.js"></script>#}
-    <script type="text/javascript" src="{% static 'category_base/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="./category_base/js/bootstrap.min.js"></script>
 
     <!-- MDB core JavaScript -->
-{#    <script type="text/javascript" src="./category_base/js/mdb.min.js"></script><div class="hiddendiv common"></div>#}
-    <script type="text/javascript" src="{% static 'category_base/js/mdb.min.js' %}"></script>
+    <script type="text/javascript" src="./category_base/js/mdb.min.js"></script><div class="hiddendiv common"></div>
     <script>
 
          // SideNav Initialization
