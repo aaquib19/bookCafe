@@ -22,15 +22,40 @@
             <form  method='POST' > {% csrf_token %}
                 <input type='hidden' name='book_id' value='{{ object.id }}' />
                   <span class='submit-span'>
-{#                {% if check if the user has requested for issue or not %} make a function like get_absolute_url#}
+<!-- {#                {% if check if the user has requested for issue or not %} make a function like get_absolute_url#}
+                    {% if get_absolute_url %}
                     Requested <button type='submit' class='btn btn-link'>undo the request</button>
-{#                {% else %}#}
+                {% else %}
                     <button type='submit' formaction="{% url 'book:check_book' object.slug %}" class='btn btn-success'>Request to issue</button>
-{#                {% endif %}#}
+                {% endif %}
+ -->
+
+                {% for t in token %}
+                    {% ifequal  t.book_name|stringformat:"s" object.title  %}
+                    Requested <button type='submit' formaction="{% url 'book:undo' object.slug %}" class='btn btn-link'>undo the request</button>
+                    {% else %}
+                    <button type='submit' formaction="{% url 'book:check_book' object.slug %}" class='btn btn-success'>Request to issue</button>
+                    {% endifequal %}
+
+    {% endfor %}
+    
+    
+<!--
+{% for t in token %}
+{{ t.book_name }}
+{% ifequal  t.book_name|stringformat:"s" object.title  %}
+{{ object.title }}
+    
+{% endifequal %}
+ {% endfor %}
+-->
                 </span>
             </form>
+<br><br>
+            <h2>Stock</h2>
+            <h3>{{ object.no_of_copy_left }}</h3>
+
         </div>
 </div>
-
 
 {% endblock %}

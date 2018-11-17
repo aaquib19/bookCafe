@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse,Http404
 from django.views.generic import ListView,DetailView
 from django.contrib import messages
-from .models import Book
+from .models import Book,token
 # Create your views here.
 
 class BookListView(ListView):
@@ -28,6 +28,19 @@ class BookDetailView(DetailView):
             raise Http404("some error has occured check detail view")
         return  instance
 
+
+    def get_context_data(self,**kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        
+        # Add in a QuerySet of all the books
+        context['user'] = user
+        context['token'] = token.objects.filter(user_name=user)
+        print(token.book_name)
+        return context
+
+
 def test(request, url_string):
     print(url_string)
     return HttpResponse("check terminal")
@@ -44,8 +57,10 @@ def check_book(request,url_string):
     authors=book.authors.all()
     publisher=book.publisher
     values=book
-
-
+    # to=token.objects.filter(user_name=user)
+    # for t in to:
+    #     print(t.user_name)
+    # #print(user.id)
     if not request.user.is_authenticated:
         messages.error(request,"You need to login inorder to issue a book")
         #return render(request,'bookissue/issue.html')
@@ -62,7 +77,7 @@ def check_book(request,url_string):
 
 import random
 import time
-def token(request,booktoken):
+def gen_token(request,booktoken):
 
     book=Book.objects.get(slug=booktoken)
     t0=time.time()
@@ -77,4 +92,17 @@ def token(request,booktoken):
     book.save()
     
     return redirect('book:list')
+
+
+def undo(request,booki):
+
+    book=Book.objects.get(slug=booki)
+    user = request.user
+    token.objects.get(book_name=book,user_name=user).delete()
+    #token.save()
+    messages.error(request,"You have cancelled your order!")
+
+    return redirect('book:list')
+
+
 
