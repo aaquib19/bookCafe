@@ -40,6 +40,8 @@ urlpatterns = [
 
     path('accounts/', include(('accounts.urls', 'accounts'), namespace='accounts')),
     path('search/', include(('search.urls', 'search'), namespace='search')),
+    # notification part
+    path('notification/', include(('notification.urls', 'notification'), namespace='notification')),
 ]
 
 if settings.DEBUG:
