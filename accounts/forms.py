@@ -212,8 +212,17 @@ class GeneralCreationForm(ModelForm):
         model = User
         fields = "__all__"
 
+class GeneralExtraForm(ModelForm):
+    class Meta:
+        model = General
+        fields = ('address','phone','pincode','city')
 
 class StudentExtraForm(ModelForm):
     class Meta:
         model = Student
         fields = ('bio','college')
+
+class TeacherExtraForm(ModelForm):
+    class Meta:
+        model = Teacher
+        fields = ('department',)
