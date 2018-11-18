@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from django.contrib.auth import authenticate, login, get_user_model
+from django.contrib.auth import authenticate, login, get_user_model, update_session_auth_hash
 from django.shortcuts import render,redirect
 from django.views.generic import CreateView,FormView
 from django.shortcuts import reverse
@@ -13,7 +13,7 @@ from django.contrib.auth.forms import  UserChangeForm,PasswordChangeForm
 # Create your views here.
 
 
-from accounts.forms import LoginForm, EditProfileForm
+from accounts.forms import LoginForm, EditProfileForm,GeneralCreationForm
 
 
 #
@@ -23,7 +23,20 @@ from accounts.forms import LoginForm, EditProfileForm
 #     success_url = '/login/'
 #
 #
+def GeneralSignUp(request):
+    if request.method == "POST":
+        form = GeneralCreationForm(request.POST)
+        if form.is_valid():
+            # model_instance = form.save(commit=False)
+            # model_instance.timestamp = timezone.now()
+            model_instance.save()
+            return redirect('/')
 
+    else:
+
+        form = GeneralCreationForm()
+
+        return render(request, "my_template.html", {'form': form})
 
 class LoginView(FormView):
     form_class = LoginForm
@@ -82,6 +95,7 @@ def edit_profile(request):
 #
 #         args = {'form': form}
 #         return render(request, 'accounts/change_password.html', args)
+
 
 
 

@@ -4,8 +4,8 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Group
 
 User = get_user_model()
-
 from .forms import UserAdminChangeForm,UserAdminCreationForm
+
 
 
 class UserAdmin(BaseUserAdmin):

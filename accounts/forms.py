@@ -4,14 +4,15 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
-from django.forms.utils import ValidationError
+from django.forms import ModelForm
 
-from accounts.models import (Student,
-                               User)
+from accounts.models import Student,User,General,Teacher
+
 from django.contrib.auth.forms import  UserChangeForm,PasswordChangeForm
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit,Field
+from crispy_forms.layout import Layout, ButtonHolder, Submit,Field
+
 User = get_user_model()
 
 
@@ -61,14 +62,6 @@ class UserAdminChangeForm(forms.ModelForm):
 
 
 
-
-
-
-
-
-
-
-
 class TeacherSignUpForm(UserCreationForm):
     def __init__(self,*args,**kwargs):
         super(TeacherSignUpForm,self).__init__(*args,**kwargs)
@@ -97,6 +90,35 @@ class TeacherSignUpForm(UserCreationForm):
         return user
 
 
+class generalSignUpForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(generalSignUpForm, self).__init__(*args, **kwargs)
+        self.fields['first_name'].required = True
+
+    class Meta(UserAdminCreationForm.Meta):
+        model = User
+
+    helper = FormHelper()
+    helper.layout = Layout(
+        Field('email', css_class='form-control '),
+        Field('first_name', css_class='form-control'),
+        Field('last_name', css_class='form-control'),
+        Field('password1', css_class='form-control'),
+        Field('password2', css_class='form-control'),
+        ButtonHolder(
+            Submit('submit', 'Submit', css_class='button white')
+        )
+    )
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.is_general = True
+        if commit:
+            user.save()
+        return user
+
+
+
 class StudentSignUpForm(UserCreationForm):
     def __init__(self,*args,**kwargs):
         super(StudentSignUpForm,self).__init__(*args,**kwargs)
@@ -118,13 +140,13 @@ class StudentSignUpForm(UserCreationForm):
         )
     )
 
-    @transaction.atomic
-    def save(self):
-        user = super().save(commit=False)
-        user.is_student = True
-        user.save()
-        student = Student.objects.create(user=user)
-        return user
+    # @transaction.atomic
+    # def save(self):
+    #     user = super().save(commit=False)
+    #     user.is_student = True
+    #     user.save()
+    #     #student = Student.objects.create(user=user)
+    #     return user
 
 class EditProfileForm(UserChangeForm):
     template_name='/something/else'
@@ -137,6 +159,18 @@ class EditProfileForm(UserChangeForm):
             'last_name'
            # 'password'
         )
+
+    helper = FormHelper()
+    helper.layout = Layout(
+        Field('email', css_class='form-control '),
+        Field('first_name', css_class='form-control'),
+        Field('last_name', css_class='form-control'),
+        Field('password1', css_class='form-control'),
+        ButtonHolder(
+            Submit('submit', 'Submit', css_class='button white'),
+        )
+
+    )
         
 class LoginForm(forms.Form):
     email = forms.EmailField(label="email")
@@ -156,6 +190,15 @@ class LoginForm(forms.Form):
         user = authenticate(email=email, password=password)
         return user
 
+    helper = FormHelper()
+    helper.layout = Layout(
+        Field('email', css_class='form-control '),
+        Field('password', css_class='form-control'),
+        ButtonHolder(
+            Submit('submit', 'Submit', css_class='button white')
+        )
+    )
+
 # class StudentInterestsForm(forms.ModelForm):
 #     class Meta:
 #         model = Student
@@ -164,4 +207,13 @@ class LoginForm(forms.Form):
 #             'interests': forms.CheckboxSelectMultiple
 #         }
 
+class GeneralCreationForm(ModelForm):
+    class Meta:
+        model = User
+        fields = "__all__"
 
+
+class StudentExtraForm(ModelForm):
+    class Meta:
+        model = Student
+        fields = ('bio','college')
