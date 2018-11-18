@@ -39,7 +39,7 @@ urlpatterns = [
     path('category/', include(('category.urls', 'category'), namespace='category')),
 
     path('accounts/', include(('accounts.urls', 'accounts'), namespace='accounts')),
-    path('account/', include('accounts.passwords.urls')),
+    path('account/', include(('accounts.passwords.urls', 'account'), namespace='account')),
     path('search/', include(('search.urls', 'search'), namespace='search')),
     # notification part
     path('notification/', include(('notification.urls', 'notification'), namespace='notification')),
