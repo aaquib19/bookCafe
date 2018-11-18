@@ -17,8 +17,6 @@ class token(models.Model):
 
     class Meta:
         unique_together=('user_name','book_name')
-<<<<<<< HEAD:tok/models.py
-=======
 
 
 class pooled_token(models.Model):
@@ -30,4 +28,3 @@ class pooled_token(models.Model):
 
 	# class Meta:
 	# 	unique_together=('main_user','book_name')
->>>>>>> 63cbeee74ffeebb9aff3e037ca595205d18d4ecf:borrower/models.py
