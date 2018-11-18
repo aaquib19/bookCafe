@@ -90,7 +90,7 @@ class TeacherSignUpForm(UserCreationForm):
         return user
 
 
-class generalSignUpForm(forms.ModelForm):
+class generalSignUpForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(generalSignUpForm, self).__init__(*args, **kwargs)
         self.fields['first_name'].required = True

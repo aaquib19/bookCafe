@@ -22,9 +22,9 @@ urlpatterns = [
     path('generalsignup/', GeneralSignup, name="general_signup_new"),
 
     path('signup/', home1.SignUpView.as_view(),name="signup_all"),
-    path('signup/student/', StudentSignUpView.as_view(), name='student_signup'),
-    path('signup/general/', GeneralSignUpView.as_view(), name='general_signup'),
-    path('signup/teacher/', TeacherSignUpView.as_view(), name='teacher_signup'),
+    # path('signup/student/', StudentSignUpView.as_view(), name='student_signup'),
+    # path('signup/general/', GeneralSignUpView.as_view(), name='general_signup'),
+    # path('signup/teacher/', TeacherSignUpView.as_view(), name='teacher_signup'),
     path('profile/', views.view_profile, name='view_profile'),
     #re_path(r'^profile/(?P<pk>\d+)/$', views.view_profile, name='view_profile_with_pk'),
     path('profile/edit/', views.edit_profile, name='edit_profile'),
