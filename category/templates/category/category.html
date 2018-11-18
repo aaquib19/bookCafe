@@ -1,5 +1,11 @@
 {% load static %}
-<!DOCTYPE html>
+
+{% url 'logout' as logout_url %}
+{% url 'accounts:signup_all' as signup_url %}
+{% url 'accounts:view_profile' as profile_url %}
+{% url 'accounts:login' as login_url %}
+{% url 'accounts:edit_profile' as edit_url %}
+{% url 'category:home' 'all' as category_url %}<!DOCTYPE html>
 <!-- saved from url=(0072)https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html# -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Required meta tags always come first -->
@@ -43,17 +49,17 @@
                 <!-- Logo -->
                 <li>
                     <div class="logo-wrapper waves-light waves-effect waves-light">
-                        <a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html"><img src="./category_base/mdb-transparent.png" class="img-fluid flex-center"></a>
+{#                        <a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html"><img src="./category_base/mdb-transparent.png" class="img-fluid flex-center"></a>#}
                     </div>
                 </li>
                 <!--/. Logo -->
                 <!--Social-->
                 <li>
                     <ul class="social">
-                        <li><a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#" class="icons-sm fb-ic"><i class="fa fa-facebook"> </i></a></li>
-                        <li><a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#" class="icons-sm pin-ic"><i class="fa fa-pinterest"> </i></a></li>
-                        <li><a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#" class="icons-sm gplus-ic"><i class="fa fa-google-plus"> </i></a></li>
-                        <li><a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#" class="icons-sm tw-ic"><i class="fa fa-twitter"> </i></a></li>
+                        <li><a href="#" class="icons-sm fb-ic"><i class="fa fa-facebook"> </i></a></li>
+                        <li><a href="#" class="icons-sm pin-ic"><i class="fa fa-pinterest"> </i></a></li>
+                        <li><a href="#" class="icons-sm gplus-ic"><i class="fa fa-google-plus"> </i></a></li>
+                        <li><a href="#" class="icons-sm tw-ic"><i class="fa fa-twitter"> </i></a></li>
                     </ul>
                 </li>
                 <!--/Social-->
@@ -90,7 +96,7 @@
 
 <!--Navbar-->
 
-        <nav class="navbar fixed-top navbar-toggleable-lg navbar-expand-xl scrolling-navbar double-nav navbar-dark primary-color">
+        <nav class="navbar fixed-top navbar-toggleable-lg navbar-expand-xl scrolling-navbar double-nav navbar-dark">
             <!-- SideNav slide-out button -->
             <div class="float-left">
                 <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-bars"></i></a>
@@ -137,19 +143,32 @@
 
       </form >
       </li>
-<!--       {% if not request.user.is_authenticated %}
- -->          <li class="nav-item" style="padding-left: 10px;padding-right: 10px;">
-                        <a class="nav-link  white-text" aria-hidden="true" href="{{ signup_url }}" ><i class="fa fa-fw fa-user"></i>Sign Up</a>
+       {% if not request.user.is_authenticated %}
+
+          <li class="nav-item" style="padding-left: 10px;padding-right: 10px;">
+                        <a class="nav-link  black-text" aria-hidden="true" href="{{ signup_url }}" ><i class="fa fa-fw fa-user"></i>Sign Up</a>
             </li>
             <li class="nav-item" style="padding-left: 10px;padding-right: 50px;">
-              <a class="nav-link  white-text" aria-hidden="true" href=""><i class="fa fa-fw fa-user"></i>Log In</a>
+              <a class="nav-link   black-text" aria-hidden="true" href="{{ login_url }}"><i class="fa fa-fw fa-user"></i>Log In</a>
             </li>
-<!--           {% else %}
- -->           <li class="nav-item" style="padding-left: 10px;padding-right: 50px;">
-              <a class="nav-link  white-text" aria-hidden="true" href="{{ logout_url }}"><i class="fa fa-fw fa-user"></i>Log out</a>
+          {% else %}
+           <li class="nav-item" style="padding-left: 10px;padding-right: 20px;">
+              <a class="nav-link  black-text" aria-hidden="true" >Hello, {{ request.user.email }}</a>
             </li>
-<!--           {% endif %}
- -->            </ul>
+           <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle black-text" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">Accounts</a>
+        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="{{ profile_url }}">My Profile</a>
+            <a class="dropdown-item" href="{{ profile_url }}">Notifications</a>
+          <a class="dropdown-item" href="{{ edit_url }}">Edit</a>
+          <a class="dropdown-item" href="{{ logout_url }}">Logout</a>
+        </div>
+      </li>
+
+
+          {% endif %}
+             </ul>
 </div>
         </nav>
   <!--/.Navbar-->
