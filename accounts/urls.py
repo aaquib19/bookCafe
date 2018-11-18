@@ -11,7 +11,7 @@ from .views import views
 from .views.views import LoginView
 
 urlpatterns = [
-path('', home1.home, name='home'),
+    path('', home1.home, name='home'),
 
     path('login/',LoginView.as_view(), name="login"),
 
@@ -21,7 +21,7 @@ path('', home1.home, name='home'),
     path('profile/', views.view_profile, name='view_profile'),
     #re_path(r'^profile/(?P<pk>\d+)/$', views.view_profile, name='view_profile_with_pk'),
     path('profile/edit/', views.edit_profile, name='edit_profile'),
-    path('change-password/', views.change_password, name='change_password'),
+    #path('change-password/', views.change_password, name='change_password'),
 
 
 ]
