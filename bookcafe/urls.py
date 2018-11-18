@@ -47,6 +47,7 @@ urlpatterns = [
     # notification part
     path('notification/', include(('notification.urls', 'notification'), namespace='notification')),
 
+    path('donation/', include(('donation.urls', 'donation'), namespace='donation')),
 ]
 
 if settings.DEBUG:
