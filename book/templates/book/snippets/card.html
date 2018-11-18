@@ -1,3 +1,14 @@
+<!-- <<<<<<< HEAD
+<div class="card" style="width: 20rem;">
+  {% if instance.image %}
+    <a href="{{ instance.get_absolute_url }}"><img class="card-img-top" src="{{ instance.image.url }}" alt="{{ instance.title}} logo"></a>
+    {% endif %}
+  <div class="card-body">
+
+
+    <h4 class="card-title">{{ instance.title }}</h4>
+    
+======= -->
 <!-- Card -->
 <div class="card" style="width:20rem;">
 
@@ -15,10 +26,16 @@
     <!-- Title -->
    <h4 class="card-title">{{ instance.title }}</h4>
     <!-- Text -->
+
     <p class="card-text">{{ instance.isbn|linebreaks|truncatewords:14 }}</p>
     <!-- Button -->
     <a href="{{ instance.get_absolute_url }}" class="btn btn-primary">View</a>
 
+<!-- <<<<<<< HEAD
+  </div>
+    }
+</div>
+======= -->
 
   </div>
 
