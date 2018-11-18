@@ -5,14 +5,14 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from django.forms import ModelForm
-from django.forms.utils import ValidationError
 
-from accounts.models import Student#,User,General,Teacher)
+from accounts.models import Student,User,General,Teacher
 
 from django.contrib.auth.forms import  UserChangeForm,PasswordChangeForm
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit,Field
+from crispy_forms.layout import Layout, ButtonHolder, Submit,Field
+
 User = get_user_model()
 
 
@@ -59,14 +59,6 @@ class UserAdminChangeForm(forms.ModelForm):
         # This is done here, rather than on the field, because the
         # field does not have access to the initial value
         return self.initial["password"]
-
-
-
-
-
-
-
-
 
 
 
@@ -148,13 +140,13 @@ class StudentSignUpForm(UserCreationForm):
         )
     )
 
-    @transaction.atomic
-    def save(self):
-        user = super().save(commit=False)
-        user.is_student = True
-        user.save()
-        student = Student.objects.create(user=user)
-        return user
+    # @transaction.atomic
+    # def save(self):
+    #     user = super().save(commit=False)
+    #     user.is_student = True
+    #     user.save()
+    #     #student = Student.objects.create(user=user)
+    #     return user
 
 class EditProfileForm(UserChangeForm):
     template_name='/something/else'
@@ -221,4 +213,7 @@ class GeneralCreationForm(ModelForm):
         fields = "__all__"
 
 
-
+class StudentExtraForm(ModelForm):
+    class Meta:
+        model = Student
+        fields = ('bio','college')

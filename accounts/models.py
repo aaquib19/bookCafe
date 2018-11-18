@@ -56,6 +56,7 @@ class User(AbstractBaseUser):
     first_name   = models.CharField(max_length=255, blank=True, null=True)
     last_name   = models.CharField(max_length=255, blank=True, null=True)
     active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False)
     admin = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
@@ -64,11 +65,11 @@ class User(AbstractBaseUser):
     is_student = models.BooleanField(default=False)
     is_general = models.BooleanField(default=False)
     is_teacher = models.BooleanField(default=False)
-    department = models.CharField(max_length=255)
-    address = models.CharField(max_length=255)
-    phone = models.IntegerField(null=True,blank=True)
-    pincode = models.IntegerField(null=True,blank=True)
-    city = models.CharField(max_length=255)
+    # department = models.CharField(max_length=255)
+    # address = models.CharField(max_length=255)
+    # phone = models.IntegerField(null=True,blank=True)
+    # pincode = models.IntegerField(null=True,blank=True)
+    # city = models.CharField(max_length=255)
 
 
     USERNAME_FIELD = 'email'
@@ -114,23 +115,23 @@ from django.db import models
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # dob = models.DateField(null=True,blank=True)
-    # bio  =models.TextField(null=True,blank=True)
-    # college = models.CharField(max_length=255,null=True,blank=True)
+    #dob = models.DateField(null=True,blank=True)
+    bio  =models.TextField(null=True,blank=True)
+    college = models.CharField(max_length=255,null=True,blank=True)
 
     def __str__(self):
-        return self.user.username
+        return str(self.user.email)
 
 
-# class Teacher(models.Model):
-#     user = models.OneToOneField(User,on_delete=models.CASCADE)
-#     department = models.CharField(max_length=255)
+class Teacher(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    department = models.CharField(max_length=255)
 
-#
-# class General(models.Model):
-#     user = models.OneToOneField(User,on_delete=models.CASCADE)
-#     address = models.CharField(max_length=255)
-#     phone = models.IntegerField(null=True,blank=True)
-#     pincode = models.IntegerField(null=True,blank=True)
-#     city = models.CharField(max_length=255)
-#
+
+class General(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    address = models.CharField(max_length=255)
+    phone = models.IntegerField(null=True,blank=True)
+    pincode = models.IntegerField(null=True,blank=True)
+    city = models.CharField(max_length=255)
+

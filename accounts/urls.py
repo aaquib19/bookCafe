@@ -10,12 +10,12 @@ from .views.general import GeneralSignUpView
 from .views.teachers import TeacherSignUpView
 from .views import views
 from .views.views import LoginView,GeneralSignUp
-
+from .views.students import StudentSignup
 urlpatterns = [
 path('', home1.home, name='home'),
 
     path('login/',LoginView.as_view(), name="login"),
-    path('generalsignup/', GeneralSignUp, name="general_signup"),
+    path('studentsignup/', StudentSignup, name="student_signup_new"),
 
     path('signup/', home1.SignUpView.as_view(),name="signup_all"),
     path('signup/student/', StudentSignUpView.as_view(), name='student_signup'),
