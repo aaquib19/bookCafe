@@ -4,8 +4,8 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Group
 
 User = get_user_model()
-
 from .forms import UserAdminChangeForm,UserAdminCreationForm
+
 
 
 class UserAdmin(BaseUserAdmin):
@@ -44,6 +44,11 @@ admin.site.register(User, UserAdmin)
 admin.site.unregister(Group)
 
 
+from .models import Student,Teacher,General
+
+admin.site.register(Student)
+admin.site.register(Teacher)
+admin.site.register(General)
 
 
 
