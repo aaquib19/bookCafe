@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'accounts',
     'search',
     'category',
+    'tok',
 
     'crispy_forms',
     'notification',

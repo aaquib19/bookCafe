@@ -45,16 +45,16 @@
 
 {% if token %}
 
-                {% for t in token %}
-                    {% ifequal  t.book_name|stringformat:"s" object.title  %}
+                
+                    {% if object in request.user.book_issued.all  %}
                     Requested <button type='submit' formaction="{% url 'book:undo' object.slug %}" class='btn btn-link'>undo the request</button>
                     {% else %}
                     <button type='submit' formaction="{% url 'book:check_book' object.slug %}" class='btn btn-success'>Request to issue</button>
 
                     <button type='submit' formaction="{% url 'book:check_bookp' object.slug %}" class='btn btn-success'>Book Pool</button>
-                    {% endifequal %}
+                    {% endif %}
 
-                {% endfor %}
+                
 {% else %}
                     
 

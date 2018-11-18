@@ -2,7 +2,8 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse,Http404
 from django.views.generic import ListView,DetailView
 from django.contrib import messages
-from .models import Book,token
+from .models import Book
+from tok.models import token
 from django.utils import timezone
 # Create your views here.
 
@@ -132,6 +133,7 @@ def gen_token(request,booktoken):
 
     messages.success(request,"Your token is {}".format(tokens))
     user1 = request.user
+    user1.book_issued.add(book)
     #user=User.objects.filter(username=user1)
     token.objects.create(token=tokens,user_name=user1,book_name=book)
     #token.save()
