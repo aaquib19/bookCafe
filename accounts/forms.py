@@ -137,6 +137,18 @@ class EditProfileForm(UserChangeForm):
             'last_name'
            # 'password'
         )
+
+    helper = FormHelper()
+    helper.layout = Layout(
+        Field('email', css_class='form-control '),
+        Field('first_name', css_class='form-control'),
+        Field('last_name', css_class='form-control'),
+        Field('password1', css_class='form-control'),
+        ButtonHolder(
+            Submit('submit', 'Submit', css_class='button white'),
+        )
+
+    )
         
 class LoginForm(forms.Form):
     email = forms.EmailField(label="email")
@@ -155,6 +167,15 @@ class LoginForm(forms.Form):
         password = self.cleaned_data.get('password')
         user = authenticate(email=email, password=password)
         return user
+
+    helper = FormHelper()
+    helper.layout = Layout(
+        Field('email', css_class='form-control '),
+        Field('password', css_class='form-control'),
+        ButtonHolder(
+            Submit('submit', 'Submit', css_class='button white')
+        )
+    )
 
 # class StudentInterestsForm(forms.ModelForm):
 #     class Meta:

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from django.contrib.auth import authenticate, login, get_user_model
+from django.contrib.auth import authenticate, login, get_user_model, update_session_auth_hash
 from django.shortcuts import render,redirect
 from django.views.generic import CreateView,FormView
 from django.shortcuts import reverse
@@ -68,8 +68,10 @@ def edit_profile(request):
 
 
 def change_password(request):
+    print("fasfsad")
     if request.method == 'POST':
         form = PasswordChangeForm(data=request.POST, user=request.user)
+        print("POST")
 
         if form.is_valid():
             form.save()
@@ -78,6 +80,7 @@ def change_password(request):
         else:
             return redirect(reverse('accounts:change_password'))
     else:
+        print("not.POST")
         form = PasswordChangeForm(user=request.user)
 
         args = {'form': form}

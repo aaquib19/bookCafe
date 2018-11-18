@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'accounts',
     'search',
     'category',
+    'tok',
+    'borrower',
+
     'crispy_forms',
     'notification',
 
@@ -161,6 +164,7 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media_')
 #just define cron process in CRONJOBS and run command python manage.py crotab add and to remove use remove insteat of add
 CRONJOBS = [
     ('*/1 * * * *','cronta.cron.my_jobs'),
+    ('*/1 * * * *','notification.cron.TokenExpire'),
 ]
 
 EMAIL_USE_TLS = True

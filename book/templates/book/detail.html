@@ -3,9 +3,19 @@
 
 {% block content %}
 
-
-    <div class='row'>
+   <!--  <div class='row'>
         <div class='col-12 col-md-6'>
+                {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{message}}
+        </div>
+    {% endfor %}
+    {% endif %} -->
+
+    
+
+    <main style="padding-top: 5.5rem">
                 <h1>{{ object.title }}</h1>
                 {{ object.isbn|linebreaks }}<br/>
                 {% if object.image %}
@@ -13,18 +23,61 @@
                 {% endif %}
         </div>
         <div class="col-12 col-md-6">
-            <form  method='POST' action='' > {% csrf_token %}
+            <form  method='POST' > {% csrf_token %}
                 <input type='hidden' name='book_id' value='{{ object.id }}' />
                   <span class='submit-span'>
-{#                {% if check if the user has requested for issue or not %} make a function like get_absolute_url#}
+<!-- {#                {% if check if the user has requested for issue or not %} make a function like get_absolute_url#}
+                    {% if get_absolute_url %}
                     Requested <button type='submit' class='btn btn-link'>undo the request</button>
-{#                {% else %}#}
-                    <button type='submit'  class='btn btn-success'>Request to issue</button>
-{#                {% endif %}#}
+                {% else %}
+                    <button type='submit' formaction="{% url 'book:check_book' object.slug %}" class='btn btn-success'>Request to issue</button>
+                {% endif %}
+ -->
+
+<br><br>
+            <h2>Total Stock</h2>
+            <h3>{{ object.no_of_actual_copy }}</h3>
+
+        <h2>Available</h2>
+            <h3>{{ object.no_of_copy_left }}</h3>
+                
+
+
+{% if token %}
+
+                
+                    {% if object in request.user.book_issued.all  %}
+                    Requested <button type='submit' formaction="{% url 'book:undo' object.slug %}" class='btn btn-link'>undo the request</button>
+                    {% else %}
+                    <button type='submit' formaction="{% url 'book:check_book' object.slug %}" class='btn btn-success'>Request to issue</button>
+
+                    <button type='submit' formaction="{% url 'book:check_bookp' object.slug %}" class='btn btn-success'>Book Pool</button>
+                    {% endif %}
+
+                
+{% else %}
+                    
+
+                 <button type='submit' formaction="{% url 'book:check_book' object.slug %}" class='btn btn-success'>Request to issue</button>
+
+                <button type='submit' formaction="{% url 'book:check_bookp' object.slug %}" class='btn btn-success'>Book Pool</button>
+
+{% endif %}
+    
+<!--
+{% for t in token %}
+{{ t.book_name }}
+{% ifequal  t.book_name|stringformat:"s" object.title  %}
+{{ object.title }}
+    
+{% endifequal %}
+ {% endfor %}
+-->
                 </span>
             </form>
+
+
         </div>
 </div>
-
-
+</main>
 {% endblock %}

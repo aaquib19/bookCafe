@@ -1,7 +1,6 @@
-<h>notifications</h><br>
+<h style='font-size:50px;\'>notifications</h><br>
 <ul>
   {%for notice in notifications%}
   <li><a href="{%url 'notification:notification_details' notice.id%}">{{notice.notification_title}}</a></li><br>
-  <li>{{notice.description}}</li>
   {%endfor%}
 </ul>
