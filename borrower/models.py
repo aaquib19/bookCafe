@@ -14,3 +14,14 @@ class token(models.Model):
     date = models.DateField(default=timezone.now)
     class Meta:
         unique_together=('user_name','book_name')
+
+
+class pooled_token(models.Model):
+	token = models.IntegerField()
+	main_user = models.ForeignKey(settings.AUTH_USER_MODEL,related_name="pooled_un",on_delete=models.CASCADE)
+	pooled_user = models.ManyToManyField(settings.AUTH_USER_MODEL,related_name="pooled_user")
+	book_name = models.ForeignKey(Book,related_name="pooled_bn",on_delete=models.CASCADE,null=True,blank=True)
+	date = models.DateField(default=timezone.now)
+
+	# class Meta:
+	# 	unique_together=('main_user','book_name')

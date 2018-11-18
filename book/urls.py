@@ -13,7 +13,7 @@ urlpatterns = [
     path("check_book/<slug:url_string>/", views.check_book, name="check_book"),
     path("check_bookp/<slug:url_string>/", views.check_bookp, name="check_bookp"),
     path("gen_token/<slug:booktoken>/", views.gen_token, name="gen_token"),
-
+    path("gen_tokenp/<slug:booktoken>/", views.gen_tokenp, name="gen_tokenp"),
 	path("undo/<slug:booki>/", views.undo, name="undo"),
 
 

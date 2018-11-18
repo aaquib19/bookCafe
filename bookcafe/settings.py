@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'search',
     'category',
     'tok',
+    'borrower',
 
     'crispy_forms',
     'notification',
