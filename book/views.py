@@ -3,9 +3,10 @@ from django.http import HttpResponse,Http404
 from django.views.generic import ListView,DetailView
 from django.contrib import messages
 from .models import Book
-from tok.models import token
+from borrower.models import token,pooled_token
 from django.utils import timezone
 # Create your views here.
+from accounts.models import User
 
 class BookListView(ListView):
     template_name = "book/list.html"
@@ -144,11 +145,61 @@ def gen_token(request,booktoken):
     return redirect('book:list')
 
 
+def gen_tokenp(request,booktoken):
+
+    email2=request.POST.get("username2")
+    print(email2)    
+    email3=request.POST.get("username3")
+    try :
+        user2 = User.objects.get(email=email2)
+        user3 = User.objects.get(email=email3)
+    except:
+        raise User.DoesNotExist("users does not exist")
+    
+
+
+    n=token.objects.all().last()
+
+    book=Book.objects.get(slug=booktoken)
+    # t0=time.time()
+    # tokens=random.randint(1, 3910209312)
+
+    # for t in at.token:
+    #     if t == tokens:
+    #         tokens=random.randint(1, 3910209312)
+    if n:
+        date=n.date
+        if date==timezone.now:
+            tokens=n.token+1
+        else:
+            tokens=1
+    else:
+        tokens=0
+
+    messages.success(request,"Your token is {}".format(tokens))
+    user1 = request.user
+    user1.book_issued.add(book)
+    user2.book_issued.add(book)
+    user3.book_issued.add(book)
+    #user=User.objects.filter(username=user1)
+    object1 =pooled_token.objects.create(token=tokens,main_user=user1,book_name=book)
+    object1.pooled_user.add(user2)
+    object1.pooled_user.add(user3)
+    #token.save()
+    object1.save()
+    book.no_of_copy_left=book.no_of_copy_left-1
+    book.save()
+    
+    return redirect('book:list')
+
+
+
 def undo(request,booki):
 
     book=Book.objects.get(slug=booki)
     user = request.user
     token.objects.get(book_name=book,user_name=user).delete()
+    user.book_issued.remove(book)
     #token.save()
     messages.error(request,"You have cancelled your order!")
     book.no_of_copy_left=book.no_of_copy_left+1
