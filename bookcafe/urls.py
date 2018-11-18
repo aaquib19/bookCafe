@@ -40,8 +40,13 @@ urlpatterns = [
 
     path('accounts/', include(('accounts.urls', 'accounts'), namespace='accounts')),
     path('search/', include(('search.urls', 'search'), namespace='search')),
+
+    
+#    path('cat1books/', include(('cat1books.urls', 'cat1books'), namespace='cat1books')),
+
     # notification part
     path('notification/', include(('notification.urls', 'notification'), namespace='notification')),
+
 ]
 
 if settings.DEBUG:
