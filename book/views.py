@@ -149,6 +149,7 @@ def undo(request,booki):
     book=Book.objects.get(slug=booki)
     user = request.user
     token.objects.get(book_name=book,user_name=user).delete()
+    user.book_issued.remove(book)
     #token.save()
     messages.error(request,"You have cancelled your order!")
     book.no_of_copy_left=book.no_of_copy_left+1
