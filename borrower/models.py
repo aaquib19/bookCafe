@@ -14,6 +14,3 @@ class token(models.Model):
     date = models.DateField(default=timezone.now)
     class Meta:
         unique_together=('user_name','book_name')
-
-
-

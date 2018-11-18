@@ -3,7 +3,7 @@ from django.http import HttpResponse,Http404
 from django.views.generic import ListView,DetailView
 from django.contrib import messages
 from .models import Book
-from tok.models import token
+from borrower.models import token
 from django.utils import timezone
 # Create your views here.
 
