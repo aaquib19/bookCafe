@@ -1,8 +1,4 @@
 from django.contrib import admin
-
-# Register your models here.
 from .models import token
-
-
-
+# Register your models here.
 admin.site.register(token)
