@@ -11,11 +11,15 @@ from .views.teachers import TeacherSignUpView
 from .views import views
 from .views.views import LoginView,GeneralSignUp
 from .views.students import StudentSignup
+from .views.teachers import TeacherSignup
+from .views.general import GeneralSignup
 urlpatterns = [
 path('', home1.home, name='home'),
 
     path('login/',LoginView.as_view(), name="login"),
     path('studentsignup/', StudentSignup, name="student_signup_new"),
+    path('teachersignup/', TeacherSignup, name="teacher_signup_new"),
+    path('generalsignup/', GeneralSignup, name="general_signup_new"),
 
     path('signup/', home1.SignUpView.as_view(),name="signup_all"),
     path('signup/student/', StudentSignUpView.as_view(), name='student_signup'),
