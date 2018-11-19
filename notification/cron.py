@@ -1,4 +1,4 @@
-from tok.models import token
+from borrower.models import token
 from django.utils import timezone,duration
 import datetime
 from .models import Notification
