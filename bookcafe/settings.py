@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'category',
     #'tok',
     'borrower',
+    'donation',
 
     'crispy_forms',
     'notification',

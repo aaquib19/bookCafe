@@ -11,6 +11,7 @@ USER_TYPE_CHOICES=(
     ('Student','Student'),
     ('Teacher','Teacher'),
 )
+
 class UserManager(BaseUserManager):
     def create_user(self,email,first_name=None,password=None,is_active=True,is_staff=False,is_admin=False):
         if not email:
