@@ -1,12 +1,18 @@
 {% load static %}
-<!DOCTYPE html>
+
+{% url 'logout' as logout_url %}
+{% url 'accounts:signup_all' as signup_url %}
+{% url 'accounts:view_profile' as profile_url %}
+{% url 'accounts:login' as login_url %}
+{% url 'accounts:edit_profile' as edit_url %}
+{% url 'category:home' 'all' as category_url %}<!DOCTYPE html>
 <!-- saved from url=(0072)https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html# -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Required meta tags always come first -->
     
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Material Design Bootstrap Template</title>
+    <title>BookCafe</title>
 
     <!-- Font Awesome -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -43,17 +49,17 @@
                 <!-- Logo -->
                 <li>
                     <div class="logo-wrapper waves-light waves-effect waves-light">
-                        <a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html"><img src="./category_base/mdb-transparent.png" class="img-fluid flex-center"></a>
+{#                        <a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html"><img src="./category_base/mdb-transparent.png" class="img-fluid flex-center"></a>#}
                     </div>
                 </li>
                 <!--/. Logo -->
                 <!--Social-->
                 <li>
                     <ul class="social">
-                        <li><a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#" class="icons-sm fb-ic"><i class="fa fa-facebook"> </i></a></li>
-                        <li><a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#" class="icons-sm pin-ic"><i class="fa fa-pinterest"> </i></a></li>
-                        <li><a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#" class="icons-sm gplus-ic"><i class="fa fa-google-plus"> </i></a></li>
-                        <li><a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#" class="icons-sm tw-ic"><i class="fa fa-twitter"> </i></a></li>
+                        <li><a href="#" class="icons-sm fb-ic"><i class="fa fa-facebook"> </i></a></li>
+                        <li><a href="#" class="icons-sm pin-ic"><i class="fa fa-pinterest"> </i></a></li>
+                        <li><a href="#" class="icons-sm gplus-ic"><i class="fa fa-google-plus"> </i></a></li>
+                        <li><a href="#" class="icons-sm tw-ic"><i class="fa fa-twitter"> </i></a></li>
                     </ul>
                 </li>
                 <!--/Social-->
@@ -72,13 +78,13 @@
                        <li id="menu-item-44502" class="menu-item menu-item-type-post_type menu-item-object-product current-menu-item menu-item-44502"><a class="collapsible-header waves-effect" id="link-menu-item-44502" href="all">All Categories</a></li>
                     </ul>
                      <ul id="side-menu" class="collapsible collapsible-accordion">
-                       <li id="menu-item-44502" class="menu-item menu-item-type-post_type menu-item-object-product current-menu-item menu-item-44502"><a class="collapsible-header waves-effect" id="link-menu-item-44502" href="History">History</a></li>
+                       <li id="menu-item-44502" class="menu-item menu-item-type-post_type menu-item-object-product current-menu-item menu-item-44502"><a class="collapsible-header waves-effect" id="link-menu-item-44502" href="history">History</a></li>
                     </ul>
                      <ul id="side-menu" class="collapsible collapsible-accordion">
                        <li id="menu-item-44502" class="menu-item menu-item-type-post_type menu-item-object-product current-menu-item menu-item-44502"><a class="collapsible-header waves-effect" id="link-menu-item-44502" href="science">Science</a></li>
                     </ul>
                      <ul id="side-menu" class="collapsible collapsible-accordion">
-                       <li id="menu-item-44502" class="menu-item menu-item-type-post_type menu-item-object-product current-menu-item menu-item-44502"><a class="collapsible-header waves-effect" id="link-menu-item-44502" href="all">All Categories</a></li>
+                       <li id="menu-item-44502" class="menu-item menu-item-type-post_type menu-item-object-product current-menu-item menu-item-44502"><a class="collapsible-header waves-effect" id="link-menu-item-44502" href="fiction">Fiction</a></li>
                     </ul>
                 </li>
                 <!--/. Side navigation links -->
@@ -90,13 +96,13 @@
 
 <!--Navbar-->
 
-        <nav class="navbar fixed-top navbar-toggleable-lg navbar-expand-xl scrolling-navbar double-nav navbar-dark primary-color">
+        <nav class="navbar fixed-top navbar-toggleable-xl navbar-expand-xl scrolling-navbar double-nav navbar-dark"  style="background-color: #1a237e">
             <!-- SideNav slide-out button -->
             <div class="float-left">
                 <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-bars"></i></a>
             </div>
             <!-- Breadcrumb-->
-            <div class="breadcrumb-dn mr-auto">
+            <div class="breadcrumb-dn navbar-brand font-weight-bold white-text">
                 <p>BookCafe</p>
             </div>
 
@@ -104,17 +110,18 @@
       aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    <!-- Collapsible content -->
 
                 <div class="collapse navbar-collapse" id="basicExampleNav">
 
-            <ul class="nav navbar-nav nav-flex-icons ml-auto">
+            <ul class="navbar-nav mr-auto">
              <li class="nav-item active">
           <a class="nav-link black-text " id="nav-text" href="{% url 'home' %}"><i class="fa fa-fw fa-home"></i>Home
             <span class="sr-only">(current)</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link black-text" href="#">Categories</a>
+          <a class="nav-link black-text" href="{{ category_url }}">Categories</a>
         </li>
         <li class="nav-item">
           <a class="nav-link black-text" href="#">Issue A Book</a>
@@ -137,19 +144,32 @@
 
       </form >
       </li>
-<!--       {% if not request.user.is_authenticated %}
- -->          <li class="nav-item" style="padding-left: 10px;padding-right: 10px;">
-                        <a class="nav-link  white-text" aria-hidden="true" href="{{ signup_url }}" ><i class="fa fa-fw fa-user"></i>Sign Up</a>
+       {% if not request.user.is_authenticated %}
+
+          <li class="nav-item" style="padding-left: 10px;padding-right: 10px;">
+                        <a class="nav-link  black-text" aria-hidden="true" href="{{ signup_url }}" ><i class="fa fa-fw fa-user"></i>Sign Up</a>
             </li>
             <li class="nav-item" style="padding-left: 10px;padding-right: 50px;">
-              <a class="nav-link  white-text" aria-hidden="true" href=""><i class="fa fa-fw fa-user"></i>Log In</a>
+              <a class="nav-link   black-text" aria-hidden="true" href="{{ login_url }}"><i class="fa fa-fw fa-user"></i>Log In</a>
             </li>
-<!--           {% else %}
- -->           <li class="nav-item" style="padding-left: 10px;padding-right: 50px;">
-              <a class="nav-link  white-text" aria-hidden="true" href="{{ logout_url }}"><i class="fa fa-fw fa-user"></i>Log out</a>
+          {% else %}
+           <li class="nav-item" style="padding-left: 10px;padding-right: 20px;">
+              <a class="nav-link  black-text" aria-hidden="true" >Hello, {{ request.user.email }}</a>
             </li>
-<!--           {% endif %}
- -->            </ul>
+           <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle black-text" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">Accounts</a>
+        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="{{ profile_url }}">My Profile</a>
+            <a class="dropdown-item" href="{{ profile_url }}">Notifications</a>
+          <a class="dropdown-item" href="{{ edit_url }}">Edit</a>
+          <a class="dropdown-item" href="{{ logout_url }}">Logout</a>
+        </div>
+      </li>
+
+
+          {% endif %}
+             </ul>
 </div>
         </nav>
   <!--/.Navbar-->
@@ -326,7 +346,6 @@
 {#    <script type="text/javascript" src="./category_base/js/mdb.min.js"></script><div class="hiddendiv common"></div>#}
     <script type="text/javascript" src="{% static 'category_base/js/mdb.min.js' %}"></script>
     <script>
-
          // SideNav Initialization
         $(".button-collapse").sideNav();
         

@@ -13,7 +13,7 @@ from django.contrib.auth.forms import  UserChangeForm,PasswordChangeForm
 # Create your views here.
 
 
-from accounts.forms import LoginForm, EditProfileForm
+from accounts.forms import LoginForm, EditProfileForm,GeneralCreationForm
 
 
 #
@@ -23,7 +23,20 @@ from accounts.forms import LoginForm, EditProfileForm
 #     success_url = '/login/'
 #
 #
-
+# def GeneralSignUp(request):
+#     if request.method == "POST":
+#         form = GeneralCreationForm(request.POST)
+#         if form.is_valid():
+#             # model_instance = form.save(commit=False)
+#             # model_instance.timestamp = timezone.now()
+#             model_instance.save()
+#             return redirect('/')
+#
+#     else:
+#
+#         form = GeneralCreationForm()
+#
+#         return render(request, "my_template.html", {'form': form})
 
 class LoginView(FormView):
     form_class = LoginForm
@@ -67,24 +80,22 @@ def edit_profile(request):
         return render(request, 'accounts/edit_profile.html', args)
 
 
-def change_password(request):
-    print("fasfsad")
-    if request.method == 'POST':
-        form = PasswordChangeForm(data=request.POST, user=request.user)
-        print("POST")
+# def change_password(request):
+#     if request.method == 'POST':
+#         form = PasswordChangeForm(data=request.POST, user=request.user)
+#
+#         if form.is_valid():
+#             form.save()
+#             update_session_auth_hash(request, form.user)
+#             return redirect(reverse('accounts:view_profile'))
+#         else:
+#             return redirect(reverse('accounts:change_password'))
+#     else:
+#         form = PasswordChangeForm(user=request.user)
+#
+#         args = {'form': form}
+#         return render(request, 'accounts/change_password.html', args)
 
-        if form.is_valid():
-            form.save()
-            update_session_auth_hash(request, form.user)
-            return redirect(reverse('accounts:view_profile'))
-        else:
-            return redirect(reverse('accounts:change_password'))
-    else:
-        print("not.POST")
-        form = PasswordChangeForm(user=request.user)
-
-        args = {'form': form}
-        return render(request, 'accounts/change_password.html', args)
 
 
 
