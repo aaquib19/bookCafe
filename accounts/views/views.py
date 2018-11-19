@@ -23,20 +23,20 @@ from accounts.forms import LoginForm, EditProfileForm,GeneralCreationForm
 #     success_url = '/login/'
 #
 #
-def GeneralSignUp(request):
-    if request.method == "POST":
-        form = GeneralCreationForm(request.POST)
-        if form.is_valid():
-            # model_instance = form.save(commit=False)
-            # model_instance.timestamp = timezone.now()
-            model_instance.save()
-            return redirect('/')
-
-    else:
-
-        form = GeneralCreationForm()
-
-        return render(request, "my_template.html", {'form': form})
+# def GeneralSignUp(request):
+#     if request.method == "POST":
+#         form = GeneralCreationForm(request.POST)
+#         if form.is_valid():
+#             # model_instance = form.save(commit=False)
+#             # model_instance.timestamp = timezone.now()
+#             model_instance.save()
+#             return redirect('/')
+#
+#     else:
+#
+#         form = GeneralCreationForm()
+#
+#         return render(request, "my_template.html", {'form': form})
 
 class LoginView(FormView):
     form_class = LoginForm

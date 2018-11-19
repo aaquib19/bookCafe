@@ -12,23 +12,23 @@ from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
 
 from ..decorators import teacher_required
 from ..forms import TeacherSignUpForm,TeacherExtraForm
-#from ..models import Answer, Question, Quiz,
+#from ..models import Answer, Question, Quiz
 from ..models import  User
 
-
-class TeacherSignUpView(CreateView):
-    model = User
-    form_class = TeacherSignUpForm
-    template_name = 'registration/signup_form.html'
-
-    def get_context_data(self, **kwargs):
-        kwargs['user_type'] = 'teacher'
-        return super().get_context_data(**kwargs)
-
-    def form_valid(self, form):
-        user = form.save()
-        login(self.request, user)
-        return redirect('/')
+#
+# class TeacherSignUpView(CreateView):
+#     model = User
+#     form_class = TeacherSignUpForm
+#     template_name = 'registration/signup_form.html'
+#
+#     def get_context_data(self, **kwargs):
+#         kwargs['user_type'] = 'teacher'
+#         return super().get_context_data(**kwargs)
+#
+#     def form_valid(self, form):
+#         user = form.save()
+#         login(self.request, user)
+#         return redirect('/')
 
 def TeacherSignup(request):
     if request.method == "POST":

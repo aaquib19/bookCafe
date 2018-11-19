@@ -1,15 +1,16 @@
 import profile
 
-from django.urls import path,include,re_path
+from django.urls import path#,include,re_path
 #from . import views
 
 from .views import home1, students, teachers
 
-from .views.students import StudentSignUpView
-from .views.general import GeneralSignUpView
-from .views.teachers import TeacherSignUpView
+# from .views.students import StudentSignUpView
+# from .views.general import GeneralSignUpView
+# from .views.teachers import TeacherSignUpView
+
 from .views import views
-from .views.views import LoginView,GeneralSignUp
+from .views.views import LoginView#,GeneralSignUp
 from .views.students import StudentSignup
 from .views.teachers import TeacherSignup
 from .views.general import GeneralSignup
