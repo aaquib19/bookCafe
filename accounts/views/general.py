@@ -34,6 +34,8 @@ def GeneralSignup(request):
         form2 = GeneralExtraForm(request.POST or None)
         if form1.is_valid() and form2.is_valid():
             ins = form1.save(commit=False)
+            ins.is_general = True
+
             ins.save()
             email = ins.email
             #ins.is_active = True
