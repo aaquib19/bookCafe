@@ -6,11 +6,11 @@ from django.contrib.auth.models import (
 
 from book.models import Book
 #AUTH_USER_MODEL
-USER_TYPE_CHOICES=(
-    ('General','General'),
-    ('Student','Student'),
-    ('Teacher','Teacher'),
-)
+# USER_TYPE_CHOICES=(
+#     ('General','General'),
+#     ('Student','Student'),
+#     ('Teacher','Teacher'),
+# )
 
 class UserManager(BaseUserManager):
     def create_user(self,email,first_name=None,password=None,is_active=True,is_staff=False,is_admin=False):
@@ -62,15 +62,10 @@ class User(AbstractBaseUser):
     admin = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
     book_issued = models.ManyToManyField(Book,blank=True)
-    #user_type=models.CharField(max_length=6,choices=USER_TYPE_CHOICES,blank=True,null=True)
     is_student = models.BooleanField(default=False)
     is_general = models.BooleanField(default=False)
     is_teacher = models.BooleanField(default=False)
-    # department = models.CharField(max_length=255)
-    # address = models.CharField(max_length=255)
-    # phone = models.IntegerField(null=True,blank=True)
-    # pincode = models.IntegerField(null=True,blank=True)
-    # city = models.CharField(max_length=255)
+
 
 
     USERNAME_FIELD = 'email'
@@ -108,10 +103,6 @@ class User(AbstractBaseUser):
     # @property
     # def is_active(self):
     #     return  self.active
-
-
-from django.contrib.auth.models import AbstractUser
-from django.db import models
 
 
 class Student(models.Model):

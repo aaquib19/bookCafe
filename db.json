@@ -1,9 +1,10 @@
+Tracking file by folder pattern:  migrations
 [
 {
   "model": "book.category",
   "pk": 2,
   "fields": {
-    "name": "History"
+    "name": "history"
   }
 },
 {

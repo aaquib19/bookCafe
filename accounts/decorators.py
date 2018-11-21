@@ -14,6 +14,8 @@ def general_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, log
     if function:
         return actual_decorator(function)
     return actual_decorator
+
+
 def student_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url='login'):
     '''
     Decorator for views that checks that the logged in user is a student,
