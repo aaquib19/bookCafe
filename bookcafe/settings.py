@@ -177,20 +177,15 @@ CRONJOBS = [
 # EMAIL_PORT = 587
 #
 
-import smtplib
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
-smtp=smtplib.SMTP(host=EMAIL_HOST,port=EMAIL_PORT)
-
-EMAIL_USE_TLS = True
-# EMAIL_HOST = 'smpt.gmail.com'
-EMAIL_HOST_USER = 'rehanmallick4080@gmail.com'
-EMAIL_HOST_PASSWORD = 'iamalilwayne'
-# EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'rehanmallick4080@gmail.com'
+EMAIL_USE_TLS =True
+EMAIL_HOST_USER = "rehanmallick4080@gmail.com"
+EMAIL_HOST_PASSWORD = "iamalilwayne"
 
 # ADMINS = (
 #     ('You', 'you@email.com'),
 # )
 # MANAGERS = ADMINS
+
