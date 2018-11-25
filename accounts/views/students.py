@@ -19,8 +19,11 @@ def StudentSignup(request):
         form1 = StudentSignUpForm(request.POST or None)
         form2 = StudentExtraForm(request.POST or None)
         if form1.is_valid() and form2.is_valid():
+            print("form is  100% valid")
+
             ins = form1.save(commit=False)
             ins.is_student = True
+            ins.is_active =False
             ins.save()
             email = ins.email
             model_instance = form2.save(commit=False)

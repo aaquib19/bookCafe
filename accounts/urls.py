@@ -1,6 +1,6 @@
 import profile
 
-from django.urls import path#,include,re_path
+from django.urls import path,re_path
 #from . import views
 
 from .views import home1, students, teachers
@@ -16,7 +16,9 @@ from .views.teachers import TeacherSignup
 from .views.general import GeneralSignup
 urlpatterns = [
     path('', home1.home, name='home'),
-
+    re_path(r'^email/confirm/(?P<key>[0-9A-Za-z]+)/$',
+            views.AccountEmailActivateView.as_view(),
+            name='email-activate'),
     # path('login/',LoginView.as_view(), name="login"),
     path('studentsignup/', StudentSignup, name="student_signup_new"),
     path('teachersignup/', TeacherSignup, name="teacher_signup_new"),
