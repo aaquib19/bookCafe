@@ -144,7 +144,7 @@ STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static_')
 
 #AUTH_USER_MODEL = 'acounts.User'
 
-LOGIN_URL = 'login'
+LOGIN_URL = 'login'#accounts:login
 
 LOGOUT_URL = 'logout'
 
