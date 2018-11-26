@@ -1,0 +1,56 @@
+{% extends 'tag/base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'ajax-search/tag_suggestion.css' %}">
+{% endblock %}
+    {% block content %}
+        <div class="container" style="margin: 100px;">
+
+    <div class="row clearfix">
+        <div class="col-md-6 col-md-offset-3 column" style="">
+            <form action="" method="post" id="search-form" autocomplete="off">
+                {% csrf_token %}
+                <div class="input-group input-group-sm">
+                    <div class="tag-suggestion">
+                    {{ searchtag.q.errors }}
+                    {{ searchtag.q }}
+                    </div>
+
+                    <span class="input-group-btn">
+                        <button class="btn btn-search" type="submit">search</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+
+    <div class="row clearfix">
+        <div class="col-md-12 column posts">
+            {% for tag in tags %}
+                {% for post in tag.products.all %}
+                    <div class="well">
+                       {{ post.title }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+{% block js %}
+        <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <script src="{% static 'ajax-search/typahead.js' %}"></script>
+    <script src="{% static 'ajax-search/search_tag.js' %}"></script>
+
+{% endblock %}
+
+
+

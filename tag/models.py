@@ -14,7 +14,7 @@ class Tag(models.Model):
     slug        = models.SlugField()
     timestamp   = models.DateTimeField(auto_now_add=True)
     active      = models.BooleanField(default=True)
-    products    = models.ManyToManyField(Book, blank=True)
+    books    = models.ManyToManyField(Book, blank=True)
 
     def __str__(self):
         return self.title
