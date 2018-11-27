@@ -18,9 +18,11 @@ class SearchBookView(ListView):
         query = method_dict.get('q', None) # method_dict['q']
         if query is not None:
             return Book.objects.search(query)
-        return Product.objects.featured()
+        return HttpResponce("an error occured")
 
         '''
         __icontains = field contains this
         __iexact = fields is exactly this
         '''
+
+        #you have to define post and get function to use method=POST in form
