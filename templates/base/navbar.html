@@ -45,14 +45,7 @@
 
       <!-- Links -->
         <li style="padding-left: 300px;padding-right: 50px;">
-      <form class="form-inline" method="GET" action="{% url 'search:query' %}">
-
-        <div class="md-form my-0">
-
-          <input class="form-control mr-sm-2 black-text" name="q" type="text" placeholder="Search" aria-label="Search"><i class="fa fa-fw fa-search"></i
-        </div>
-
-      </form >
+        {% include 'base/navbar-form.html' %}
       </li>
       {% if not request.user.is_authenticated %}
 

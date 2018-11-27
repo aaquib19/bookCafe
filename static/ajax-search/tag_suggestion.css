@@ -4,9 +4,9 @@
 
 .tt-dataset.tt-dataset-hashTags {
     /*color: rgba(0, 116, 216, 0.88);*/
-    color: rgba(255, 241, 250, 0.88);
+    color: black;
     /*background: rgba(218, 218, 218, 0.66);*/
-    background: rgba(0, 0, 0, 0.65);
+    background: rgba(255, 255, 255);
 }
 
 .tag_suggestion {
@@ -69,7 +69,7 @@
 
 .tt-highlight {
     /*color: rgba(0, 151, 207, 0.8);*/
-    color: #5bc0de;
+    color: #de501e;
 }
 
 .tt-suggestion:hover {
