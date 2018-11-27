@@ -20,6 +20,7 @@ def GeneralSignup(request):
         if form1.is_valid() and form2.is_valid():
             ins = form1.save(commit=False)
             ins.is_general = True
+            ins.is_active = False
             ins.save()
 
             email = ins.email
