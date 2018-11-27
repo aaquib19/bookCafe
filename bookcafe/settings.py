@@ -26,7 +26,7 @@ SECRET_KEY = 'v(x@((pxe#s#&#2u&pgop%#n*zp5129_7agiefeh*s#caoh!=n'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+BASE_URL = '127.0.0.1:8000'
 
 # Application definition
 
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'category',
     #'tok',
     'borrower',
+    'donation',
 
     'crispy_forms',
     'notification',
@@ -143,7 +144,7 @@ STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static_')
 
 #AUTH_USER_MODEL = 'acounts.User'
 
-LOGIN_URL = 'login'
+LOGIN_URL = 'login'#accounts:login
 
 LOGOUT_URL = 'logout'
 
@@ -176,20 +177,15 @@ CRONJOBS = [
 # EMAIL_PORT = 587
 #
 
-import smtplib
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
-smtp=smtplib.SMTP(host=EMAIL_HOST,port=EMAIL_PORT)
-
-EMAIL_USE_TLS = True
-# EMAIL_HOST = 'smpt.gmail.com'
-EMAIL_HOST_USER = 'rehanmallick4080@gmail.com'
-EMAIL_HOST_PASSWORD = 'iamalilwayne'
-# EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'rehanmallick4080@gmail.com'
+EMAIL_USE_TLS =True
+EMAIL_HOST_USER = "rehanmallick4080@gmail.com"
+EMAIL_HOST_PASSWORD = "iamalilwayne"
 
 # ADMINS = (
 #     ('You', 'you@email.com'),
 # )
 # MANAGERS = ADMINS
+

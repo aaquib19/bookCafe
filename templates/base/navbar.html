@@ -3,11 +3,12 @@
 {% url 'logout' as logout_url %}
 {% url 'accounts:signup_all' as signup_url %}
 {% url 'accounts:view_profile' as profile_url %}
-{% url 'accounts:login' as login_url %}
+{% url 'login' as login_url %}
 {% url 'accounts:edit_profile' as edit_url %}
+{% url 'donation:donate' as donate_url %}
 {% url 'category:home' 'all' as category_url %}
 <!--Navbar-->
-<nav class="navbar navbar-expand-xl navbar-dark fixed-top navbar-default">
+<nav class="navbar navbar-expand-xl navbar-dark fixed-top navbar-default ">
 
     <!-- Navbar brand -->
     <a class="navbar-brand font-weight-bold white-text" href="#">Book Cafe</a>
@@ -38,6 +39,7 @@
           <a class="nav-link black-text" href="#">Contact Us</a>
         </li>
 
+        
 
 
 
@@ -47,7 +49,7 @@
 
         <div class="md-form my-0">
 
-          <input class="form-control mr-sm-2" name="q" type="text" placeholder="Search" aria-label="Search"><i class="fa fa-fw fa-search"></i
+          <input class="form-control mr-sm-2 black-text" name="q" type="text" placeholder="Search" aria-label="Search"><i class="fa fa-fw fa-search"></i
         </div>
 
       </form >
@@ -62,7 +64,7 @@
             </li>
           {% else %}
            <li class="nav-item" style="padding-left: 10px;padding-right: 20px;">
-              <a class="nav-link  black-text" aria-hidden="true" >Hello, {{ request.user.first_name }}</a>
+              <a class="nav-link  black-text" aria-hidden="true" >Hello, {{ request.user.name }}</a>
             </li>
            <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle black-text" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
@@ -72,6 +74,7 @@
             <a class="dropdown-item" href="{{ profile_url }}">Notifications</a>
           <a class="dropdown-item" href="{{ edit_url }}">Edit</a>
           <a class="dropdown-item" href="{{ logout_url }}">Logout</a>
+          <a class="dropdown-item" href="{{ donate_url }}">Donate your books</a>
         </div>
       </li>
 

@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="{% static 'donation/bootstrap.min.css' %}" />
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="{% static 'donation/style.css' %}" />
+
+
+{% endblock head %}
+
+
+
+{% block content %}
+	<div id="booking" class="section">
+		<div class="section-center">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-5">
+						<div class="booking-cta">
+							<h1>Make your reservation</h1>
+							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate laboriosam numquam at</p>
+						</div>
+					</div>
+					<div class="col-md-6 col-md-offset-1">
+						<div class="booking-form">
+							<form method="POST" action="">{% csrf_token %}
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											
+											<span class="form-label">Name</span>
+											<input class="form-control" type="text" id="name" name="name">
+										</div>
+									</div>
+									
+								</div>
+							
+									<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											
+											<span class="form-label">Email</span>
+											<input class="form-control" type="text" id="email" name="email">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<input class="form-control" type="text" id="book_name" name="book_name" >
+											<span class="form-label">Name of the book</span>
+										</div>
+									</div>
+									
+								</div>
+								<div class="form-btn">
+									<button class="submit-btn" formaction="{% url 'donation:adduser' %}">Donate Now</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock content %}
+
+{% block script %}
+	<script src="{% static 'donation/jquery.min.js' %}"></script>
+	<script>
+		$('.form-control').each(function () {
+			floatedLabel($(this));
+		});
+
+		$('.form-control').on('input', function () {
+			floatedLabel($(this));
+		});
+
+		function floatedLabel(input) {
+			var $field = input.closest('.form-group');
+			if (input.val()) {
+				$field.addClass('input-not-empty');
+			} else {
+				$field.removeClass('input-not-empty');
+			}
+		}
+
+
+		
+	</script>
+{% endblock script %}
+</body>
+
+</html>

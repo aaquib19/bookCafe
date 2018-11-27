@@ -39,10 +39,10 @@ class BookDetailView(DetailView):
         if self.request.user.is_authenticated:
             user = self.request.user
             context['user'] = user
-            context['token'] = token.objects.filter(user_name=user)
+            context['token'] = token.objects.filter(user=user)
         # Add in a QuerySet of all the books
         
-        print(token.book_name)
+        print(token.book)
         return context
 
 
@@ -136,7 +136,7 @@ def gen_token(request,booktoken):
     user1 = request.user
     user1.book_issued.add(book)
     #user=User.objects.filter(username=user1)
-    token.objects.create(token=tokens,user_name=user1,book_name=book)
+    token.objects.create(token=tokens,user=user1,book=book)
     #token.save()
     
     book.no_of_copy_left=book.no_of_copy_left-1
@@ -182,7 +182,7 @@ def gen_tokenp(request,booktoken):
     user2.book_issued.add(book)
     user3.book_issued.add(book)
     #user=User.objects.filter(username=user1)
-    object1 =pooled_token.objects.create(token=tokens,main_user=user1,book_name=book)
+    object1 =pooled_token.objects.create(token=tokens,main_user=user1,book=book)
     object1.pooled_user.add(user2)
     object1.pooled_user.add(user3)
     #token.save()
@@ -198,7 +198,7 @@ def undo(request,booki):
 
     book=Book.objects.get(slug=booki)
     user = request.user
-    token.objects.get(book_name=book,user_name=user).delete()
+    token.objects.get(book=book,user=user).delete()
     user.book_issued.remove(book)
     #token.save()
     messages.error(request,"You have cancelled your order!")
