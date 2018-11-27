@@ -8,7 +8,7 @@ from django.http import HttpResponse
 from django.views import View
 from .models import Tag
 from .forms import  SearchTagForm
-
+from book.models import Book
 
 class SearchTag(View):
     """ Search tags with autocomplete (live search) """
@@ -22,7 +22,9 @@ class SearchTag(View):
         q = request.POST['q']
         print("qery =",q)
         form = SearchTagForm()
-        tags = Tag.objects.filter(title__icontains=q)
+        #tags = Tag.objects.filter(title__icontains=q)
+        tags = Book.objects.filter(title__icontains=q)
+        print(tags)
         context = {'tags' : tags, 'searchtag' : form}
         return render(request, 'tag/search_tags.html', context)
 
@@ -32,7 +34,9 @@ class TagJson(View):
         q = request.GET.get('q', '')
         print(q)
         taglist = []
-        tags = Tag.objects.filter(title__icontains=q) #this function shows the popup data
+        #tags = Tag.objects.filter(title__icontains=q) #this function shows the popup data
+        tags = Book.objects.filter(title__icontains=q)
+
         for tag in tags:
             new = {'q' : tag.title, 'count' : 1}
             taglist.append(new)

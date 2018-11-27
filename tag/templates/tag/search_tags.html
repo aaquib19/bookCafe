@@ -30,11 +30,11 @@
     <div class="row clearfix">
         <div class="col-md-12 column posts">
             {% for tag in tags %}
-                {% for book in tag.books.all %}
+{#                {% for book in tag.books.all %}#}
                     <div class="well">
-                       {{ book.title }}
+                       {{ tag.title }}
                     </div>
-                {% endfor %}
+{#                {% endfor %}#}
             {% endfor %}
 
         </div>
