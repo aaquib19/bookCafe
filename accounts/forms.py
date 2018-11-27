@@ -115,12 +115,12 @@ class TeacherSignUpForm(UserCreationForm):
         )
     )
 
-    def save(self, commit=True):
-        user = super().save(commit=False)
-        user.is_teacher = True
-        if commit:
-            user.save()
-        return user
+    # def save(self, commit=True):
+    #     user = super().save(commit=False)
+    #     user.is_teacher = True
+    #     if commit:
+    #         user.save()
+    #     return user
 
 
 class generalSignUpForm(UserCreationForm):
@@ -143,12 +143,12 @@ class generalSignUpForm(UserCreationForm):
         )
     )
 
-    def save(self, commit=True):
-        user = super().save(commit=False)
-        user.is_general = True
-        if commit:
-            user.save()
-        return user
+    # def save(self, commit=True):
+    #     user = super().save(commit=False)
+    #     user.is_general = True
+    #     if commit:
+    #         user.save()
+    #     return user
 
 
 
