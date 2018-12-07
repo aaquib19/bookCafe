@@ -158,10 +158,21 @@ def gen_tokenp(request,booktoken):
         user3 = User.objects.get(email=email3)
     except:
         raise User.DoesNotExist("users does not exist")
-        #messages.error(request," doesn't exist")
-        #return render(request, 'book/bookformp2.html')
+        # messages.error(request," doesn't exist")
+        # return render(request, 'book/bookformp2.html')
 
-    
+    # if email2 not in User.objects.all():
+    #     print("hiii")
+    #     messages.error(request,"user doesn't exist")
+    #     return redirect('book:list')
+    # elif email3 not in User.objects.all():
+    #     print("hiii222")
+    #     messages.error(request,"user doesn't exist")
+    #     return redirect('book:list')
+    # else :
+    #     user2 = User.objects.get(email=email2)
+    #     user3 = User.objects.get(email=email3)
+
     n=token.objects.all().last()
 
     book=Book.objects.get(slug=booktoken)
@@ -172,8 +183,8 @@ def gen_tokenp(request,booktoken):
     #     if t == tokens:
     #         tokens=random.randint(1, 3910209312)
     if n:
-        date=n.date
-        if date==timezone.now:
+        date=n.date.date()
+        if date==timezone.now().date():
             tokens=n.token+1
         else:
             tokens=1
@@ -186,10 +197,10 @@ def gen_tokenp(request,booktoken):
     user2.book_issued.add(book)
     user3.book_issued.add(book)
     #user=User.objects.filter(username=user1)
-    object1 =pooled_token.objects.create(token=tokens,main_user=user1,book=book)
-    object1.pooled_user.add(user2)
-    object1.pooled_user.add(user3)
-    #token.save()
+    object1 =token.objects.create(token=tokens,user=user1,user2=user2,user3=user3,book=book)
+    # object1.pooled_user.add(user2)
+    # object1.pooled_user.add(user3)
+    # #token.save()
     object1.save()
     book.no_of_copy_left=book.no_of_copy_left-1
     book.save()
@@ -202,8 +213,17 @@ def undo(request,booki):
 
     book=Book.objects.get(slug=booki)
     user = request.user
-    token.objects.get(book=book,user=user).delete()
+    t=token.objects.get(book=book,user=user)
+    # user=t.user
+    user2=t.user2
+    user3=t.user3
+    t.delete()
     user.book_issued.remove(book)
+    if user2 and user3:
+        # user.book_issued.remove(book)
+        user2.book_issued.remove(book)
+        user3.book_issued.remove(book)
+
     #token.save()
     messages.error(request,"You have cancelled your order!")
     book.no_of_copy_left=book.no_of_copy_left+1
