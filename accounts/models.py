@@ -76,7 +76,7 @@ class User(AbstractBaseUser):
     is_student = models.BooleanField(default=False)
     is_general = models.BooleanField(default=False)
     is_teacher = models.BooleanField(default=False)
-    phone_no=models.IntegerField(max_length=10, blank=True, null=True)
+    phone_no=models.IntegerField(blank=True, null=True)
     bio=models.TextField(max_length=255, blank=True, null=True)
 
 

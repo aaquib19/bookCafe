@@ -284,24 +284,12 @@ class StudentExtraForm(ModelForm):
     helper = FormHelper()
     helper.layout = Layout(
         Field('bio', css_class='form-control '),
-<<<<<<< HEAD
-        Field('college', css_class='form-control '),
-
-        # ButtonHolder(
-        #     Submit('submit', 'Submit', css_class='button white')
-        # )
-    )
-    #helper.add_input(Submit('submit', 'Submit', css_class='btn-primary'))
-    helper.add_input(Submit('submit', 'Submit'))
-
-=======
         Field('college', css_class='form-control'),
         # ButtonHolder(
         #     Submit('submit', 'Submit', css_class='form-submit')
         # )
     )
     helper.form_tag = False
->>>>>>> payment
 
 class TeacherExtraForm(ModelForm):
     class Meta:
