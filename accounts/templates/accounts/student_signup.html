@@ -31,67 +31,7 @@
   background-image: linear-gradient(to left, #74ebd5, #9face6); }
     </style>
         <div class="main container">
-             <link rel="stylesheet" href="{% static 'css/signup_style.css' %}">
 
-            <div class="main">
-
-        <section class="signup">
-            <!-- <img src="images/signup-bg.jpg" alt=""> -->
-            <div class="container">
-                <div class="signup-content">
-                    <form method="POST"  action="" id="signup-form" class="signup-form">
-                        <h2 class="form-title">Create account for students</h2>
-                        {% csrf_token %}
-                    {{ form1.error_class }}
-                        <div class="form-group">
-
-                           <p><label for="id_email">Email:</label>
-
-                               <input class="form-input" type="email" name="email" maxlength="255" autofocus required id="id_email"></p>
-                            </div>
-                        <div class="form-group">
-
-<p><label for="id_first_name">First name:</label>
-    <input class="form-input" type="text" name="first_name" maxlength="255" required id="id_first_name"></p>
- </div>
-                        <div class="form-group">
-
-                        <p><label for="id_last_name">Last name:</label>
-                            <input  class="form-input"  type="text" name="last_name" maxlength="255" id="id_last_name"></p>
- </div>
-                        <div class="form-group">
-
-                        <p><label for="id_password1">Password:</label>
-                            <input class="form-input" type="password" name="password1" required id="id_password1"> <span class="helptext"><ul><li>Your password can&#39;t be too similar to your other personal information.</li><li>Your password must contain at least 8 characters.</li><li>Your password can&#39;t be a commonly used password.</li><li>Your password can&#39;t be entirely numeric.</li></ul></span></p>
- </div>
-
-                        <div class="form-group">
-
-                        <p><label for="id_password2">Password confirmation:</label>
-                            <input class="form-input" type="password" name="password2" required id="id_password2"> <span class="helptext">Enter the same password as before, for verification.</span></p>
-                        </div>
-                        <div class="form-group">
-
-                        <p><label for="id_bio">Bio:</label>
-                            <textarea class="form-input" name="bio" cols="40" rows="10" id="id_bio">
-</textarea></p>
-                        </div>
-
-<p><label for="id_college">College:</label> <input class="form-input" type="text" name="college" maxlength="255" id="id_college"></p>
-
-
-<div class="form-group">
-                            <input type="submit" name="submit" id="submit" class="form-submit" value="Sign up"/>
-                        </div>                    </form>
-
-                    <p class="loginhere">
-                        Have already an account ? <a href="{% url 'login' %}" class="loginhere-link">Login here</a>
-                    </p>
-                </div>
-            </div>
-        </section>
-
-    </div>
 
 
 <form action=""  method="POST" class="sign-up">
@@ -106,7 +46,7 @@
 <button class="form-submit">click here</button>
 
  <p class="loginhere ">
-                        Have already an account ? <a href="login.html" class="loginhere-link">Login here</a>
+                        Have already an account ? <a href="{% url 'login' %}" class="loginhere-link">Login here</a>
                     </p>
 </div>
 
