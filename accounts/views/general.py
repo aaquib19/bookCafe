@@ -34,7 +34,7 @@ def GeneralSignup(request):
 
         form1 = generalSignUpForm()
         form2 = GeneralExtraForm()
-    return render(request,'accounts/generalsignup.html',{"form1":form1,"form2":form2})
+    return render(request,'accounts/student_signup.html',{"form1":form1,"form2":form2})
 
 
 
