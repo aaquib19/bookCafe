@@ -1,3 +1,4 @@
+from crispy_forms.bootstrap import FormActions
 from django import forms
 from django.contrib.auth import get_user_model, authenticate
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
@@ -11,7 +12,7 @@ from accounts.models import Student,User,General,Teacher
 from django.contrib.auth.forms import  UserChangeForm,PasswordChangeForm
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, ButtonHolder, Submit,Field
+from crispy_forms.layout import Layout, ButtonHolder, Submit, Field, Button
 
 User = get_user_model()
 
@@ -138,9 +139,9 @@ class generalSignUpForm(UserCreationForm):
         Field('last_name', css_class='form-control'),
         Field('password1', css_class='form-control'),
         Field('password2', css_class='form-control'),
-        ButtonHolder(
-            Submit('submit', 'Submit', css_class='button white')
-        )
+        # ButtonHolder(
+        #     Submit('submit', 'Submit', css_class='button white')
+        # )
     )
 
     # def save(self, commit=True):
@@ -246,15 +247,48 @@ class GeneralCreationForm(ModelForm):
         model = User
         fields = "__all__"
 
+        helper = FormHelper()
+        helper.layout = Layout(
+            Field('email', css_class='form-control '),
+            Field('first_name', css_class='form-control'),
+            Field('last_name', css_class='form-control'),
+            Field('password1', css_class='form-control'),
+            Field('password2', css_class='form-control'),
+            ButtonHolder(
+                Submit('submit', 'Submit', css_class='button white')
+            )
+        )
+
+
 class GeneralExtraForm(ModelForm):
     class Meta:
         model = General
         fields = ('address','phone','pincode','city')
 
+        helper = FormHelper()
+        helper.layout = Layout(
+            ButtonHolder(
+                Submit('submit', 'Submit', css_class='button white')
+            )
+        )
+
 class StudentExtraForm(ModelForm):
     class Meta:
         model = Student
         fields = ('bio','college')
+
+    helper = FormHelper()
+    helper.layout = Layout(
+        Field('bio', css_class='form-control '),
+        Field('college', css_class='form-control '),
+
+        # ButtonHolder(
+        #     Submit('submit', 'Submit', css_class='button white')
+        # )
+    )
+    #helper.add_input(Submit('submit', 'Submit', css_class='btn-primary'))
+    helper.add_input(Submit('submit', 'Submit'))
+
 
 class TeacherExtraForm(ModelForm):
     class Meta:
