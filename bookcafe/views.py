@@ -9,29 +9,26 @@ def home(request):
 
 
 def payment(request):
-    args = {}
+    domain = request.META['HTTP_HOST']
     paypal_dict = {
-    'business': 'narainmukul98@gmail.com',
+    'business': 'aaquibniaz3600@gmail.com',
     'amount': '100',
     'item_name': 'Item_Name_xyz',
     'invoice': 'unique-invoice-00001',
-    'notify_url': '127.0.0.1:8000/a-very-hard-url/',
-    'return_url':'127.0.0.1:8000/paypal-return/',
-    'cancel_return': '127.0.0.1:8000/paypal-cancel/',
+    'notify_url': domain +'/paypal/',
+    'return_url':domain +'/paypal-return/',
+    'cancel_return': domain +'/paypal-cancel/',
     }
 
     form = PayPalPaymentsForm(initial=paypal_dict)
-    args['form'] =form
 
-    return render_to_response('payment.html',args)
+    return render_to_response('payment.html',{"form":form})
 
 @csrf_exempt
 def paypal_return(request):
-    args = {'post': request.POST,'get':request.GET}
-    return render_to_response('paypal_cancel.html',args)
+    return render_to_response('paypal_return.html',{'post': request.POST,'get':request.GET})
 
 @csrf_exempt
 def paypal_cancel(request):
-    args = {'post': request.POST,'get':request.GET}
-    return render_to_response('paypal_cancel.html',args)
+    return render_to_response('paypal_cancel.html',{'post': request.POST,'get':request.GET})
 

@@ -50,10 +50,10 @@ urlpatterns = [
 
     path('donation/', include(('donation.urls', 'donation'), namespace='donation')),
 
-    path('payment/',views.payment,name="button"),
-    path('paypal-return/',views.paypal_return),
-    path('paypal-cancel/',views.paypal_cancel),
-    path('a-very-hard-url/',include('paypal.standard.ipn.urls')),
+    path('payment/',views.payment,name="payment"),
+    path('paypal-return/',views.paypal_return,name='paypal_return'),
+    path('paypal-cancel/',views.paypal_cancel,name="paypal_cancel"),
+    path('paypal/',include('paypal.standard.ipn.urls')),
 
 
 ]
