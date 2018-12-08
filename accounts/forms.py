@@ -13,6 +13,7 @@ from django.contrib.auth.forms import  UserChangeForm,PasswordChangeForm
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, ButtonHolder, Submit, Field, Button
+from django.core.files.images import get_image_dimensions
 
 User = get_user_model()
 
@@ -187,7 +188,7 @@ class StudentSignUpForm(UserCreationForm):
     #     #student = Student.objects.create(user=user)
     #     return user
 
-class EditProfileForm(UserChangeForm):
+class EditProfileForm(ModelForm):
     template_name='/something/else'
 
     class Meta:
@@ -195,7 +196,9 @@ class EditProfileForm(UserChangeForm):
         fields = (
             'email',
             'first_name',
-            'last_name'
+            'last_name',
+            'phone_no',
+            'image'
            # 'password'
         )
 
@@ -203,6 +206,8 @@ class EditProfileForm(UserChangeForm):
     helper.layout = Layout(
         Field('email', css_class='form-control '),
         Field('first_name', css_class='form-control'),
+        Field('image', css_class='form-control'),
+        Field('phone_no', css_class='form-control'),
         Field('last_name', css_class='form-control'),
         # Field('password1', css_class='form-control'),
         ButtonHolder(
@@ -295,3 +300,4 @@ class TeacherExtraForm(ModelForm):
     class Meta:
         model = Teacher
         fields = ('department',)
+
