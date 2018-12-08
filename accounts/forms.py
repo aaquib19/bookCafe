@@ -111,9 +111,9 @@ class TeacherSignUpForm(UserCreationForm):
         Field('last_name', css_class='form-control'),
         Field('password1', css_class='form-control'),
         Field('password2', css_class='form-control'),
-        ButtonHolder(
-            Submit('submit', 'Submit', css_class='button white')
-        )
+        # ButtonHolder(
+        #     Submit('submit', 'Submit', css_class='button white')
+        # )
     )
 
     # def save(self, commit=True):
@@ -170,10 +170,14 @@ class StudentSignUpForm(UserCreationForm):
         Field('password1', css_class='form-control'),
         Field('password2', css_class='form-control'),
         Field('phone_no', css_class='form-control'),
-        ButtonHolder(
-            Submit('submit', 'Submit', css_class='button white')
-        )
+        # ButtonHolder(
+        #     Submit('submit', 'Submit', css_class='button white')
+        # )
+        # ButtonHolder(
+        #     Submit('submit', 'Submit', css_class='button white')
+        # )
     )
+    helper.form_tag = False
 
     # @transaction.atomic
     # def save(self):
@@ -280,6 +284,7 @@ class StudentExtraForm(ModelForm):
     helper = FormHelper()
     helper.layout = Layout(
         Field('bio', css_class='form-control '),
+<<<<<<< HEAD
         Field('college', css_class='form-control '),
 
         # ButtonHolder(
@@ -289,6 +294,14 @@ class StudentExtraForm(ModelForm):
     #helper.add_input(Submit('submit', 'Submit', css_class='btn-primary'))
     helper.add_input(Submit('submit', 'Submit'))
 
+=======
+        Field('college', css_class='form-control'),
+        # ButtonHolder(
+        #     Submit('submit', 'Submit', css_class='form-submit')
+        # )
+    )
+    helper.form_tag = False
+>>>>>>> payment
 
 class TeacherExtraForm(ModelForm):
     class Meta:

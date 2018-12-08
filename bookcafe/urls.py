@@ -26,7 +26,7 @@ from accounts.views.views import  LoginView
 
 urlpatterns = [
     path("",views.home,name="home"),
-    path("home",views.home1,name="home1"),
+    #path("home",views.home,name="home1"),
     path('login/', LoginView.as_view(), name='login'),
     #path('register/', RegisterView.as_view(), name='register'),
     path('logout/', LogoutView.as_view(), name='logout'),#accounts:logout
@@ -49,6 +49,13 @@ urlpatterns = [
     path('notification/', include(('notification.urls', 'notification'), namespace='notification')),
 
     path('donation/', include(('donation.urls', 'donation'), namespace='donation')),
+
+    path('payment/',views.payment,name="payment"),
+    path('paypal-return/',views.paypal_return,name='paypal_return'),
+    path('paypal-cancel/',views.paypal_cancel,name="paypal_cancel"),
+    path('paypal/',include('paypal.standard.ipn.urls')),
+
+
 ]
 
 if settings.DEBUG:

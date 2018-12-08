@@ -5,7 +5,11 @@
 {% url 'accounts:view_profile' as profile_url %}
 {% url 'accounts:login' as login_url %}
 {% url 'accounts:edit_profile' as edit_url %}
-{% url 'category:home' 'all' as category_url %}<!DOCTYPE html>
+{% url 'category:home' 'all' as category_url %}
+{% url 'book:list' as book_list_url %}
+
+
+<!DOCTYPE html>
 <!-- saved from url=(0072)https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html# -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Required meta tags always come first -->
@@ -122,6 +126,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link black-text" href="{{ category_url }}">Categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link black-text" href="{{ book_list_url }}">All Books</a>
         </li>
         <li class="nav-item">
           <a class="nav-link black-text" href="#">Issue A Book</a>
