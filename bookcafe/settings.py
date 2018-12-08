@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #USER INSTALLED APPS
+    'rest_framework',
     'paypal.standard.ipn',
     'book',
     'accounts',
@@ -56,6 +57,8 @@ INSTALLED_APPS = [
     'notification',
 
 ]
+
+
 PAYPAL_RECIEVER_EMAIL ='narainmukul98@gmail.com'
 
 AUTH_USER_MODEL = 'accounts.user'

@@ -16,5 +16,7 @@ urlpatterns = [
     path("gen_tokenp/<slug:booktoken>/", views.gen_tokenp, name="gen_tokenp"),
 	path("undo/<slug:booki>/", views.undo, name="undo"),
 
+    path('api/books/',views.ListBookView.as_view(),name="all_books"),
+    path('api/books/<int:pk>/', views.DetailBookView.as_view()),
 
 ]
