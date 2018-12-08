@@ -1,6 +1,32 @@
-<h style='font-size:50px;\'>notifications</h><br>
-<ul>
-  {%for notice in notifications%}
-  <li><a href="{%url 'notification:notification_details' notice.id%}">{{notice.notification_title}}</a></li><br>
-  {%endfor%}
-</ul>
+{% extends "base.html" %}
+{%load count_tags %}
+{%block content%}
+<div class="container-fluid" style="height:100vh">
+<div class="row">
+  <div class="col-sm-3 px-5" >
+    <h4>Settings</h4><br>
+    <ul class="list-inline">
+      <li>mark all as read </li>
+      <li>mark all as unread</li>
+      <li>delete notification</li>
+    </ul>
+  </div>
+  <div class="col-sm-6 border-left border-right" style=";box-shadow: 5px 10px 10px #CEECF5;height:100vh">
+    <h4 class="panel-heading">Notifications</h4><br>
+    <ul class="table">
+      {%for notice in notifications%}
+        <li class="list-inline"><a href="{%url 'notification:notification_details' notice.id%}">{{notice.notification_title}}</a></li>
+        <hr>
+      {%endfor%}
+    </ul>
+  </div>
+  <div class="col-sm-3">
+  <h4>Details</h4><br>
+  <ul class="list-inline">
+    <li><span class="badge" style='background-color:red'>{%readtag%}</span> read</li>
+    <li><span class="badge" style='background-color:red'>{%unreadtag%}</span> unread</li>
+    <li><span class="badge" style='background-color:red'>{%emailedtag%}</span> emailed</li>
+  </ul></div>
+  </div>
+</div>
+{%endblock%}

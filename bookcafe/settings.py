@@ -190,4 +190,3 @@ EMAIL_HOST_PASSWORD = "iamalilwayne"
 #     ('You', 'you@email.com'),
 # )
 # MANAGERS = ADMINS
-
