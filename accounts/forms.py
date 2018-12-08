@@ -159,7 +159,7 @@ class StudentSignUpForm(UserCreationForm):
 
     class Meta(UserAdminCreationForm.Meta):
         model = User
-        fields = ('email','first_name','last_name')
+        fields = ('email','first_name','last_name','phone_no')
 
     helper = FormHelper()
     helper.layout = Layout(
@@ -168,6 +168,7 @@ class StudentSignUpForm(UserCreationForm):
         Field('last_name', css_class='form-control'),
         Field('password1', css_class='form-control'),
         Field('password2', css_class='form-control'),
+        Field('phone_no', css_class='form-control'),
         ButtonHolder(
             Submit('submit', 'Submit', css_class='button white')
         )
