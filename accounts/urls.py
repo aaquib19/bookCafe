@@ -15,7 +15,7 @@ from .views.students import StudentSignup
 from .views.teachers import TeacherSignup
 from .views.general import GeneralSignup
 urlpatterns = [
-    path('', home1.home, name='home'),
+    #path('', home1.home, name='home'),
     re_path(r'^email/confirm/(?P<key>[0-9A-Za-z]+)/$',
             views.AccountEmailActivateView.as_view(),
             name='email-activate'),
