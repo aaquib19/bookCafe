@@ -49,6 +49,9 @@ INSTALLED_APPS = [
     'borrower',
     'donation',
 
+    'tokena',
+    'del_borrower',
+
     'crispy_forms',
     'notification',
     'events',

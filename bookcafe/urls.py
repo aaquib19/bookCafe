@@ -49,6 +49,13 @@ urlpatterns = [
     path('notification/', include(('notification.urls', 'notification'), namespace='notification')),
 
     path('donation/', include(('donation.urls', 'donation'), namespace='donation')),
+
+
+    path('tokena/', include(('tokena.urls', 'tokena'), namespace='tokena')),
+
+    path('del_borrower/', include(('del_borrower.urls', 'del_borrower'), namespace='del_borrower')),
+
+
 ]
 
 if settings.DEBUG:

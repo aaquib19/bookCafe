@@ -14,9 +14,11 @@ class borrower_detail(models.Model):
     name                = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     book_name           = models.ManyToManyField(Book)
     issue_date          = models.DateField()
-    returning_date      = models.DateField()
+    returning_date      = models.DateField(null=True,blank=True)
     submission_date     = models.DateField()
     pooled_users        = models.ManyToManyField(settings.AUTH_USER_MODEL,null=True,blank=True,related_name='book_pooling_users')
+    deleted             = models.BooleanField(default=False)
+
     #slug
 
     def __str__(self):
