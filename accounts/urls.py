@@ -8,7 +8,7 @@ from .views import home1, students, teachers
 # from .views.students import StudentSignUpView
 # from .views.general import GeneralSignUpView
 # from .views.teachers import TeacherSignUpView
-
+from .views.views import  ListUserView
 from .views import views
 # from .views.views import LoginView#,GeneralSignUp
 from .views.students import StudentSignup
@@ -28,6 +28,8 @@ urlpatterns = [
     path('profile/', views.view_profile, name='view_profile'),
     #re_path(r'^profile/(?P<pk>\d+)/$', views.view_profile, name='view_profile_with_pk'),
     path('profile/edit/', views.edit_profile, name='edit_profile'),
+    path('api/user/',ListUserView.as_view(),name="all_user"),
+
 
 
 

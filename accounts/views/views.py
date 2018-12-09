@@ -1,11 +1,21 @@
 # from django.shortcuts import render
 # from django.http import HttpResponse
 from django.contrib import messages
-
+from rest_framework import viewsets
+from accounts.models import User
+from accounts.serializers import UserSerializer
 from django.contrib.auth import authenticate, login, get_user_model, update_session_auth_hash
 from django.shortcuts import render,redirect
 from django.views.generic import CreateView,FormView,View
 from django.shortcuts import reverse
+from rest_framework.views import APIView
+from accounts.serializers import UserSerializer
+from rest_framework.response import Response
+from rest_framework import status
+
+
+from django.shortcuts import render,redirect
+from django.http import HttpResponse,Http404
 # from django.contrib.auth.forms import  UserChangeForm,PasswordChangeForm
 
 #import this for better redirection
@@ -83,4 +93,24 @@ def edit_profile(request):
         args = {'form': form}
         return render(request, 'accounts/edit_profile.html', args)
 
+class ListUserView(APIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+# class UserListView(generics.ListAPIView):
+#     queryset = User.objects.all()
+#     serializer_class = UserSerializer
+#     filter_backends = (django_filters.rest_framework.DjangoFilterBackend,)
+    def get(self,request,format=None):
+        books = User.objects.all()
+        serializer = UserSerializer(books,many=True)
+        return Response(serializer.data)
+
+
+    def post(self,request,format=None):
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
