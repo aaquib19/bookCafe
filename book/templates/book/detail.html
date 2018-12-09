@@ -2,15 +2,15 @@
 
 
 {% block content %}
-
+<div class="container">
    <!--  <div class='row'>
         <div class='col-12 col-md-6'>
                 {% if messages %}
-    {% for message in messages %}
+                        {% for message in messages %}
         <div class="alert alert-{{ message.tags }}">
-            {{message}}
+                                 {{message}}
         </div>
-    {% endfor %}
+                    {% endfor %}
     {% endif %} -->
 
     
@@ -21,7 +21,6 @@
                 {% if object.image %}
                     <img src='{{ object.image.url }}' class='img-fluid' />
                 {% endif %}
-        </div>
         <div class="col-12 col-md-6">
             <form  method='POST' > {% csrf_token %}
                 <input type='hidden' name='book_id' value='{{ object.id }}' />
@@ -34,50 +33,50 @@
                 {% endif %}
  -->
 
-<br><br>
+                    <br><br>
             <h2>Total Stock</h2>
             <h3>{{ object.no_of_actual_copy }}</h3>
 
-        <h2>Available</h2>
+                <h2>Available</h2>
             <h3>{{ object.no_of_copy_left }}</h3>
                 
 
 
-{% if token %}
+            {% if token %}
 
                 
                     {% if object in request.user.book_issued.all  %}
-                    Requested <button type='submit' formaction="{% url 'book:undo' object.slug %}" class='btn btn-link'>undo the request</button>
-                    {% else %}
-                    <button type='submit' formaction="{% url 'book:check_book' object.slug %}" class='btn btn-success'>Request to issue</button>
+                         Requested <button type='submit' formaction="{% url 'book:undo' object.slug %}" class='btn btn-link'>undo the request</button>
+                      {% else %}
+                         <button type='submit' formaction="{% url 'book:check_book' object.slug %}" class='btn btn-success'>Request to issue</button>
 
-                    <button type='submit' formaction="{% url 'book:check_bookp' object.slug %}" class='btn btn-success'>Book Pool</button>
+                         <button type='submit' formaction="{% url 'book:check_bookp' object.slug %}" class='btn btn-success'>Book Pool</button>
                     {% endif %}
 
                 
-{% else %}
+                {% else %}
                     
 
                  <button type='submit' formaction="{% url 'book:check_book' object.slug %}" class='btn btn-success'>Request to issue</button>
 
                 <button type='submit' formaction="{% url 'book:check_bookp' object.slug %}" class='btn btn-success'>Book Pool</button>
 
-{% endif %}
-    
-<!--
-{% for t in token %}
-{{ t.book_name }}
-{% ifequal  t.book_name|stringformat:"s" object.title  %}
-{{ object.title }}
-    
-{% endifequal %}
- {% endfor %}
+            {% endif %}
+
+                <!--
+                {% for t in token %}
+                    {{ t.book_name }}
+                    {% ifequal  t.book_name|stringformat:"s" object.title  %}
+                    {{ object.title }}
+
+                 {% endifequal %}
+                 {% endfor %}
 -->
                 </span>
             </form>
 
 
         </div>
+        </main>
 </div>
-</main>
 {% endblock %}

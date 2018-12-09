@@ -11,7 +11,7 @@ from accounts.models import User
 class BookListView(ListView):
     template_name = "book/list.html"
     queryset = Book.objects.all()
-
+    paginate_by = 9
 
 class BookDetailView(DetailView):
     template_name = "book/detail.html"

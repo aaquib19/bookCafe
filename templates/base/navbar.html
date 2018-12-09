@@ -7,6 +7,7 @@
 {% url 'accounts:edit_profile' as edit_url %}
 {% url 'donation:donate' as donate_url %}
 {% url 'category:home' 'all' as category_url %}
+{% url 'book:list' as book_list_url %}
 <!--Navbar-->
 <nav class="navbar navbar-expand-xl navbar-dark fixed-top navbar-default ">
 
@@ -31,6 +32,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link black-text" href="{{ category_url }}">Categories</a>
+        </li>
+      <li class="nav-item">
+          <a class="nav-link black-text" href="{{ book_list_url }}">All Books</a>
         </li>
         <li class="nav-item">
           <a class="nav-link black-text" href="#">Issue A Book</a>
