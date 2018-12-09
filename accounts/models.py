@@ -78,6 +78,7 @@ class User(AbstractBaseUser):
     is_teacher = models.BooleanField(default=False)
     phone_no=models.IntegerField(blank=True, null=True)
     bio=models.TextField(max_length=255, blank=True, null=True)
+    image=models.ImageField(upload_to='profile_image',blank=True)
 
 
 
