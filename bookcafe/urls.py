@@ -42,18 +42,15 @@ urlpatterns = [
     path('account/', include('accounts.passwords.urls')),
     path('search/', include(('search.urls', 'search'), namespace='search')),
 
-    
+
 #    path('cat1books/', include(('cat1books.urls', 'cat1books'), namespace='cat1books')),
 
     # notification part
     path('notification/', include(('notification.urls', 'notification'), namespace='notification')),
 
     path('donation/', include(('donation.urls', 'donation'), namespace='donation')),
-
-    path('payment/',views.payment,name="payment"),
-    path('paypal-return/',views.paypal_return,name='paypal_return'),
-    path('paypal-cancel/',views.paypal_cancel,name="paypal_cancel"),
     path('paypal/',include('paypal.standard.ipn.urls')),
+    path('payment/',include('payment.urls','payment')),
 
 
 ]

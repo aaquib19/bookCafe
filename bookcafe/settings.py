@@ -55,6 +55,7 @@ INSTALLED_APPS = [
 
 ]
 PAYPAL_RECIEVER_EMAIL ='narainmukul98@gmail.com'
+PAYPAL_BUY_BUTTON_IMAGE = 'https://thumbs.dreamstime.com/z/button-pay-online-blue-isolated-white-33363257.jpg'
 
 AUTH_USER_MODEL = 'accounts.user'
 
