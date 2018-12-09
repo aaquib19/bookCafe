@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% url 'accounts:change_password' as password_url %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class=" container">
+    <div class="col-md-8 col-sm-10 col-12 mx-auto">
+
+{#      <form method="POST" novalidate>#}
+{##}
+{#        <input type="hidden" name="next" value="{{ next }}">#}
+{#        {{ form }}#}
+{#        <button type="submit" class="btn btn-success">Sign up</button>#}
+{#      </form>#}
+
+
+        <div class="card">
+
+  <h2 class="card-header info-color white-text text-center py-4">
+    <strong>Edit Profile</strong>
+  </h2>
+
+
+    <div class="card-body px-lg-5 pt-0">
+
+    <!-- Form -->
+    <form class="text-center" style="color: #757575;" action="" method="POST" novalidate> {% csrf_token %}
+
+
+    {% crispy form %}
+    </form>
+    <!-- Form -->
+
+  </div>
+
+</div>
+
+    <a href="{% url 'password_change' %}">Change Password</a>
+    </div>
+    </div>
+{% endblock %}

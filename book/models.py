@@ -10,7 +10,7 @@ from django.db.models.signals import m2m_changed
 from django.db.models import Q
 
 from django.urls import reverse
-
+from django.utils import timezone
 from bookcafe.utils import unique_slug_generator
 
 from bookcafe import settings
@@ -124,15 +124,19 @@ def book_pre_save_reciever(sender, instance, *args, **kwargs):
 pre_save.connect(book_pre_save_reciever, sender=Book)
 
 
-
-
-class token(models.Model):
-    token=models.IntegerField()
-    user_name = models.ForeignKey(settings.AUTH_USER_MODEL,related_name="un",on_delete=models.CASCADE,null=True)
-    book_name = models.ForeignKey(Book,related_name="bn",on_delete=models.CASCADE,null=True,blank=True)
-    
-    class Meta:
-        unique_together=('user_name','book_name')
+class review(models.Model):
+    rating=models.IntegerField()
+    review=models.TextField(blank=True)
+    book = models.ForeignKey(Book,on_delete=models.CASCADE,null=True,blank=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,null=True,blank=True)
+# class token(models.Model):
+#     token=models.IntegerField()
+#     user_name = models.ForeignKey(settings.AUTH_USER_MODEL,related_name="un",on_delete=models.CASCADE,null=True)
+#     #user_name = models.CharField(max_length=255,blank=True,null=True)
+#     book_name = models.ForeignKey(Book,related_name="bn",on_delete=models.CASCADE,null=True,blank=True)
+#     date = models.DateField(default=timezone.now)
+#     class Meta:
+#         unique_together=('user_name','book_name')
 
 
 

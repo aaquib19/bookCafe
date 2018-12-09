@@ -21,12 +21,13 @@ from django.conf.urls.static import static
 from django.contrib.auth.views import LogoutView
 
 from . import views
-#from accounts.views import  LoginView,RegisterView
+from accounts.views.views import  LoginView
 
 
 urlpatterns = [
     path("",views.home,name="home"),
-    #path('login/', LoginView.as_view(), name='login'),
+    path("home",views.home1,name="home1"),
+    path('login/', LoginView.as_view(), name='login'),
     #path('register/', RegisterView.as_view(), name='register'),
     path('logout/', LogoutView.as_view(), name='logout'),#accounts:logout
 
@@ -38,8 +39,23 @@ urlpatterns = [
     path('category/', include(('category.urls', 'category'), namespace='category')),
 
     path('accounts/', include(('accounts.urls', 'accounts'), namespace='accounts')),
+    path('account/', include('accounts.passwords.urls')),
     path('search/', include(('search.urls', 'search'), namespace='search')),
-    path('cat1books/', include(('cat1books.urls', 'cat1books'), namespace='cat1books')),
+
+    
+#    path('cat1books/', include(('cat1books.urls', 'cat1books'), namespace='cat1books')),
+
+    # notification part
+    path('notification/', include(('notification.urls', 'notification'), namespace='notification')),
+
+    path('donation/', include(('donation.urls', 'donation'), namespace='donation')),
+
+
+    path('tokena/', include(('tokena.urls', 'tokena'), namespace='tokena')),
+
+    path('del_borrower/', include(('del_borrower.urls', 'del_borrower'), namespace='del_borrower')),
+
+
 ]
 
 if settings.DEBUG:

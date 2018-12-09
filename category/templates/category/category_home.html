@@ -1,6 +1,18 @@
-{% extends 'category/category_base.html' %}
+{% extends 'category/category.html' %}
 {% load static %}
-{% block category_list %}
+{% block main %}
 
+   <div class="container" style="min-height: 1000px;">
+            <div class='row'>
+
+                {% for obj in object_list %}
+                    <div class='col'>
+                    {{ forloop.counter }}
+                    {% include 'book/snippets/card.html' with instance=obj %}
+                        </div>
+
+                {% endfor %}
+            </div>
+        </div>
 
 {% endblock %}

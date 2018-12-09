@@ -1,22 +1,54 @@
-{% load static %}  
-<section>
-  <div id="boxgallery" class="boxgallery" data-effect="effect-1" style="position: static;">
-      <div class="panel"><img src="{% static 'img/1.jpg' %}" alt="Image 1"/></div>
-      <div class="panel"><img src="{% static 'img/2.jpg' %}" alt="Image 2"/></div>
-      <div class="panel"><img src="{% static 'img/3.jpg' %}" alt="Image 3"/></div>
-      <div class="panel"><img src="{% static 'img/4.jpg' %}" alt="Image 4"/></div>
+<!--Carousel Wrapper-->
+<div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
+  <!--Indicators-->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-2" data-slide-to="1"></li>
+    <li data-target="#carousel-example-2" data-slide-to="2"></li>
+  </ol>
+  <!--/.Indicators-->
+  <!--Slides-->
+  <div class="carousel-inner" role="listbox">
+    <div class="carousel-item active">
+      <div class="view">
+        <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(68).jpg" alt="First slide">
+        <div class="mask rgba-black-light"></div>
+      </div>
+      <div class="carousel-caption">
+        <h3 class="h3-responsive">BOOK CAFE</h3>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <!--Mask color-->
+      <div class="view">
+        <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(6).jpg" alt="Second slide">
+        <div class="mask rgba-black-strong"></div>
+      </div>
+      <div class="carousel-caption">
+        <h3 class="h3-responsive">BOOK CAFE</h3>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <!--Mask color-->
+      <div class="view">
+        <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(9).jpg" alt="Third slide">
+        <div class="mask rgba-black-slight"></div>
+      </div>
+      <div class="carousel-caption">
+        <h3 class="h3-responsive">BOOK CAFE</h3>
+      </div>
+    </div>
   </div>
-  <header class="codrops-header">
-    <h1>Book Cafe</h1>
-    <nav class="codrops-demos">
-      <a class="current-demo" href="index.html">Explore</a>
-    </nav>
-  </header>
-</section>
-
-  <script src="{% static 'js/classie.js' %}"></script>
-  <script src="{% static 'js/boxesFx.js' %}"></script>
-  <script>
-      new BoxesFx( document.getElementById( 'boxgallery' ) );
-  </script>
-
+  <!--/.Slides-->
+  <!--Controls-->
+  <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+  <!--/.Controls-->
+</div>
+<!--/.Carousel Wrapper-->      

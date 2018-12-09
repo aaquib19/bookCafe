@@ -26,7 +26,7 @@ SECRET_KEY = 'v(x@((pxe#s#&#2u&pgop%#n*zp5129_7agiefeh*s#caoh!=n'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+BASE_URL = '127.0.0.1:8000'
 
 # Application definition
 
@@ -45,7 +45,17 @@ INSTALLED_APPS = [
     'accounts',
     'search',
     'category',
-    'cat1books',
+    #'tok',
+    'borrower',
+    'donation',
+
+    'tokena',
+    'del_borrower',
+
+    'crispy_forms',
+    'notification',
+    'events',
+    
 
 ]
 
@@ -139,7 +149,7 @@ STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static_')
 
 #AUTH_USER_MODEL = 'acounts.User'
 
-LOGIN_URL = 'login'
+LOGIN_URL = 'login'#accounts:login
 
 LOGOUT_URL = 'logout'
 
@@ -160,12 +170,27 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media_')
 #just define cron process in CRONJOBS and run command python manage.py crotab add and to remove use remove insteat of add
 CRONJOBS = [
     ('*/1 * * * *','cronta.cron.my_jobs'),
+    ('*/1 * * * *','notification.cron.TokenExpire'),
 ]
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'info.educardo@gmail.com'
-DEFAULT_FROM_EMAIL = 'info.educardo@gmail.com'
-DEFAULT_REPLYTO_EMAIL = 'info.educardo@gmail.com'
-EMAIL_HOST_PASSWORD = '*********'
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'info.educardo@gmail.com'
+# DEFAULT_FROM_EMAIL = 'info.educardo@gmail.com'
+# DEFAULT_REPLYTO_EMAIL = 'info.educardo@gmail.com'
+# EMAIL_HOST_PASSWORD = '*********'
+# EMAIL_PORT = 587
+#
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
+EMAIL_USE_TLS =True
+EMAIL_HOST_USER = "rehanmallick4080@gmail.com"
+EMAIL_HOST_PASSWORD = "iamalilwayne"
+
+# ADMINS = (
+#     ('You', 'you@email.com'),
+# )
+# MANAGERS = ADMINS
+
