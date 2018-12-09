@@ -6,10 +6,13 @@ from django.utils import timezone
 
 
 class token(models.Model):
-    token=models.IntegerField()
+    token=models.IntegerField(unique=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,related_name="user",on_delete=models.CASCADE,null=True,blank=True)
+    user2 = models.ForeignKey(settings.AUTH_USER_MODEL,related_name="user2",on_delete=models.CASCADE,null=True,blank=True)
+    user3 = models.ForeignKey(settings.AUTH_USER_MODEL,related_name="user3",on_delete=models.CASCADE,null=True,blank=True)
     book = models.ForeignKey(Book,related_name="book",on_delete=models.CASCADE,null=True,blank=True)
     date = models.DateTimeField(default=timezone.now)
+    rdate = models.DateTimeField(null=True,blank=True)
     deleted = models.BooleanField(default=False)
 
     class Meta:

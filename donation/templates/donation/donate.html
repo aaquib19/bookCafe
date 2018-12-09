@@ -3,8 +3,10 @@
 {% block head %}
 
 
-	<!-- Google font -->
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	
 
 	<!-- Bootstrap -->
 	<link type="text/css" rel="stylesheet" href="{% static 'donation/bootstrap.min.css' %}" />
@@ -18,62 +20,55 @@
 
 
 {% block content %}
-	<div id="booking" class="section">
+	
+<div id="booking" class="section">
 		<div class="section-center">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-5">
-						<div class="booking-cta">
-							<h1>Make your reservation</h1>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate laboriosam numquam at</p>
-						</div>
-					</div>
-					<div class="col-md-6 col-md-offset-1">
-						<div class="booking-form">
-							<form method="POST" action="">{% csrf_token %}
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											
-											<span class="form-label">Name</span>
-											<input class="form-control" type="text" id="name" name="name">
-										</div>
-									</div>
-									
-								</div>
+					{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{message}}
+        </div>
+    {% endfor %}
+    {% endif %}
+
+					<div class="booking-form">
+						<div class="booking-bg"></div>
+						<form method="POST" action="">{% csrf_token %}
+							<div class="form-header">
+								<h2>Donate Your Books</h2>
+							</div>
+							<div class="form-group">
+								<input class="form-control" type="text" id="name" name="name" placeholder="Enter your Name">
+								<span class="form-label">Name</span>
+							</div>
+							<div class="form-group">
+								<input class="form-control" type="email" id="email" name="email" placeholder="Enter your Email">
+								<span class="form-label">Email</span>
+							</div>
+							<div class="form-group">
+								<input class="form-control" type="text" id="book_name" name="book_name" placeholder="Enter book name">
+								<span class="form-label">Name of the book</span>
+							</div>
 							
-									<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											
-											<span class="form-label">Email</span>
-											<input class="form-control" type="text" id="email" name="email">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<input class="form-control" type="text" id="book_name" name="book_name" >
-											<span class="form-label">Name of the book</span>
-										</div>
-									</div>
-									
-								</div>
-								<div class="form-btn">
-									<button class="submit-btn" formaction="{% url 'donation:adduser' %}">Donate Now</button>
-								</div>
-							</form>
-						</div>
+							<div class="form-btn">
+								<button class="submit-btn" formaction="{% url 'donation:adduser' %}">Donate Now</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
+
+
+
 {% endblock content %}
 
 {% block script %}
-	<script src="{% static 'donation/jquery.min.js' %}"></script>
+	<script src="js/jquery.min.js"></script>
 	<script>
 		$('.form-control').each(function () {
 			floatedLabel($(this));
@@ -91,10 +86,10 @@
 				$field.removeClass('input-not-empty');
 			}
 		}
-
-
-		
 	</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
 {% endblock script %}
 </body>
 
