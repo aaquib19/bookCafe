@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'search',
     'category',
     'borrower',
-    'social_django',
+    #'social_django',
     'donation',
 
     'tokena',
@@ -191,8 +191,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS =True
-EMAIL_HOST_USER = "bookcafe110@gmail.com"
-EMAIL_HOST_PASSWORD = "Iambook123"
+EMAIL_HOST_USER = "rehanmallick4080@gmail.com"
+EMAIL_HOST_PASSWORD = "iamalilwayne"
 
 # ADMINS = (
 #     ('Aaquib', 'bookcafe110@gmail.com'),
