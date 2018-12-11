@@ -12,4 +12,4 @@ def home(request):
             return redirect('teachers:welcome')
         else:
             return redirect('students:welcome')
-    return render(request, 'accounts/home.html')
+    return render(request, 'accounts/hom')

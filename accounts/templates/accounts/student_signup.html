@@ -32,19 +32,21 @@
     </style>
         <div class="main container">
 
-<form action=""  method="POST" class="sign-up">
+
+
+<form action=""  method="POST" class="sign-up col-9 mx-auto">
 {% csrf_token %}
- <h5 class="card-header  white-text text-center py-4">
+ <h5 class="card-header  black-text text-center py-4">
     <strong>Sign Up</strong>
   </h5>
-    <div class="col-6 mx-auto ">
+    <div class="col-5 mx-auto ">
     {% crispy form1 %}
     {% crispy form2 %}
         <br>
 <button class="form-submit">click here</button>
 
  <p class="loginhere ">
-                        Have already an account ? <a href="login.html" class="loginhere-link">Login here</a>
+                        Have already an account ? <a href="{% url 'login' %}" class="loginhere-link">Login here</a>
                     </p>
 </div>
 

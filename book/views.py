@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse,Http404
 from django.views.generic import ListView,DetailView
 from django.contrib import messages
-from .models import Book
+from .models import Book,review
 from borrower.models import token,pooled_token
 from django.utils import timezone
 # Create your views here.
@@ -35,11 +35,13 @@ class BookDetailView(DetailView):
     def get_context_data(self,**kwargs):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
-
+        slug = self.kwargs.get('slug')
+        instance = Book.objects.get(slug=slug)
         if self.request.user.is_authenticated:
             user = self.request.user
             context['user'] = user
             context['token'] = token.objects.filter(user=user)
+            context['review']=review.objects.filter(book=instance)
         # Add in a QuerySet of all the books
         
         print(token.book)
@@ -115,7 +117,7 @@ import time
 def gen_token(request,booktoken):
 
     n=token.objects.all().last()
-
+    checkout=request.POST.get("returndate")
     book=Book.objects.get(slug=booktoken)
     # t0=time.time()
     # tokens=random.randint(1, 3910209312)
@@ -123,9 +125,12 @@ def gen_token(request,booktoken):
     # for t in at.token:
     #     if t == tokens:
     #         tokens=random.randint(1, 3910209312)
+    # print ("----------------------")
+    # print(timezone.now().date())
+    # print(n.date.date())
     if n:
-        date=n.date
-        if date==timezone.now:
+        date=n.date.date()
+        if date==timezone.now().date():
             tokens=n.token+1
         else:
             tokens=1
@@ -136,7 +141,7 @@ def gen_token(request,booktoken):
     user1 = request.user
     user1.book_issued.add(book)
     #user=User.objects.filter(username=user1)
-    token.objects.create(token=tokens,user=user1,book=book)
+    token.objects.create(token=tokens,user=user1,book=book,rdate=checkout)
     #token.save()
     
     book.no_of_copy_left=book.no_of_copy_left-1
@@ -150,13 +155,26 @@ def gen_tokenp(request,booktoken):
     email2=request.POST.get("username2")
     print(email2)    
     email3=request.POST.get("username3")
+    checkout=request.POST.get("returndate")
     try :
         user2 = User.objects.get(email=email2)
         user3 = User.objects.get(email=email3)
     except:
         raise User.DoesNotExist("users does not exist")
-    
+        # messages.error(request," doesn't exist")
+        # return render(request, 'book/bookformp2.html')
 
+    # if email2 not in User.objects.all():
+    #     print("hiii")
+    #     messages.error(request,"user doesn't exist")
+    #     return redirect('book:list')
+    # elif email3 not in User.objects.all():
+    #     print("hiii222")
+    #     messages.error(request,"user doesn't exist")
+    #     return redirect('book:list')
+    # else :
+    #     user2 = User.objects.get(email=email2)
+    #     user3 = User.objects.get(email=email3)
 
     n=token.objects.all().last()
 
@@ -168,8 +186,8 @@ def gen_tokenp(request,booktoken):
     #     if t == tokens:
     #         tokens=random.randint(1, 3910209312)
     if n:
-        date=n.date
-        if date==timezone.now:
+        date=n.date.date()
+        if date==timezone.now().date():
             tokens=n.token+1
         else:
             tokens=1
@@ -182,10 +200,10 @@ def gen_tokenp(request,booktoken):
     user2.book_issued.add(book)
     user3.book_issued.add(book)
     #user=User.objects.filter(username=user1)
-    object1 =pooled_token.objects.create(token=tokens,main_user=user1,book=book)
-    object1.pooled_user.add(user2)
-    object1.pooled_user.add(user3)
-    #token.save()
+    object1 =token.objects.create(token=tokens,user=user1,user2=user2,user3=user3,book=book,rdate=checkout)
+    # object1.pooled_user.add(user2)
+    # object1.pooled_user.add(user3)
+    # #token.save()
     object1.save()
     book.no_of_copy_left=book.no_of_copy_left-1
     book.save()
@@ -198,7 +216,31 @@ def undo(request,booki):
 
     book=Book.objects.get(slug=booki)
     user = request.user
-    token.objects.get(book=book,user=user).delete()
+    t=token.objects.get(book=book,user=user)
+    # user=t.user
+    user2=t.user2
+    user3=t.user3
+    t.delete()
+    user.book_issued.remove(book)
+    if user2 and user3:
+        # user.book_issued.remove(book)
+        user2.book_issued.remove(book)
+        user3.book_issued.remove(book)
+
+    #token.save()
+    messages.error(request,"You have cancelled your order!")
+    book.no_of_copy_left=book.no_of_copy_left+1
+    book.save()
+    return redirect('book:list')
+
+
+def undop(request,booki):
+
+    book=Book.objects.get(slug=booki)
+    user = request.user
+    #pooled_token.objects.get(book=book,user=user).delete()
+    pooled_user=pooled_token.objects.get(book=book,user=user).pooled_user
+    print(pooled_user)
     user.book_issued.remove(book)
     #token.save()
     messages.error(request,"You have cancelled your order!")
@@ -207,4 +249,32 @@ def undo(request,booki):
     return redirect('book:list')
 
 
+def reviews(request,bookn):
+    book=Book.objects.get(slug=bookn)
+    user = request.user
 
+    s=request.POST.get("star")
+    s=int(s)*20
+    print(s)
+
+    # if s=="1":
+    #     print("ghj")
+    # else:
+    #     print("ert")
+    # s2=request.POST.get("star2")
+    # s3=request.POST.get("star3")
+    # s4=request.POST.get("star4")
+    # s5=request.POST.get("star5")
+
+    text1=request.POST.get("text")
+
+    if (review.objects.filter(book=book,user=user).exists()) :
+        review.objects.get(book=book,user=user).delete()
+        review.objects.create(rating=s,review=text1,book=book,user=user)
+    else : 
+
+        review.objects.create(rating=s,review=text1,book=book,user=user)
+
+    messages.success(request,"your opinion is valuable for us , Thankyou!!")
+    return redirect('book:list')
+    

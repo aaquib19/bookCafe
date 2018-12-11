@@ -52,6 +52,10 @@ urlpatterns = [
     path('paypal/',include('paypal.standard.ipn.urls')),
     path('payment/',include('payment.urls','payment')),
 
+    path('tokena/', include(('tokena.urls', 'tokena'), namespace='tokena')),
+
+    path('del_borrower/', include(('del_borrower.urls', 'del_borrower'), namespace='del_borrower')),
+
 
 ]
 
