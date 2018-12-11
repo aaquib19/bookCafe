@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render,HttpResponseRedirect
+from django.urls import reverse
 from django.views import generic
 from .models import Notification
 from accounts.models import User
@@ -11,5 +12,15 @@ class NotificationList(LoginRequiredMixin,generic.ListView):
     template_name = 'notification/home.html'
     context_object_name = 'notifications'
     def get_queryset(self):
-        Notification.objects.mark_all_as_read(recipient = self.request.user)
+        #Notification.objects.mark_all_as_read(recipient = self.request.user)
         return Notification.objects.filter(recipient = self.request.user).order_by('timestamp').reverse()
+
+def mark_all_read(request):
+    user = request.user
+    Notification.objects.mark_all_as_read(recipient = user)
+    return HttpResponseRedirect(reverse('notification:notifications_list'))
+
+def mark_all_unread(request):
+    user = request.user
+    Notification.objects.mark_all_as_unread(recipient = user)
+    return HttpResponseRedirect(reverse('notification:notifications_list'))

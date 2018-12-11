@@ -32,6 +32,12 @@ class NotificationQuerySet(models.query.QuerySet):
             qset = qset.filter(recipient=recipient)
         return qset.update(unread=False)
 
+    def mark_all_as_unread(self, recipient=None):
+        qset = self.read(True)
+        if recipient:
+            qset = qset.filter(recipient=recipient)
+        return qset.update(unread = True)
+
     def mark_as_unsent(self, recipient=None):
         qset = self.sent()
         if recipient:

@@ -2,14 +2,17 @@
 {%load count_tags %}
 {%block content%}
 {%load staticfiles%}
+{% url "notification:markallasread" as mark_all_read%}
+{% url "notification:markallasunread" as mark_all_unread%}
+
 <div class="container-fluid" style="">
 <div class="row">
   <div class="col-sm-3 px-5" >
     <h4>Settings</h4>
     <ul class="list-inline" style="font-weight:900;">
-      <li>mark all as read </li>
-      <li>mark all as unread</li>
-      <li>delete notification</li>
+      <li><a href="{{mark_all_read}}">mark all as read </a></li>
+      <li><a href="{{mark_all_unread}}">mark all as unread </a></li>
+      <li><a href="{{mark_all_delete}}">delete notification </a></li>
     </ul>
   </div>
   <div class="col-sm-6 border-left border-right" style="box-shadow: 5px 10px 10px #808080;">
@@ -34,7 +37,6 @@
     function myFunction(id){
       var bl = document.getElementById(id);
       s = bl.style.display;
-      console.log(s)
       if(s == 'none'){
         bl.style.display = 'block';
       }

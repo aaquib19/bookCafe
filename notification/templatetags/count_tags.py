@@ -1,7 +1,6 @@
 from django import template
 from notification.models import Notification
 
-
 register = template.Library()
 @register.simple_tag(takes_context = True)
 def readtag(context):
