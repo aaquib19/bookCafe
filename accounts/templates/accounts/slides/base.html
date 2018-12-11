@@ -41,7 +41,7 @@
     <div class="col-md-9">
      <div style="margin-bottom: 20px;">
     <button type="button" class="btn btn-primary js-upload-photos">
-      <span class="glyphicon glyphicon-cloud-upload"></span> Upload photos
+      <span class="glyphicon glyphicon-cloud-upload"></span> Upload Files
     </button>
     <input id="fileupload" type="file" name="file" multiple
            style="display: none;"
@@ -56,9 +56,9 @@
       </tr>
     </thead>
     <tbody>
-      {% for photo in photos %}
+      {% for file in files %}
         <tr>
-          <td><a href="{{ photo.file.url }}">{{ photo.file.name }}</a></td>
+          <td><a href="{{ file.file.url }}">{{ file.file.name }}</a></td>
         </tr>
       {% endfor %}
     </tbody>
