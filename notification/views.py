@@ -24,3 +24,10 @@ def mark_all_unread(request):
     user = request.user
     Notification.objects.mark_all_as_unread(recipient = user)
     return HttpResponseRedirect(reverse('notification:notifications_list'))
+
+def delete_all_notification(request):
+    user = request.user
+    qset = Notification.objects.filter(recipient = user)
+    for notice in qset:
+        qset.delete()
+    return HttpResponseRedirect(reverse('notification:notifications_list'))

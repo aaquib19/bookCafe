@@ -4,6 +4,7 @@
 {%load staticfiles%}
 {% url "notification:markallasread" as mark_all_read%}
 {% url "notification:markallasunread" as mark_all_unread%}
+{% url "notification:deletenotification" as mark_all_delete %}
 
 <div class="container-fluid" style="">
 <div class="row">
@@ -12,7 +13,7 @@
     <ul class="list-inline" style="font-weight:900;">
       <li><a href="{{mark_all_read}}">mark all as read </a></li>
       <li><a href="{{mark_all_unread}}">mark all as unread </a></li>
-      <li><a href="{{mark_all_delete}}">delete notification </a></li>
+      <li><a href="{{mark_all_delete}}">delete all notification </a></li>
     </ul>
   </div>
   <div class="col-sm-6 border-left border-right" style="box-shadow: 5px 10px 10px #808080;">
