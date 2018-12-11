@@ -1,6 +1,34 @@
 {% extends 'base.html' %}
+{% load static %}
 {#{% load crispy_forms_tags %}#}
 {% block content %}
+     <style>
+    body{
+    background-image: url('{% static "img/a1.jpg" %}');
+    color: black;
+    }
+    .sign-up{
+        background-color: ghostwhite;
+    }
+    .form-submit {
+  width: 100%;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  padding: 17px 20px;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  border: none;
+
+  background-image: -ms-linear-gradient(to left, #74ebd5, #9face6);
+  background-image: -o-linear-gradient(to left, #74ebd5, #9face6);
+  background-image: -webkit-linear-gradient(to left, #74ebd5, #9face6);
+  background-image: linear-gradient(to left, #74ebd5, #9face6); }
+    </style>
 <div class="container">
 <br><br><br>
     <h1>Profile</h1>
@@ -11,7 +39,7 @@
     <p>Phone: {{ request.user.phone_no }}</p>
     <p>City: {{ request.user.userprofile.city }}</p>
     <p>Website: {{ request.user.userprofile.website }}</p>
-    <p>number of books issued: {{ request.user.userprofile.website }}</p>
+    <p>number of books issued: {{ request.user.book_issued.count }}</p>
     {% if request.user.image %}
     <img src="{{ request.user.image.url }}" width="240">
     {% endif %}

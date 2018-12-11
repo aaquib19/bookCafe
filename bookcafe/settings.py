@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'search',
     'category',
     'borrower',
-    'social_django',
+    #'social_django',
     'donation',
 
     'tokena',
