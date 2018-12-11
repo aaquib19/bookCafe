@@ -224,7 +224,10 @@ def post_save_user_create_reciever(sender, instance, created, *args, **kwargs):
 post_save.connect(post_save_user_create_reciever, sender=User)
 
 
-
+class File(models.Model):
+    teacher = models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
+    file = models.FileField(upload_to='media_/files/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
 
 
 
@@ -279,7 +282,7 @@ class Student(models.Model):
 class Teacher(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     department = models.CharField(max_length=255)
-
+    
 
 class General(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)

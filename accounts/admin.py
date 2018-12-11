@@ -57,11 +57,12 @@ admin.site.register(EmailActivation, EmailActivationAdmin)
 
 
 
-from .models import Student,Teacher,General
+from .models import Student,Teacher,General,File
 
 admin.site.register(Student)
 admin.site.register(Teacher)
 admin.site.register(General)
+admin.site.register(File)
 
 
 
