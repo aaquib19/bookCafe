@@ -15,7 +15,7 @@ def send_emails():
         sent_queues = []
         email_queues = EmailQueue.objects.exclude(sent=True).all()
         for queue in email_queues:
-            if queue.scheduled_datetime >= timezone.now().date()
+            if queue.scheduled_datetime >= timezone.now().date():
                 sent_queues.append(queue.pk)
                 mass.append((queue.mail_subject, queue.mail_body,queue.mail_from, [queue.mail_to], ))
         send_mass_mail(tuple(mass))
