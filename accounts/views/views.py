@@ -1,12 +1,10 @@
-# from django.shortcuts import render
-# from django.http import HttpResponse
+
 from django.contrib import messages
 
-from django.contrib.auth import authenticate, login, get_user_model, update_session_auth_hash
+from django.contrib.auth import authenticate, login
 from django.shortcuts import render,redirect
-from django.views.generic import CreateView,FormView,View
+from django.views.generic import FormView,View
 from django.shortcuts import reverse
-# from django.contrib.auth.forms import  UserChangeForm,PasswordChangeForm
 
 #import this for better redirection
 # from django.utils.http import is_safe_url

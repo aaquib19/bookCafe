@@ -26,13 +26,9 @@ from accounts.views.views import  LoginView
 
 urlpatterns = [
     path("",views.home,name="home"),
-    #path("home",views.home,name="home1"),
     path('login/', LoginView.as_view(), name='login'),
-    #path('register/', RegisterView.as_view(), name='register'),
     path('logout/', LogoutView.as_view(), name='logout'),#accounts:logout
 
-    # path("category/", views.category, name="category"),
-    # path("category/<str:subject>", views.category, name="category"),  # this is temprory subjects/science
 
     path('admin/', admin.site.urls),
     path('book/', include(('book.urls', 'book'), namespace='book')),
@@ -43,7 +39,6 @@ urlpatterns = [
     path('search/', include(('search.urls', 'search'), namespace='search')),
 
 
-#    path('cat1books/', include(('cat1books.urls', 'cat1books'), namespace='cat1books')),
 
     # notification part
     path('notification/', include(('notification.urls', 'notification'), namespace='notification')),

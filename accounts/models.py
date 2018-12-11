@@ -279,7 +279,7 @@ class Student(models.Model):
 class Teacher(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     department = models.CharField(max_length=255)
-
+    
 
 class General(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
