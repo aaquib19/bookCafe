@@ -127,7 +127,11 @@ class StudentSignUpForm(UserCreationForm):
 
 
 class EditProfileForm(ModelForm):
+<<<<<<< HEAD
     # template_name='/something/else'
+=======
+    #template_name='/accounts/edit_profile'
+>>>>>>> e0b08ffbd0e2764668a230e4f99b6b59f5489985
 
     class Meta:
         model = User
@@ -143,9 +147,11 @@ class EditProfileForm(ModelForm):
     helper.layout = Layout(
         Field('email', css_class='form-control '),
         Field('first_name', css_class='form-control'),
-        Field('image', css_class='form-control'),
-        Field('phone_no', css_class='form-control'),
         Field('last_name', css_class='form-control'),
+        Field('phone_no', css_class='form-control'),
+        Field('image', css_class='form-control'),
+
+        # Field('password1', css_class='form-control'),
         ButtonHolder(
             Submit('submit', 'Submit', css_class='button white'),
         )
