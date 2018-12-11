@@ -8,10 +8,8 @@ from django.shortcuts import reverse
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 
-#import this for better redirection
-# from django.utils.http import is_safe_url
-from accounts.models import Photo
-from accounts.forms import PhotoForm
+from accounts.models import File
+from accounts.forms import FileForm
 
 from accounts.models import EmailActivation
 from accounts.forms import LoginForm, EditProfileForm
@@ -87,27 +85,32 @@ def edit_profile(request):
 
 class ProgressBarUploadView(View):
     def get(self, request):
-        photos_list = Photo.objects.all()
-        return render(self.request, 'accounts/slides/base.html', {'photos': photos_list})
-
-    def post(self, request):
-        time.sleep(1)  # You don't need this line. This is just to delay the process so you can see the progress bar testing locally.
-        form = PhotoForm(self.request.POST, self.request.FILES)
-        if form.is_valid():
-            photo = form.save(commit=False)
-            photo.title="FASdf0"
-            photo.save()
-
-            data = {'is_valid': True, 'name': photo.file.name, 'url': photo.file.url}
+        if request.user.is_teacher:
+            file_list = File.objects.filter(teacher=request.user)
+            return render(self.request, 'accounts/slides/base.html', {'files': file_list})
         else:
-            data = {'is_valid': False}
-        return JsonResponse(data)
+            return redirect('/')
+    def post(self, request):
+        if request.user.is_teacher:
+            time.sleep(1)  # You don't need this line. This is just to delay the process so you can see the progress bar testing locally.
+            form = FileForm(self.request.POST, self.request.FILES)
+            if form.is_valid():
+                file = form.save(commit=False)
+                file.teacher=request.user
+                file.save()
+
+                data = {'is_valid': True, 'name': file.file.name, 'url': file.file.url}
+            else:
+                data = {'is_valid': False}
+            return JsonResponse(data)
+        else:
+            return redirect('/')
 
 
 
 def clear_database(request):
 
-    for photo in Photo.objects.all():
-        photo.file.delete()
-        photo.delete()
+    for file in File.objects.filter(teacher=request.user):
+        file.file.delete()
+        file.delete()
     return redirect(request.POST.get('next'))
