@@ -13,11 +13,3 @@ class NotificationList(LoginRequiredMixin,generic.ListView):
     def get_queryset(self):
         Notification.objects.mark_all_as_read(recipient = self.request.user)
         return Notification.objects.filter(recipient = self.request.user).order_by('timestamp')
-
-class NotificationDetail(LoginRequiredMixin,generic.DeleteView):
-    template_name = 'notification/detail.html'
-    context_object_name = 'notice'
-    def get_queryset(self):
-        _id = self.kwargs.get("pk")
-        Notification.objects.filter(pk=_id).update(description_view=True)
-        return Notification.objects.filter(id=_id)

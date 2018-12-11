@@ -198,4 +198,3 @@ EMAIL_HOST_PASSWORD = "iamalilwayne"
 #     ('Aaquib', 'bookcafe110@gmail.com'),
 # )
 # MANAGERS = ADMINS
-
