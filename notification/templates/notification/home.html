@@ -3,12 +3,11 @@
 {%load count_tags %}
 {%block content%}
 {%load staticfiles%}
-<<<<<<< HEAD
 {% url "notification:markallasread" as mark_all_read%}
 {% url "notification:markallasunread" as mark_all_unread%}
 {% url "notification:deletenotification" as mark_all_delete %}
 
-=======
+
     <style>
     body{
     background-image: url('{% static "img/a1.jpg" %}');
@@ -36,20 +35,19 @@
   background-image: -webkit-linear-gradient(to left, #74ebd5, #9face6);
   background-image: linear-gradient(to left, #74ebd5, #9face6); }
     </style>
->>>>>>> Wilson-Patro
 <div class="container-fluid" style="">
 
 <div class="row">
   <div class="col-sm-3 px-5" >
-    <h4>Settings</h4>
+    <h4 style="font-family: 'Comic Sans MS'">Settings</h4>
     <ul class="list-inline" style="font-weight:900;">
-      <li><a href="{{mark_all_read}}">mark all as read </a></li>
-      <li><a href="{{mark_all_unread}}">mark all as unread </a></li>
-      <li><a href="{{mark_all_delete}}">delete all notification </a></li>
+      <li><a href="{{mark_all_read}}" style="font-family:'Comic Sans MS'">mark all as read </a></li>
+      <li><a href="{{mark_all_unread}}" style="font-family:'Comic Sans MS'">mark all as unread </a></li>
+      <li><a href="{{mark_all_delete}}" style="font-family:'Comic Sans MS'">delete all notification </a></li>
     </ul>
   </div>
   <div class="col-sm-6 border-left border-right" style="box-shadow: 5px 10px 10px #808080;">
-    <h4 class="panel-heading">Notifications</h4><br>
+    <h4 class="panel-heading" style="font-family: 'Comic Sans MS'">Notifications</h4><br>
     <ul class="table" style="font-weight:900;">
       {%for notice in notifications%}
         <li class="list-inline" onclick="myFunction({{notice.id}})" style="cursor:pointer">{{notice.notification_title}}</li>
@@ -59,11 +57,11 @@
     </ul>
   </div>
   <div class="col-sm-3">
-  <h4>Details</h4><br>
+  <h4 style="font-family:'Comic Sans MS'">Details</h4><br>
   <ul class="list-inline" style="font-weight:900;">
-    <li><span class="badge" style='background-color:red'>{%readtag%}</span> read</li>
-    <li><span class="badge" style='background-color:red'>{%unreadtag%}</span> unread</li>
-    <li><span class="badge" style='background-color:red'>{%emailedtag%}</span> emailed</li>
+    <li><span class="badge" style='background-color:#68090d;font-family: "Comic Sans MS";'>{%readtag%}</span> read</li>
+    <li><span class="badge" style='background-color:#68090d;font-family: "Comic Sans MS";'>{%unreadtag%}</span> unread</li>
+    <li><span class="badge" style='background-color:#68090d;font-family: "Comic Sans MS";'>{%emailedtag%}</span> emailed</li>
   </ul></div>
   </div>
   <script type="text/javascript">
