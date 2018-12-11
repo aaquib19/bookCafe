@@ -12,7 +12,9 @@
     <p>City: {{ request.user.userprofile.city }}</p>
     <p>Website: {{ request.user.userprofile.website }}</p>
     <p>number of books issued: {{ request.user.userprofile.website }}</p>
+    {% if request.user.image %}
     <img src="{{ request.user.image.url }}" width="240">
+    {% endif %}
 </div>
 {% endblock %}
 

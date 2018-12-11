@@ -50,17 +50,14 @@ urlpatterns = [
 
     path('donation/', include(('donation.urls', 'donation'), namespace='donation')),
 
-<<<<<<< HEAD
     path('payment/',views.payment,name="payment"),
     path('paypal-return/',views.paypal_return,name='paypal_return'),
     path('paypal-cancel/',views.paypal_cancel,name="paypal_cancel"),
     path('paypal/',include('paypal.standard.ipn.urls')),
-=======
 
     path('tokena/', include(('tokena.urls', 'tokena'), namespace='tokena')),
 
     path('del_borrower/', include(('del_borrower.urls', 'del_borrower'), namespace='del_borrower')),
->>>>>>> Keerti
 
 
 ]

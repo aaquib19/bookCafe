@@ -49,13 +49,10 @@ INSTALLED_APPS = [
     'borrower',
     'social_django',
     'donation',
-<<<<<<< HEAD
-=======
 
     'tokena',
     'del_borrower',
 
->>>>>>> Keerti
     'crispy_forms',
     'notification',
     'events',

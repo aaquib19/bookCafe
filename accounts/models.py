@@ -78,7 +78,7 @@ class User(AbstractBaseUser):
     is_teacher = models.BooleanField(default=False)
     phone_no=models.IntegerField(blank=True, null=True)
     bio=models.TextField(max_length=255, blank=True, null=True)
-    image=models.ImageField(upload_to='profile_image',blank=True)
+    image=models.ImageField(upload_to='profile_image',blank=True, null=True)
 
 
 
@@ -117,7 +117,8 @@ class User(AbstractBaseUser):
     # @property
     # def is_active(self):
     #     return  self.active
-
+    def testinguser(self):
+        return '%s, %s, %s' % (self.first_name, self.last_name,self.email)
 class EmailActivationQuerySet(models.query.QuerySet):
     def confirmable(self):
         now = timezone.now()
