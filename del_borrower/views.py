@@ -7,6 +7,12 @@ from accounts.models import User
 from django.utils import timezone
 from django.contrib import messages
 
+
+from django.contrib.admin.views.decorators import staff_member_required
+
+
+@staff_member_required
+
 def disp_borrowers(request):
 	context={"borrowers":borrower_detail.objects.all()}
 	return render(request,"del_borrower/del.html",context)

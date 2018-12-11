@@ -4,6 +4,10 @@ from django.shortcuts import render,redirect
 from borrower.models import token
 from events.models import borrower_detail
 
+from django.contrib.admin.views.decorators import staff_member_required
+
+
+@staff_member_required
 def disp_tokens(request):
 	context={"tokens":token.objects.all()}
 	return render(request,"tokena/ad.html",context)
