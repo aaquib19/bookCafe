@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+{% for t in tokens %}
+	{% if not t.deleted %}
+	<div>Token No. :: {{ t.token }}</div>
+	
+	<form  method='POST' > {% csrf_token %}
+	<button type='submit' formaction="{% url 'tokena:add_book' t.token %}" >Request to issue</button>
+	</form>
+
+	<br>
+{% endif %}
+
+{% endfor %}
+</body>
+</html>

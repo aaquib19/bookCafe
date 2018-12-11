@@ -25,7 +25,7 @@ SECRET_KEY = 'v(x@((pxe#s#&#2u&pgop%#n*zp5129_7agiefeh*s#caoh!=n'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 BASE_URL = '127.0.0.1:8000'
 
 # Application definition
@@ -46,16 +46,21 @@ INSTALLED_APPS = [
     'accounts',
     'search',
     'category',
-    #'tok',
     'borrower',
+    'social_django',
     'donation',
+
+    'tokena',
+    'del_borrower',
 
     'crispy_forms',
     'notification',
+    'events',
+    
 
 ]
-PAYPAL_RECIEVER_EMAIL ='narainmukul98@gmail.com'
-PAYPAL_BUY_BUTTON_IMAGE = 'https://thumbs.dreamstime.com/z/button-pay-online-blue-isolated-white-33363257.jpg'
+
+PAYPAL_RECIEVER_EMAIL ='aaquibniaz3600@gmail.com'
 
 AUTH_USER_MODEL = 'accounts.user'
 
@@ -67,9 +72,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
-LOGOUT_REDIRECT_URL = '/login/'
 ROOT_URLCONF = 'bookcafe.urls'
 
 TEMPLATES = [
@@ -84,10 +89,12 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
             ],
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'bookcafe.wsgi.application'
 
@@ -143,9 +150,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static_')
 
-#AUTH_USER_MODEL = 'acounts.User'
 
 LOGIN_URL = 'login'#accounts:login
 
@@ -164,8 +171,8 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media_')
 
-#to handle email and cron processes
-#just define cron process in CRONJOBS and run command python manage.py crotab add and to remove use remove insteat of add
+# to handle email and cron processes
+# just define cron process in CRONJOBS and run command python manage.py crotab add and to remove use remove insteat of add
 CRONJOBS = [
     ('*/1 * * * *','cronta.cron.my_jobs'),
     ('*/1 * * * *','notification.cron.TokenExpire'),
@@ -184,10 +191,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS =True
-EMAIL_HOST_USER = "rehanmallick4080@gmail.com"
-EMAIL_HOST_PASSWORD = "iamalilwayne"
+EMAIL_HOST_USER = "bookcafe110@gmail.com"
+EMAIL_HOST_PASSWORD = "Iambook123"
 
 # ADMINS = (
-#     ('You', 'you@email.com'),
+#     ('Aaquib', 'bookcafe110@gmail.com'),
 # )
 # MANAGERS = ADMINS

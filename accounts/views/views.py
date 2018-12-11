@@ -68,7 +68,7 @@ def view_profile(request, pk=None):
     else:
         user = request.user
     args = {'user': user}
-    return render(request, 'accounts/profile.html', args)
+    return render(request, 'accounts/profile.html',args)
 
 
 def edit_profile(request):

@@ -1,5 +1,14 @@
 {% extends "base.html" %}
+{% load static %}
+{% block head %}
 
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
+<link type="text/css" rel="stylesheet" href="{% static 'book/star.css' %}" />
+
+<link type="text/css" rel="stylesheet" href="{% static 'book/star2.css' %}" />
+
+{% endblock head %}
 
 {% block content %}
 <div class="container">
@@ -61,16 +70,63 @@
 
                 <button type='submit' formaction="{% url 'book:check_bookp' object.slug %}" class='btn btn-success'>Book Pool</button>
 
-            {% endif %}
+{% endif %}
 
-                <!--
-                {% for t in token %}
-                    {{ t.book_name }}
-                    {% ifequal  t.book_name|stringformat:"s" object.title  %}
-                    {{ object.title }}
+<div class="cont" style="margin-top:150px;">
+  <div class="title">
+  <h1><span>rate us</span></h1>
+  </div>
+  <div class="stars">
+   <!--  <form method="POST" action="{% url 'book:reviews' object.slug %}">{% csrf_token %} -->
+      <input class="star star-5" id="star-5" type="radio" name="star" value="5"/>
 
-                 {% endifequal %}
-                 {% endfor %}
+      <label class="star star-5" for="star-5"></label>
+      <input class="star star-4" id="star-4" type="radio" name="star" value="4"/>
+      <label class="star star-4" for="star-4"></label>
+      <input class="star star-3" id="star-3" type="radio" name="star" value="3"/>
+      <label class="star star-3" for="star-3"></label>
+      <input class="star star-2" id="star-2" type="radio" name="star" value="2"/>
+      <label class="star star-2" for="star-2"></label>
+      <input class="star star-1" id="star-1" type="radio" name="star" value="1"/>
+      <label class="star star-1" for="star-1"></label>
+<!--       <input type="text" placeholder="write a review" />
+ -->      <textarea rows="5" cols="25" placeholder="write a review" name="text"></textarea>
+        <input type="submit" formaction="{% url 'book:reviews' object.slug %}" /> 
+   <!--  </form> -->
+   <!-- <script type="text/javascript">
+       if document.getElementById("star-5").checked==true
+   </script> -->
+  </div>
+</div>
+
+{% for p in review %}
+{% if p.user != request.user %}
+<div>
+ <h2>{{p.user}}</h2>
+<div class="containerdiv">
+    <div>
+    <img src="https://image.ibb.co/jpMUXa/stars_blank.png" alt="img">
+    </div>
+    <div class="cornerimage" style=width:{{p.rating}}%>
+    <img src="https://image.ibb.co/caxgdF/stars_full.png" alt="">
+    </div>
+<div>
+   
+    <br>
+    {{p.review}}
+    <br>
+
+</div>
+{%  endif %}
+{% endfor %}    
+<!--
+{% for t in token %}
+{{ t.book_name }}
+{% ifequal  t.book_name|stringformat:"s" object.title  %}
+{{ object.title }}
+    
+{% endifequal %}
+ {% endfor %}
 -->
                 </span>
             </form>

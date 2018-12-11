@@ -1,4 +1,6 @@
 <!--Carousel Wrapper-->
+{% load static %}
+
 <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
   <!--Indicators-->
   <ol class="carousel-indicators">
@@ -11,31 +13,31 @@
   <div class="carousel-inner" role="listbox">
     <div class="carousel-item active">
       <div class="view">
-        <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(68).jpg" alt="First slide">
+        <img class="d-block w-100" src="{% static 'img/6.jpg' %}" alt="First slide">
         <div class="mask rgba-black-light"></div>
       </div>
       <div class="carousel-caption">
-        <h3 class="h3-responsive">BOOK CAFE</h3>
+        <h3 class="h3-responsive" style="padding-bottom: 250px;font-size: 110px;font-family:'Lucida Handwriting';">BOOK CAFE</h3>
       </div>
     </div>
     <div class="carousel-item">
       <!--Mask color-->
       <div class="view">
-        <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(6).jpg" alt="Second slide">
+        <img class="d-block w-100" src="{% static 'img/7.jpg' %}" alt="Second slide">
         <div class="mask rgba-black-strong"></div>
       </div>
       <div class="carousel-caption">
-        <h3 class="h3-responsive">BOOK CAFE</h3>
+        <h3 class="h3-responsive" style="padding-bottom: 250px;font-size: 110px;font-family: 'Lucida Handwriting';">BOOK CAFE</h3>
       </div>
     </div>
     <div class="carousel-item">
       <!--Mask color-->
       <div class="view">
-        <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(9).jpg" alt="Third slide">
+        <img class="d-block w-100" src="{% static 'img/8.jpg' %}" alt="Third slide">
         <div class="mask rgba-black-slight"></div>
       </div>
       <div class="carousel-caption">
-        <h3 class="h3-responsive">BOOK CAFE</h3>
+        <h3 class="h3-responsive" style="padding-bottom: 250px;font-size: 110px;font-family: 'Lucida Handwriting';">BOOK CAFE</h3>
       </div>
     </div>
   </div>

@@ -15,6 +15,7 @@ urlpatterns = [
     path("gen_token/<slug:booktoken>/", views.gen_token, name="gen_token"),
     path("gen_tokenp/<slug:booktoken>/", views.gen_tokenp, name="gen_tokenp"),
 	path("undo/<slug:booki>/", views.undo, name="undo"),
+	path("reviews/<slug:bookn>/", views.reviews, name="reviews"),
 
 
 ]
