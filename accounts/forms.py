@@ -7,6 +7,7 @@ from django.forms import ModelForm
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, ButtonHolder, Submit, Field, Button
+from accounts.models import Photo
 
 from accounts.models import Student,General,Teacher
 
@@ -226,3 +227,8 @@ class TeacherExtraForm(ModelForm):
         model = Teacher
         fields = ('department',)
 
+
+class PhotoForm(forms.ModelForm):
+    class Meta:
+        model = Photo
+        fields = ('file', )

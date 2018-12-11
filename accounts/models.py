@@ -224,7 +224,10 @@ def post_save_user_create_reciever(sender, instance, created, *args, **kwargs):
 post_save.connect(post_save_user_create_reciever, sender=User)
 
 
-
+class Photo(models.Model):
+    title = models.CharField(max_length=255, blank=True)
+    file = models.FileField(upload_to='media_/files/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
 
 
 

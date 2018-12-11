@@ -1,14 +1,17 @@
+import time
 
 from django.contrib import messages
 
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render,redirect
 from django.views.generic import FormView,View
 from django.shortcuts import reverse
+from django.shortcuts import render, redirect
+from django.http import JsonResponse
 
 #import this for better redirection
 # from django.utils.http import is_safe_url
-
+from accounts.models import Photo
+from accounts.forms import PhotoForm
 
 from accounts.models import EmailActivation
 from accounts.forms import LoginForm, EditProfileForm
@@ -82,3 +85,29 @@ def edit_profile(request):
         return render(request, 'accounts/edit_profile.html', args)
 
 
+class ProgressBarUploadView(View):
+    def get(self, request):
+        photos_list = Photo.objects.all()
+        return render(self.request, 'accounts/slides/base.html', {'photos': photos_list})
+
+    def post(self, request):
+        time.sleep(1)  # You don't need this line. This is just to delay the process so you can see the progress bar testing locally.
+        form = PhotoForm(self.request.POST, self.request.FILES)
+        if form.is_valid():
+            photo = form.save(commit=False)
+            photo.title="FASdf0"
+            photo.save()
+
+            data = {'is_valid': True, 'name': photo.file.name, 'url': photo.file.url}
+        else:
+            data = {'is_valid': False}
+        return JsonResponse(data)
+
+
+
+def clear_database(request):
+
+    for photo in Photo.objects.all():
+        photo.file.delete()
+        photo.delete()
+    return redirect(request.POST.get('next'))

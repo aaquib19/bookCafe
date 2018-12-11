@@ -1,5 +1,6 @@
 
 from django.urls import path,re_path
+from django.conf.urls import url
 
 from .views import home1
 
@@ -20,6 +21,6 @@ urlpatterns = [
     path('profile/', views.view_profile, name='view_profile'),
     path('profile/edit/', views.edit_profile, name='edit_profile'),
 
-
-
+    url(r'^clear/$', views.clear_database, name='clear_database'),
+    url(r'^progress-bar-upload/$', views.ProgressBarUploadView.as_view(), name='progress_bar_upload'),
 ]
