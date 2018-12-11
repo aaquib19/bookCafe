@@ -127,11 +127,7 @@ class StudentSignUpForm(UserCreationForm):
 
 
 class EditProfileForm(ModelForm):
-<<<<<<< HEAD
-    # template_name='/something/else'
-=======
-    #template_name='/accounts/edit_profile'
->>>>>>> e0b08ffbd0e2764668a230e4f99b6b59f5489985
+
 
     class Meta:
         model = User
