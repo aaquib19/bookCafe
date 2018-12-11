@@ -12,4 +12,4 @@ class NotificationList(LoginRequiredMixin,generic.ListView):
     context_object_name = 'notifications'
     def get_queryset(self):
         Notification.objects.mark_all_as_read(recipient = self.request.user)
-        return Notification.objects.filter(recipient = self.request.user).order_by('timestamp')
+        return Notification.objects.filter(recipient = self.request.user).order_by('timestamp').reverse()
