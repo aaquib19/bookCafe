@@ -135,7 +135,7 @@ def gen_token(request,booktoken):
         else:
             tokens=1
     else:
-        tokens=0
+        tokens=32675
 
     messages.success(request,"Your token is {}".format(tokens))
     user1 = request.user
@@ -192,7 +192,7 @@ def gen_tokenp(request,booktoken):
         else:
             tokens=1
     else:
-        tokens=0
+        tokens=32675
 
     messages.success(request,"Your token is {}".format(tokens))
     user1 = request.user
