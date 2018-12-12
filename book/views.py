@@ -5,6 +5,8 @@ from django.contrib import messages
 from .models import Book,review
 from borrower.models import token,pooled_token
 from django.utils import timezone
+from django.utils.timezone import utc
+
 from datetime import timedelta
 # Create your views here.
 from accounts.models import User
@@ -95,7 +97,7 @@ def check_bookp(request,url_string):
     values=[]
     date=timezone.now().date()
     rdate=timezone.now()+timedelta(days=15)
-    rdate=rdate.date()
+    rdate=rdate.date().utnow().replace(tzinfo=utc)
     print(date,rdate)
     user = request.user
     book_name=book.title
@@ -126,7 +128,8 @@ import time
 def gen_token(request,booktoken):
     # print(request.POST)
     n=token.objects.all().last()
-    checkout=request.POST.get("returndate")
+    # checkout=request.POST.get("returndate")
+    rdate=timezone.now()+timedelta(days=15)
     book=Book.objects.get(slug=booktoken)
     # t0=time.time()
     # tokens=random.randint(1, 3910209312)
@@ -152,8 +155,8 @@ def gen_token(request,booktoken):
     user1 = request.user
     user1.book_issued.add(book)
     #user=User.objects.filter(username=user1)
-    print(checkout)
-    token.objects.create(token=tokens,user=user1,book=book,rdate=checkout)
+   
+    token.objects.create(token=tokens,user=user1,book=book,rdate=rdate)
     #token.save()
     
     book.no_of_copy_left=book.no_of_copy_left-1

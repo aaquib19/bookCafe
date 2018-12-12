@@ -23,31 +23,27 @@ def del_borrower(request):
 
 	if request.method=="POST":
 		name=request.POST.get("borrow-id")
-
-	
 	name1=User.objects.get(email=name)
-
-	b=borrower_detail.objects.get(name=name1)
+	b = borrower_detail.objects.get(name=name1)
 	user=b.name
 	book=b.book_name
 	rdate=timezone.now().date()
 	sdate=b.submission_date
+	# print(user,book,rdate,sdate)
+	print(book)
+	book=Book.objects.get(id=book.id)
 
-	print(name)
-	# book=Book.objects.get(id=book)
+	name1.book_issued.remove(book)
 
-	# name1.book_issued.remove(book)
+	if rdate>sdate:
+		days=rdate-sdate
+		fine=(days.total_seconds()*5)/86400
+	else:
+		fine=0
 
-	days=sdate-rdate
-	fine=days*5
-
-	b.deleted=True
-	b.save()
-	print("sdfghjkl;knbvcxz")
-	print(fine)
+	b.delete()
 	if fine:
-		print(";lkjhgf")
-		messages.error(request,"{} fine is {}".format(name1,fine))
+		messages.error(request,"{} fine is Rs.{}".format(name1,fine))
 		return render(request,"del_borrower/del.html")
 	else:
 		return render(request,"del_borrower/del.html")

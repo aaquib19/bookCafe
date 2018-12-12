@@ -12,13 +12,12 @@ from book.models import Book
 
 class borrower_detail(models.Model):
     name                = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
-    book_name           = models.ManyToManyField(Book)
+    book_name           = models.ForeignKey(Book,on_delete=models.CASCADE,null=True,blank=True)
     issue_date          = models.DateField()
     returning_date      = models.DateField(null=True,blank=True)
     submission_date     = models.DateField(null=True,blank=True)
-    pooled_users        = models.ManyToManyField(settings.AUTH_USER_MODEL,related_name='book_pooling_users',null=True,blank=True)
-    deleted             = models.BooleanField(default=False)
-    fine                =models.IntegerField(null=True,blank=True)
+    pooled_users        = models.ManyToManyField(settings.AUTH_USER_MODEL,related_name='book_pooling_users')
+    
     #slug
 
     def __str__(self):
@@ -39,21 +38,21 @@ class borrower_detail(models.Model):
 
 
 
-def book_issued(sender,**kwargs):
-    if kwargs["instance"].book_name.count()>2:
-        print("count = ",kwargs["instance"].book_name.count())
-        raise ValidationError("you cannot issue more than 2 book")
+# def book_issued(sender,**kwargs):
+#     if kwargs["instance"].book_name.count()>2:
+#         print("count = ",kwargs["instance"].book_name.count())
+#         raise ValidationError("you cannot issue more than 2 book")
 
-m2m_changed.connect(book_issued,sender=borrower_detail.book_name.through)
+# m2m_changed.connect(book_issued,sender=borrower_detail.book_name.through)
 
-def pooled_users_check(sender,**kwargs):
-    instance = kwargs["instance"]
-    print("people  ",instance.pooled_users)
-    if instance.pooled_users.count() > 2:
-        print("hello")
-        raise ValidationError("only 3 people can pool a single book")
-    if instance.name in instance.pooled_users.all():
-        raise ValidationError("user is in pooled list")
+# def pooled_users_check(sender,**kwargs):
+#     instance = kwargs["instance"]
+#     print("people  ",instance.pooled_users)
+#     if instance.pooled_users.count() > 2:
+#         print("hello")
+#         raise ValidationError("only 3 people can pool a single book")
+#     if instance.name in instance.pooled_users.all():
+#         raise ValidationError("user is in pooled list")
 
-m2m_changed.connect(pooled_users_check,sender=borrower_detail.pooled_users.through)
+# m2m_changed.connect(pooled_users_check,sender=borrower_detail.pooled_users.through)
 

@@ -22,8 +22,9 @@ def add_book(request,tokenNo):
 	rdate=t.rdate
 	t.deleted=True
 	t.save()
-
-	b=borrower_detail.objects.create(name=user,issue_date=date,submission_date=rdate)
-	b.book_name.add(book)
+	print(rdate)
+	b=borrower_detail.objects.create(name=user,book_name=book,issue_date=date,submission_date=rdate)
+	# b.book_name.add(book)
+	b.save()
 
 	return redirect("tokena:disp_tokens")
