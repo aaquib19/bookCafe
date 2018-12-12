@@ -2,8 +2,15 @@
 <html>
 <head>
 	<title></title>
+	<style>
+		td,th{
+			padding: 5px;
+		}
+	</style>
 </head>
 <body>
+	<center>
+<table>
 
 {% if messages %}
     {% for message in messages %}
@@ -16,8 +23,9 @@
 
 <br><br><br>
 	<tr>
-	<td colspan="8"> Email Id's </td>
-	<td colspan="8">  Request to delete </td>
+	<th > Email Id's </th>
+	<th> Book's Name</th>
+	<th>  Request to delete </th>
 	</tr>
 
 
@@ -26,11 +34,11 @@
 	{% if not b.deleted %}
 	
 	<tr>
-	<td colspan="8"> 
-	<div>{{ b.name }}</div>
-	<div>{{ b.book_name }} </div>
+	<td> 
+	{{ b.name }}</td>
+	<td>{{ b.book_name }} 
 	</td>
-	<td colspan="8"> 
+	<td > 
 	<form  method='POST' > {% csrf_token %}
 	<input type="hidden" name="borrow-id" value="{{b.name}}">
 	<input type="hidden" name="book_name" value="{{b.book_name}}">
@@ -43,5 +51,7 @@
 {% endif %}
 
 {% endfor %}
+</table>
+</center>
 </body>
 </html>
