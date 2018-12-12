@@ -51,6 +51,8 @@ urlpatterns = [
 
     path('del_borrower/', include(('del_borrower.urls', 'del_borrower'), namespace='del_borrower')),
 
+    path('feedback/', include('feedback_form.urls')),
+    path('contactus/', include('contactus.urls'))
 
 ]
 
