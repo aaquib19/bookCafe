@@ -15,10 +15,10 @@ class borrower_detail(models.Model):
     book_name           = models.ManyToManyField(Book)
     issue_date          = models.DateField()
     returning_date      = models.DateField(null=True,blank=True)
-    submission_date     = models.DateField()
-    pooled_users        = models.ManyToManyField(settings.AUTH_USER_MODEL,null=True,blank=True,related_name='book_pooling_users')
+    submission_date     = models.DateField(null=True,blank=True)
+    pooled_users        = models.ManyToManyField(settings.AUTH_USER_MODEL,related_name='book_pooling_users',null=True,blank=True)
     deleted             = models.BooleanField(default=False)
-
+    fine                =models.IntegerField(null=True,blank=True)
     #slug
 
     def __str__(self):

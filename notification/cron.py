@@ -8,11 +8,12 @@ def TokenExpire():
     qset = token.objects.filter(deleted=False)
     for tokens in qset:
         duration = timezone.now() - tokens.date
-        if duration.total_seconds() > (3*60*60):
-            print(tokens.user_name)
+        print(duration.total_seconds())
+        if duration.total_seconds() > 1:
+            print(tokens.user)
             Notification.objects.create(
-                recipient = tokens.user_name,
+                recipient = tokens.user,
                 notification_title = "token no. "+str(tokens.token)+" expire :(",
-                description="sorry! your token no."+str(tokens.token)+" for the book "+str(tokens.book_name)+" expire",
+                description="sorry! your token no. "+str(tokens.token)+" for the book "+str(tokens.book)+" expire",
             )
             token.objects.filter(token = tokens.token).update(deleted=True)

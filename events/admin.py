@@ -12,7 +12,7 @@ from .utils import EventCalendar
 # Register your models here.
 
 class EventAdmin(admin.ModelAdmin):
-    list_display = ['name', 'issue_date', 'submission_date', 'submission_date']
+    list_display = ['name', 'issue_date', 'returning_date', 'submission_date']
     change_list_template = 'admin/events/change_list.html'
 
     def changelist_view(self, request, extra_context=None):

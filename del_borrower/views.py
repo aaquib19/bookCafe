@@ -3,6 +3,7 @@ from django.shortcuts import render,redirect
 # Create your views here.
 from borrower.models import token
 from events.models import borrower_detail
+from book.models import Book
 from accounts.models import User
 from django.utils import timezone
 from django.contrib import messages
@@ -25,11 +26,17 @@ def del_borrower(request):
 
 	
 	name1=User.objects.get(email=name)
+
 	b=borrower_detail.objects.get(name=name1)
 	user=b.name
 	book=b.book_name
 	rdate=timezone.now().date()
 	sdate=b.submission_date
+
+	print(name)
+	# book=Book.objects.get(id=book)
+
+	# name1.book_issued.remove(book)
 
 	days=sdate-rdate
 	fine=days*5

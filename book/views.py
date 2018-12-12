@@ -5,13 +5,14 @@ from django.contrib import messages
 from .models import Book,review
 from borrower.models import token,pooled_token
 from django.utils import timezone
+from datetime import timedelta
 # Create your views here.
 from accounts.models import User
 
 class BookListView(ListView):
     template_name = "book/list.html"
     queryset = Book.objects.all()
-
+    paginate_by = 9
 
 class BookDetailView(DetailView):
     template_name = "book/detail.html"
@@ -60,6 +61,11 @@ def check_book(request,url_string):
     values=[]
 
     user = request.user
+
+    date=timezone.now().date()
+    rdate=timezone.now()+timedelta(days=15)
+    rdate=rdate.date()
+    print(date,rdate)
     book_name=book.title
     authors=book.authors.all()
     publisher=book.publisher
@@ -79,7 +85,7 @@ def check_book(request,url_string):
             messages.error(request,"There is no stock available!")
             return redirect('book:list')
         else:
-            return render(request, 'book/bookform2.html',{'user':user,'values':values})
+            return render(request, 'book/bookform2.html',{'user':user,'values':values,'date':date,'rdate':rdate})
 
 
 def check_bookp(request,url_string):
@@ -87,7 +93,10 @@ def check_bookp(request,url_string):
     book=Book.objects.get(slug=url_string)
     placeholder = ""
     values=[]
-
+    date=timezone.now().date()
+    rdate=timezone.now()+timedelta(days=15)
+    rdate=rdate.date()
+    print(date,rdate)
     user = request.user
     book_name=book.title
     authors=book.authors.all()
@@ -108,14 +117,14 @@ def check_bookp(request,url_string):
             messages.error(request,"There is no stock available!")
             return redirect('book:list')
         else:
-            return render(request, 'book/bookformp2.html',{'user':user,'values':values})
+            return render(request, 'book/bookformp2.html',{'user':user,'values':values,'date':date,'rdate':rdate})
 
 
 
 import random
 import time
 def gen_token(request,booktoken):
-
+    # print(request.POST)
     n=token.objects.all().last()
     checkout=request.POST.get("returndate")
     book=Book.objects.get(slug=booktoken)
@@ -128,19 +137,22 @@ def gen_token(request,booktoken):
     # print ("----------------------")
     # print(timezone.now().date())
     # print(n.date.date())
+    
     if n:
         date=n.date.date()
         if date==timezone.now().date():
             tokens=n.token+1
         else:
-            tokens=1
+            tokens=1345
     else:
+        date=timezone.now().date()
         tokens=32675
 
     messages.success(request,"Your token is {}".format(tokens))
     user1 = request.user
     user1.book_issued.add(book)
     #user=User.objects.filter(username=user1)
+    print(checkout)
     token.objects.create(token=tokens,user=user1,book=book,rdate=checkout)
     #token.save()
     
@@ -192,6 +204,7 @@ def gen_tokenp(request,booktoken):
         else:
             tokens=1
     else:
+        date=timezone.now().date()
         tokens=32675
 
     messages.success(request,"Your token is {}".format(tokens))

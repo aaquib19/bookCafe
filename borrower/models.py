@@ -12,7 +12,7 @@ class token(models.Model):
     user3 = models.ForeignKey(settings.AUTH_USER_MODEL,related_name="user3",on_delete=models.CASCADE,null=True,blank=True)
     book = models.ForeignKey(Book,related_name="book",on_delete=models.CASCADE,null=True,blank=True)
     date = models.DateTimeField(default=timezone.now)
-    rdate = models.DateTimeField(null=True,blank=True)
+    rdate = models.DateTimeField(null=True)
     deleted = models.BooleanField(default=False)
 
     class Meta:

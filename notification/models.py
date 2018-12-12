@@ -5,7 +5,7 @@ from django.utils import timezone
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from accounts.models import User
-
+from borrower.models import token,pooled_token
 
 class NotificationQuerySet(models.query.QuerySet):
     ''' Notification QuerySet '''
@@ -31,6 +31,12 @@ class NotificationQuerySet(models.query.QuerySet):
         if recipient:
             qset = qset.filter(recipient=recipient)
         return qset.update(unread=False)
+
+    def mark_all_as_unread(self, recipient=None):
+        qset = self.read(True)
+        if recipient:
+            qset = qset.filter(recipient=recipient)
+        return qset.update(unread = True)
 
     def mark_as_unsent(self, recipient=None):
         qset = self.sent()
@@ -64,3 +70,23 @@ def welcome_msg(sender,**kwargs):
             notification_title = "Welcome to BOOKCAFE!!",
             description="thanks for signing up :)",
         )
+
+@receiver(post_save,sender = token)
+def sendnotification(sender,**kwargs):
+    if(kwargs['created']):
+        data = kwargs['instance']
+        Notification.objects.create(
+            recipient = data.user,
+            notification_title = ("token number {}").format(data.token),
+            description=("your token number for the book {} is {}. it will expire in 3 hours.please go and collect your book before token expire").format(data.book,data.token),
+        )
+
+# @receiver(post_save,sender = pooled_token)
+# def sendnotification(sender,**kwargs):
+#     if(kwargs['created']):
+#         data = kwargs['instance']
+#         print(data.user)
+#         Notification.objects.create(
+#             notification_title = ("token number {} for book pooled").format(data.token),
+#             description=("your token number for the book {} is {}. it will expire in 3 hours.please go and collect your book before token expire").format(data.book,data.token),
+#         )

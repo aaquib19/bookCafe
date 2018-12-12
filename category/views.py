@@ -10,6 +10,7 @@ from book.models import Category
 
 class CategoryListView(ListView):
     template_name = "category/category_home.html"
+    paginate_by = 9
     #queryset = Book.objects.all()
 
     def get_queryset(self,*args,**kwargs):

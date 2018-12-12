@@ -1,6 +1,6 @@
 from django.test import TestCase
-from models import EmailQueue
-from cron import send_emails
+from .models import EmailQueue
+from cronta.cron import send_emails
 from django.core import mail
 
 class EmailQueueTest(TestCase):
