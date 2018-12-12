@@ -10,7 +10,7 @@
 	<link type="text/css" rel="stylesheet" href="{% static 'book/bootstrap.min.css' %}" />
 
 	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="{% static 'book/style.css' %}" />
+	<link type="text/css" rel="stylesheet" href="{% static 'book/styleb.css' %}" />
 
 
 {% endblock head %}
@@ -38,7 +38,7 @@
 											<span class="form-label">Username</span>
 											<input class="form-control" type="text" id="username" name="username" 
 												 value="{{ user }}"
-							       			disabled>
+							       			readonly>
 										</div>
 									</div>
 
@@ -62,7 +62,7 @@
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<input class="form-control" type="text" id="bookname" name="bookname" value="{{ values.title }}" disabled>
+											<input class="form-control" type="text" id="bookname" name="bookname" value="{{ values.title }}" readonly>
 											<span class="form-label">Bookname</span>
 											
 										</div>
@@ -78,20 +78,20 @@
 											{% for author in values.authors.all %}
 							       				 value="{{ author.name }}"
 											{% endfor %}"
-											disabled>
+											readonly>
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<input class="form-control" type="text" id="date" name="issuedate" disabled>
+											<input class="form-control" type="text" id="date" name="issuedate" readonly>
 											<span class="form-label">Check In</span>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<input class="form-control" type="text" id="returndate" name="returndate" disabled>
+											<input class="form-control" type="text" id="returndate" name="returndate" readonly>
 											<span class="form-label">Check Out</span>
 										</div>
 									</div>
