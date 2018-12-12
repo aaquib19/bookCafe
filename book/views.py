@@ -111,21 +111,10 @@ def check_bookp(request,url_string):
 
 
 def gen_token(request,booktoken):
-    # print(request.POST)
-    n=token.objects.all().last()
-    # checkout=request.POST.get("returndate")
-    rdate=timezone.now()+timedelta(days=15)
-    book=Book.objects.get(slug=booktoken)
-    # t0=time.time()
-    # tokens=random.randint(1, 3910209312)
-
-    # for t in at.token:
-    #     if t == tokens:
-    #         tokens=random.randint(1, 3910209312)
-    # print ("----------------------")
-    # print(timezone.now().date())
-    # print(n.date.date())
     
+    n=token.objects.all().last()
+    rdate=timezone.now()+timedelta(days=15)
+    book=Book.objects.get(slug=booktoken) 
     if n:
         date=n.date.date()
         if date==timezone.now().date():
@@ -139,10 +128,8 @@ def gen_token(request,booktoken):
     messages.success(request,"Your token is {}".format(tokens))
     user1 = request.user
     user1.book_issued.add(book)
-    #user=User.objects.filter(username=user1)
-   
+    
     token.objects.create(token=tokens,user=user1,book=book,rdate=rdate)
-    #token.save()
     
     book.no_of_copy_left=book.no_of_copy_left-1
     book.save()
@@ -161,30 +148,11 @@ def gen_tokenp(request,booktoken):
         user3 = User.objects.get(email=email3)
     except:
         raise User.DoesNotExist("users does not exist")
-        # messages.error(request," doesn't exist")
-        # return render(request, 'book/bookformp2.html')
-
-    # if email2 not in User.objects.all():
-    #     print("hiii")
-    #     messages.error(request,"user doesn't exist")
-    #     return redirect('book:list')
-    # elif email3 not in User.objects.all():
-    #     print("hiii222")
-    #     messages.error(request,"user doesn't exist")
-    #     return redirect('book:list')
-    # else :
-    #     user2 = User.objects.get(email=email2)
-    #     user3 = User.objects.get(email=email3)
-
+        
     n=token.objects.all().last()
 
     book=Book.objects.get(slug=booktoken)
-    # t0=time.time()
-    # tokens=random.randint(1, 3910209312)
 
-    # for t in at.token:
-    #     if t == tokens:
-    #         tokens=random.randint(1, 3910209312)
     if n:
         date=n.date.date()
         if date==timezone.now().date():
@@ -200,11 +168,8 @@ def gen_tokenp(request,booktoken):
     user1.book_issued.add(book)
     user2.book_issued.add(book)
     user3.book_issued.add(book)
-    #user=User.objects.filter(username=user1)
+    
     object1 =token.objects.create(token=tokens,user=user1,user2=user2,user3=user3,book=book,rdate=rdate)
-    # object1.pooled_user.add(user2)
-    # object1.pooled_user.add(user3)
-    # #token.save()
     object1.save()
     book.no_of_copy_left=book.no_of_copy_left-1
     book.save()
@@ -218,17 +183,15 @@ def undo(request,booki):
     book=Book.objects.get(slug=booki)
     user = request.user
     t=token.objects.get(book=book,user=user)
-    # user=t.user
     user2=t.user2
     user3=t.user3
     t.delete()
     user.book_issued.remove(book)
     if user2 and user3:
-        # user.book_issued.remove(book)
+        
         user2.book_issued.remove(book)
         user3.book_issued.remove(book)
 
-    #token.save()
     messages.error(request,"You have cancelled your order!")
     book.no_of_copy_left=book.no_of_copy_left+1
     book.save()
@@ -239,11 +202,11 @@ def undop(request,booki):
 
     book=Book.objects.get(slug=booki)
     user = request.user
-    #pooled_token.objects.get(book=book,user=user).delete()
+    
     pooled_user=pooled_token.objects.get(book=book,user=user).pooled_user
     print(pooled_user)
     user.book_issued.remove(book)
-    #token.save()
+    
     messages.error(request,"You have cancelled your order!")
     book.no_of_copy_left=book.no_of_copy_left+1
     book.save()
@@ -257,15 +220,6 @@ def reviews(request,bookn):
     s=request.POST.get("star")
     s=int(s)*20
     print(s)
-
-    # if s=="1":
-    #     print("ghj")
-    # else:
-    #     print("ert")
-    # s2=request.POST.get("star2")
-    # s3=request.POST.get("star3")
-    # s4=request.POST.get("star4")
-    # s5=request.POST.get("star5")
 
     text1=request.POST.get("text")
 
