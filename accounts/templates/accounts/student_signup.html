@@ -4,16 +4,27 @@
 {% block content %}
     <style>
     body{
+<<<<<<< HEAD
+    background-image: url('{% static "img/a1.jpg" %}');
+    color: black;
+    }
+    .sign-up{
+        background-color: ghostwhite;
+=======
     background-image: url('{% static "img/1.jpg" %}');
     color: black;
     }
     .sign-up{
         background-color: white;
+>>>>>>> Keerti
     }
     .form-submit {
   width: 100%;
   border-radius: 5px;
+<<<<<<< HEAD
+=======
   -moz-border-radius: 5px;
+>>>>>>> Keerti
   -webkit-border-radius: 5px;
   -o-border-radius: 5px;
   -ms-border-radius: 5px;
@@ -24,22 +35,25 @@
   color: #fff;
   text-transform: uppercase;
   border: none;
-  background-image: -moz-linear-gradient(to left, #74ebd5, #9face6);
   background-image: -ms-linear-gradient(to left, #74ebd5, #9face6);
   background-image: -o-linear-gradient(to left, #74ebd5, #9face6);
   background-image: -webkit-linear-gradient(to left, #74ebd5, #9face6);
   background-image: linear-gradient(to left, #74ebd5, #9face6); }
+
+    ul{
+        display: none;
+    }
     </style>
         <div class="main container">
 
 
 
-<form action=""  method="POST" class="sign-up col-9 mx-auto">
+<form action=""  method="POST" class="sign-up col-7 mx-auto">
 {% csrf_token %}
- <h5 class="card-header  black-text text-center py-4">
-    <strong>Sign Up</strong>
+ <h5 class="card-header  black-text text-center py-4" style="background: black;font-family:'Lucida Handwriting';font-size: 35px">
+    <strong style="color: white;">Sign Up</strong>
   </h5>
-    <div class="col-5 mx-auto ">
+    <div class="col-7 mx-auto ">
     {% crispy form1 %}
     {% crispy form2 %}
         <br>

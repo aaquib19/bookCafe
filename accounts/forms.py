@@ -1,17 +1,18 @@
+
 from crispy_forms.bootstrap import FormActions
 from django import forms
 from django.contrib.auth import get_user_model, authenticate
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-
 from django.contrib.auth.forms import UserCreationForm
-from django.db import transaction
+
+from django import forms
 from django.forms import ModelForm
 
-from accounts.models import Student,User,General,Teacher
-
-from django.contrib.auth.forms import  UserChangeForm,PasswordChangeForm
-
 from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, ButtonHolder, Submit, Field
+from accounts.models import File
+
+from accounts.models import Student,General,Teacher
 from crispy_forms.layout import Layout, ButtonHolder, Submit, Field, Button
 from django.core.files.images import get_image_dimensions
 
@@ -64,37 +65,6 @@ class UserAdminChangeForm(forms.ModelForm):
         return self.initial["password"]
 
 
-#
-# class RegisterForm(forms.ModelForm):
-#     """A form for creating new users. Includes all the required
-#     fields, plus a repeated password."""
-#     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-#     password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
-#
-#     class Meta:
-#         model = User
-#         #fields = ('first_name', 'email',) #'full_name',)
-#         fields = ('email', 'first_name', 'last_name')
-#
-#     def clean_password2(self):
-#         # Check that the two password entries match
-#         password1 = self.cleaned_data.get("password1")
-#         password2 = self.cleaned_data.get("password2")
-#         if password1 and password2 and password1 != password2:
-#             raise forms.ValidationError("Passwords don't match")
-#         return password2
-#
-#     def save(self, commit=True):
-#         # Save the provided password in hashed format
-#         user = super(RegisterForm, self).save(commit=False)
-#         user.set_password(self.cleaned_data["password1"])
-#         user.is_active = False # send confirmation email via signals
-#         # obj = EmailActivation.objects.create(user=user)
-#         # obj.send_activation_email()
-#         if commit:
-#             user.save()
-#         return user
-
 
 
 class TeacherSignUpForm(UserCreationForm):
@@ -112,17 +82,10 @@ class TeacherSignUpForm(UserCreationForm):
         Field('last_name', css_class='form-control'),
         Field('password1', css_class='form-control'),
         Field('password2', css_class='form-control'),
-        # ButtonHolder(
-        #     Submit('submit', 'Submit', css_class='button white')
-        # )
     )
 
-    # def save(self, commit=True):
-    #     user = super().save(commit=False)
-    #     user.is_teacher = True
-    #     if commit:
-    #         user.save()
-    #     return user
+
+
 
 
 class generalSignUpForm(UserCreationForm):
@@ -140,18 +103,8 @@ class generalSignUpForm(UserCreationForm):
         Field('last_name', css_class='form-control'),
         Field('password1', css_class='form-control'),
         Field('password2', css_class='form-control'),
-        # ButtonHolder(
-        #     Submit('submit', 'Submit', css_class='button white')
-        # )
+
     )
-
-    # def save(self, commit=True):
-    #     user = super().save(commit=False)
-    #     user.is_general = True
-    #     if commit:
-    #         user.save()
-    #     return user
-
 
 
 class StudentSignUpForm(UserCreationForm):
@@ -171,25 +124,13 @@ class StudentSignUpForm(UserCreationForm):
         Field('password1', css_class='form-control'),
         Field('password2', css_class='form-control'),
         Field('phone_no', css_class='form-control'),
-        # ButtonHolder(
-        #     Submit('submit', 'Submit', css_class='button white')
-        # )
-        # ButtonHolder(
-        #     Submit('submit', 'Submit', css_class='button white')
-        # )
+
     )
     helper.form_tag = False
 
-    # @transaction.atomic
-    # def save(self):
-    #     user = super().save(commit=False)
-    #     user.is_student = True
-    #     user.save()
-    #     #student = Student.objects.create(user=user)
-    #     return user
+
 
 class EditProfileForm(ModelForm):
-    template_name='/something/else'
 
     class Meta:
         model = User
@@ -199,7 +140,7 @@ class EditProfileForm(ModelForm):
             'last_name',
             'phone_no',
             'image'
-           # 'password'
+
         )
 
     helper = FormHelper()
@@ -209,7 +150,8 @@ class EditProfileForm(ModelForm):
         Field('image', css_class='form-control'),
         Field('phone_no', css_class='form-control'),
         Field('last_name', css_class='form-control'),
-        # Field('password1', css_class='form-control'),
+        Field('phone_no', css_class='form-control'),
+        Field('image', css_class='form-control'),
         ButtonHolder(
             Submit('submit', 'Submit', css_class='button white'),
         )
@@ -243,13 +185,6 @@ class LoginForm(forms.Form):
         )
     )
 
-# class StudentInterestsForm(forms.ModelForm):
-#     class Meta:
-#         model = Student
-#         fields = ('interests', )
-#         widgets = {
-#             'interests': forms.CheckboxSelectMultiple
-#         }
 
 class GeneralCreationForm(ModelForm):
     class Meta:
@@ -284,7 +219,13 @@ class GeneralExtraForm(ModelForm):
 class StudentExtraForm(ModelForm):
     class Meta:
         model = Student
-        fields = ('bio','college')
+        fields = ['college']
+
+    helper = FormHelper()
+    helper.layout = Layout(
+        Field('college', css_class='form-control')
+    )
+    helper.form_tag = False
 
     helper = FormHelper()
     helper.layout = Layout(
@@ -301,3 +242,8 @@ class TeacherExtraForm(ModelForm):
         model = Teacher
         fields = ('department',)
 
+
+class FileForm(forms.ModelForm):
+    class Meta:
+        model = File
+        fields = ('file', )

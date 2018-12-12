@@ -28,11 +28,8 @@ urlpatterns = [
     path("",views.home,name="home"),
     #path("home",views.home,name="home1"),
     path('login/', LoginView.as_view(), name='login'),
-    #path('register/', RegisterView.as_view(), name='register'),
     path('logout/', LogoutView.as_view(), name='logout'),#accounts:logout
 
-    # path("category/", views.category, name="category"),
-    # path("category/<str:subject>", views.category, name="category"),  # this is temprory subjects/science
 
     path('admin/', admin.site.urls),
     path('book/', include(('book.urls', 'book'), namespace='book')),
@@ -49,6 +46,8 @@ urlpatterns = [
     path('notification/', include(('notification.urls', 'notification'), namespace='notification')),
 
     path('donation/', include(('donation.urls', 'donation'), namespace='donation')),
+    path('paypal/',include('paypal.standard.ipn.urls')),
+    path('payment/',include('payment.urls','payment')),
     # path('paypal/',include('paypal.standard.ipn.urls')),
     # path('payment/',include('payment.urls','payment')),
 
@@ -56,6 +55,8 @@ urlpatterns = [
 
     path('del_borrower/', include(('del_borrower.urls', 'del_borrower'), namespace='del_borrower')),
 
+    path('feedback/', include('feedback_form.urls')),
+    path('contactus/', include('contactus.urls'))
 
 ]
 

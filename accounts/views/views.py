@@ -1,16 +1,15 @@
-# from django.shortcuts import render
-# from django.http import HttpResponse
+import time
+
 from django.contrib import messages
 
-from django.contrib.auth import authenticate, login, get_user_model, update_session_auth_hash
-from django.shortcuts import render,redirect
-from django.views.generic import CreateView,FormView,View
+from django.contrib.auth import authenticate, login
+from django.views.generic import FormView,View
 from django.shortcuts import reverse
-# from django.contrib.auth.forms import  UserChangeForm,PasswordChangeForm
+from django.shortcuts import render, redirect
+from django.http import JsonResponse
 
-#import this for better redirection
-# from django.utils.http import is_safe_url
-
+from accounts.models import File
+from accounts.forms import FileForm
 
 from accounts.models import EmailActivation
 from accounts.forms import LoginForm, EditProfileForm
@@ -75,7 +74,7 @@ def view_profile(request, pk=None):
 
 def edit_profile(request):
     if request.method == 'POST':
-        form = EditProfileForm(request.POST, instance=request.user)
+        form = EditProfileForm(request.POST , request.FILES, instance=request.user)
 
         if form.is_valid():
             form.save()
@@ -86,6 +85,39 @@ def edit_profile(request):
         return render(request, 'accounts/edit_profile.html', args)
 
 
+class ProgressBarUploadView(View):
+    def get(self, request):
+        if request.user.is_teacher:
+            file_list = File.objects.filter(teacher=request.user)
+            return render(self.request, 'accounts/slides/base.html', {'files': file_list})
+        else:
+            return redirect('/')
+    def post(self, request):
+        if request.user.is_teacher:
+            time.sleep(1)  # You don't need this line. This is just to delay the process so you can see the progress bar testing locally.
+            form = FileForm(self.request.POST, self.request.FILES)
+            if form.is_valid():
+                file = form.save(commit=False)
+                file.teacher=request.user
+                file.save()
+
+                data = {'is_valid': True, 'name': file.file.name, 'url': file.file.url}
+            else:
+                data = {'is_valid': False}
+            return JsonResponse(data)
+        else:
+            return redirect('/')
+
+
+
+def clear_database(request):
+
+    for file in File.objects.filter(teacher=request.user):
+        file.file.delete()
+        file.delete()
+    return redirect(request.POST.get('next'))
+
+    
 def borrowed_books(request):
     user = request.user
     borrowed_book_data = borrower_detail.objects.filter(name=user)

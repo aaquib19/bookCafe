@@ -59,8 +59,6 @@ def test(request, url_string):
 def check_book(request,url_string):
 
     book=Book.objects.get(slug=url_string)
-    placeholder = ""
-    values=[]
 
     user = request.user
 
@@ -72,16 +70,10 @@ def check_book(request,url_string):
     authors=book.authors.all()
     publisher=book.publisher
     values=book
-    # to=token.objects.filter(user_name=user)
-    # for t in to:
-    #     print(t.user_name)
-    # #print(user.id)
     if not request.user.is_authenticated:
         messages.error(request,"You need to login inorder to issue a book")
-        #return render(request,'bookissue/issue.html')
         return redirect('book:list')
-        #return redirect('book:detail'+'/'+url_string)
-        
+
     else:
         if book.no_of_copy_left==0:
             messages.error(request,"There is no stock available!")
@@ -93,6 +85,7 @@ def check_book(request,url_string):
 def check_bookp(request,url_string):
 
     book=Book.objects.get(slug=url_string)
+
     placeholder = ""
     values=[]
     date=timezone.now().date()
@@ -100,20 +93,11 @@ def check_bookp(request,url_string):
     
     print(date,rdate)
     user = request.user
-    book_name=book.title
-    authors=book.authors.all()
-    publisher=book.publisher
     values=book
-    # to=token.objects.filter(user_name=user)
-    # for t in to:
-    #     print(t.user_name)
-    # #print(user.id)
     if not request.user.is_authenticated:
         messages.error(request,"You need to login inorder to issue a book")
-        #return render(request,'bookissue/issue.html')
         return redirect('book:list')
-        #return redirect('book:detail'+'/'+url_string)
-        
+
     else:
         if book.no_of_copy_left==0:
             messages.error(request,"There is no stock available!")
@@ -123,8 +107,6 @@ def check_bookp(request,url_string):
 
 
 
-import random
-import time
 def gen_token(request,booktoken):
     # print(request.POST)
     n=token.objects.all().last()

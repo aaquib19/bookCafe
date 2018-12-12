@@ -130,7 +130,15 @@
 {% endfor %}    
 
                 </span>
-<!--  -->
+            </form>
+<form method="post" action="{% url 'form:feedback-page' %}">
+                {% csrf_token %}
+                <input type="text" name='book_id' value="{{ object.id }}">
+                <div class="col-md-3" >
+                    <button class="btn btn-outline-success">Feedback</button>
+                </div>
+            </form>
+
         </div>
         </main>
 </div>

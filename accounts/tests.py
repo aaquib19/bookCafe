@@ -40,6 +40,27 @@ class UsersListViewTest(TestCase):
             response = self.client.get(reverse('accounts:student_signup_new'))
             self.assertEqual(response.status_code, 200)
             self.assertTemplateUsed(response, 'accounts/student_signup.html')
+    #For both templates and views
+    def test_view_uses_correct_template_signup(self):
+        response = self.client.get(reverse('accounts:teacher_signup_new'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'accounts/student_signup.html')
+
+    def test_view_uses_correct_template_login(self):
+        response = self.client.get(reverse('login'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'accounts/login.html')
+
+    def test_view_url_accessible_by_name_index(self):
+        response = self.client.get(reverse('accounts:signup_all'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'registration/signup.html')
+
+    def test_view_url_accessible_by_name_updatedetails(self):
+        self.client.login(email='ronytowilson3097@gmail.com', password='devilmaycry4')
+        response = self.client.get(reverse('accounts:edit_profile'))
+        # self.assertTemplateUsed(response, 'home/update_details.html')
+        self.assertEquals(response.status_code,200)
 
     def test_view_url_accessible_by_name_profile(self):
         self.client.login(email='ronytowilson3097@gmail.com', password='devilmaycry4')
@@ -52,3 +73,9 @@ class UsersListViewTest(TestCase):
         response = self.client.get(reverse('logout'))
         # self.assertTemplateUsed(response, 'home/index.html')
         self.assertRedirects(response, '/')
+
+    def test_view_url_accessible_by_name_imageupload(self):
+        self.client.login(email='ronytowilson3097@gmail.com', password='devilmaycry4')
+        response = self.client.get(reverse('accounts:edit_profile'))
+        self.assertEquals(response.status_code, 200)
+

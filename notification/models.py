@@ -6,6 +6,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from accounts.models import User
 from borrower.models import token,pooled_token
+from events.models import borrower_detail
 
 class NotificationQuerySet(models.query.QuerySet):
     ''' Notification QuerySet '''
@@ -74,19 +75,37 @@ def welcome_msg(sender,**kwargs):
 @receiver(post_save,sender = token)
 def sendnotification(sender,**kwargs):
     if(kwargs['created']):
-        data = kwargs['instance']
-        Notification.objects.create(
-            recipient = data.user,
-            notification_title = ("token number {}").format(data.token),
-            description=("your token number for the book {} is {}. it will expire in 3 hours.please go and collect your book before token expire").format(data.book,data.token),
-        )
+        tokens = kwargs['instance']
+        query = list()
+        if tokens.user is not None:
+            query.append(tokens.user)
+        if tokens.user2 is not None:
+            query.append(tokens.user2)
+        if tokens.user3 is not None:
+            query.append(tokens.user3)
+        title = "token no. "+str(tokens.token)
+        if len(query) > 1:
+            title = ("token no. {} for pooled book").format(tokens.token)
+        for user in query:
+            Notification.objects.create(
+                recipient = user,
+                notification_title = title,
+                description="your token no. "+str(tokens.token)+" for the book "+str(tokens.book)+".it will expire in 3 hours please go and collect before that",
+            )
 
-# @receiver(post_save,sender = pooled_token)
-# def sendnotification(sender,**kwargs):
-#     if(kwargs['created']):
-#         data = kwargs['instance']
-#         print(data.user)
-#         Notification.objects.create(
-#             notification_title = ("token number {} for book pooled").format(data.token),
-#             description=("your token number for the book {} is {}. it will expire in 3 hours.please go and collect your book before token expire").format(data.book,data.token),
-#         )
+@receiver(post_save,sender = borrower_detail)
+def welcome_msg(sender,**kwargs):
+    if kwargs['created']:
+        data = kwargs['instance']
+        query = data.pooled_users.all()
+        Notification.objects.create(
+            recipient = data.name,
+            notification_title = ("your book {} is issued").format(data.book_name),
+            description="we have succesfully received your book issue comfirmation",
+        )
+        for user in query:
+            Notification.objects.create(
+                recipient = user,
+                notification_title = ("your book {} is issued").format(data.book_name),
+                description="we have succesfully received your book issue comfirmation",
+            )
