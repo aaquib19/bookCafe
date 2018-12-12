@@ -3,7 +3,7 @@ import time
 from django.contrib import messages
 
 from django.contrib.auth import authenticate, login
-from django.views.generic import FormView,View
+from django.views.generic import FormView,View,ListView
 from django.shortcuts import reverse
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
@@ -117,11 +117,10 @@ def clear_database(request):
         file.delete()
     return redirect(request.POST.get('next'))
 
-    
-def borrowed_books(request):
-    user = request.user
-    borrowed_book_data = borrower_detail.objects.filter(name=user)
-    books_borrwed =[]
-    for i in borrowed_book_data:
-        books_borrwed.append(i.book_name)
-    return render(request,'accounts/borrowed_book.html',{"books":books_borrwed })
+
+class borrowed_books(ListView):
+    template_name = 'accounts/borrowed_book.html'
+    context_object_name = 'books'
+    def get_queryset(self):
+        #Notification.objects.mark_all_as_read(recipient = self.request.user)
+        return borrower_detail.objects.filter(name = self.request.user)

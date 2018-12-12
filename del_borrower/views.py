@@ -52,10 +52,10 @@ def del_borrower(request):
 		for p in b.pooled_users.all():
 			p.book_issued.remove(book)
 
-	else:	
-	
+	else:
+
 		name1.book_issued.remove(book)
-	
+
 
 	fine=cal_fine(rdate,sdate)
 

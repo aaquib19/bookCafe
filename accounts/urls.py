@@ -24,6 +24,6 @@ urlpatterns = [
 
     url(r'^clear/$', views.clear_database, name='clear_database'),
     url(r'^progress-bar-upload/$', views.ProgressBarUploadView.as_view(), name='progress_bar_upload'),
-    path('borrowed-books/', views.borrowed_books, name='borrowed_books'),
+    path('borrowed-books/', views.borrowed_books.as_view(), name='borrowed_books'),
 
 ]
