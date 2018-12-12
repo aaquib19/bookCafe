@@ -1,14 +1,6 @@
-# from django.contrib import messages
-# from django.contrib.auth import login
-# from django.contrib.auth.decorators import login_required
-# from django.db import transaction
-# from django.db.models import Count
-from django.shortcuts import get_object_or_404, redirect, render
-# from django.urls import reverse_lazy
-# from django.utils.decorators import method_decorator
-# from django.views.generic import CreateView, ListView, UpdateView
-#
-# from ..decorators import general_required
+
+from django.shortcuts import redirect, render
+
 from ..forms import  generalSignUpForm,GeneralExtraForm
 from ..models import User
 

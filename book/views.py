@@ -56,24 +56,13 @@ def test(request, url_string):
 def check_book(request,url_string):
 
     book=Book.objects.get(slug=url_string)
-    placeholder = ""
-    values=[]
 
     user = request.user
-    book_name=book.title
-    authors=book.authors.all()
-    publisher=book.publisher
     values=book
-    # to=token.objects.filter(user_name=user)
-    # for t in to:
-    #     print(t.user_name)
-    # #print(user.id)
     if not request.user.is_authenticated:
         messages.error(request,"You need to login inorder to issue a book")
-        #return render(request,'bookissue/issue.html')
         return redirect('book:list')
-        #return redirect('book:detail'+'/'+url_string)
-        
+
     else:
         if book.no_of_copy_left==0:
             messages.error(request,"There is no stock available!")
@@ -85,24 +74,13 @@ def check_book(request,url_string):
 def check_bookp(request,url_string):
 
     book=Book.objects.get(slug=url_string)
-    placeholder = ""
-    values=[]
 
     user = request.user
-    book_name=book.title
-    authors=book.authors.all()
-    publisher=book.publisher
     values=book
-    # to=token.objects.filter(user_name=user)
-    # for t in to:
-    #     print(t.user_name)
-    # #print(user.id)
     if not request.user.is_authenticated:
         messages.error(request,"You need to login inorder to issue a book")
-        #return render(request,'bookissue/issue.html')
         return redirect('book:list')
-        #return redirect('book:detail'+'/'+url_string)
-        
+
     else:
         if book.no_of_copy_left==0:
             messages.error(request,"There is no stock available!")
@@ -112,22 +90,11 @@ def check_bookp(request,url_string):
 
 
 
-import random
-import time
 def gen_token(request,booktoken):
 
     n=token.objects.all().last()
     checkout=request.POST.get("returndate")
     book=Book.objects.get(slug=booktoken)
-    # t0=time.time()
-    # tokens=random.randint(1, 3910209312)
-
-    # for t in at.token:
-    #     if t == tokens:
-    #         tokens=random.randint(1, 3910209312)
-    # print ("----------------------")
-    # print(timezone.now().date())
-    # print(n.date.date())
     if n:
         date=n.date.date()
         if date==timezone.now().date():
@@ -140,10 +107,7 @@ def gen_token(request,booktoken):
     messages.success(request,"Your token is {}".format(tokens))
     user1 = request.user
     user1.book_issued.add(book)
-    #user=User.objects.filter(username=user1)
     token.objects.create(token=tokens,user=user1,book=book,rdate=checkout)
-    #token.save()
-    
     book.no_of_copy_left=book.no_of_copy_left-1
     book.save()
     
