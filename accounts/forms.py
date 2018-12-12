@@ -205,7 +205,7 @@ class GeneralCreationForm(ModelForm):
 class GeneralExtraForm(ModelForm):
     class Meta:
         model = General
-        fields = ('address','phone','pincode','city')
+        fields = ('phone','pincode')
 
         helper = FormHelper()
         helper.layout = Layout(
@@ -225,23 +225,23 @@ class StudentExtraForm(ModelForm):
     )
     helper.form_tag = False
 
-    helper = FormHelper()
-    helper.layout = Layout(
-        Field('bio', css_class='form-control '),
-        Field('college', css_class='form-control'),
-        # ButtonHolder(
-        #     Submit('submit', 'Submit', css_class='form-submit')
-        # )
-    )
-    helper.form_tag = False
+
 
 class TeacherExtraForm(ModelForm):
     class Meta:
         model = Teacher
         fields = ('department',)
 
+    helper = FormHelper()
+    helper.layout = Layout(
+        Field('department', css_class='form-control')
+    )
+    helper.form_tag = False
+
 
 class FileForm(forms.ModelForm):
     class Meta:
         model = File
         fields = ('file', )
+
+

@@ -11,6 +11,7 @@
 {% url 'accounts:borrowed_books' as borrowed_books_url %}
 {% url 'contact:submit' as contact_url %}
 {% url 'tokena:disp_tokens' as token_url %}
+{% url 'accounts:progress_bar_upload' as slide_url %}
 {% url 'del_borrower:disp_borrowers' as borrower_list_url %}
 
 {% url 'notification:notifications_list' as notification_url%}
@@ -76,6 +77,9 @@
           <a class="dropdown-item" href="{{ edit_url }}">Edit</a>
 
           <a class="dropdown-item" href="{{ borrowed_books_url }}">Borrowed Books</a>
+            {% if request.user.is_teacher %}
+               <a class="dropdown-item" href="{{ slide_url }}">Upload Slides</a>
+            {% endif %}
             {% if request.user.is_admin %}
             <a class="dropdown-item" href="{{ borrower_list_url }}">Borrower list</a>
 

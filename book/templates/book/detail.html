@@ -117,13 +117,7 @@
    </script> -->
   </div>
 </div>
-<div style="float: right"><form method="post" action="{% url 'form:feedback-page' %}">
-                {% csrf_token %}
 
-                <div class="col-md-3" >
-                    <button class="btn btn-success">Feedback</button>
-                </div>
-</form></div>
 {% for p in review %}
 {% if p.user != request.user %}
 <div>
@@ -136,14 +130,14 @@
     <img src="https://image.ibb.co/caxgdF/stars_full.png" alt="">
     </div>
 <div>
-   
+
     <br>
     {{p.review}}
     <br>
 
 </div>
 {%  endif %}
-{% endfor %}    
+{% endfor %}
 
                 </span>
             </form>

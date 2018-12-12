@@ -2,7 +2,7 @@
 {% url 'category:home' 'all' as category_url %}
 
 {% load static %}
-{% block content %}<link href="{% static 'css/card.css' %}" rel="stylesheet">
+{% block content %}
 
     <!--Carousel Wrapper-->
     {% include 'base/carousel.html' %}
@@ -17,6 +17,16 @@
 
 
     <!-- Projects section v.4 -->
+    <style>
+    body{
+    background-image: url('{% static "img/a1.jpg" %}');
+    color: black;
+    }
+    .sign-up{
+        background-color: ghostwhite;
+    }
+
+    </style>
 <section class="text-center my-5">
 
   <!-- Section heading --><div class="container">

@@ -12,6 +12,7 @@
   <div class="col-sm-7" style="padding-left:30%">
     {% for book in books %}
         <a href="{% url 'payment:payment' book.id%}">{{ book.book_name }} <span class="badge" style="float:right;background-color:blue">{% finecal book.id%}</span></a>
+        <hr>
     {% endfor %}
   </div>
 </div>
