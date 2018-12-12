@@ -14,6 +14,7 @@ from accounts.forms import FileForm
 from accounts.models import EmailActivation
 from accounts.forms import LoginForm, EditProfileForm
 from events.models import borrower_detail
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.utils.safestring import mark_safe
 
@@ -118,7 +119,7 @@ def clear_database(request):
     return redirect(request.POST.get('next'))
 
 
-class borrowed_books(ListView):
+class borrowed_books(LoginRequiredMixin,ListView):
     template_name = 'accounts/borrowed_book.html'
     context_object_name = 'books'
     def get_queryset(self):
