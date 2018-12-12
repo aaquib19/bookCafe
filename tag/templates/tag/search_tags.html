@@ -1,0 +1,66 @@
+{% extends 'tag/base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'ajax-search/tag_suggestion.css' %}">
+{% endblock %}
+    {% block content1 %}
+        <div class="container" style="margin: 100px;">
+
+    <div class="row clearfix">
+        <div class="col-md-6 col-md-offset-3 column" style="">
+<!--           
+
+        this is the form
+
+ -->           
+            <form class="form-inline" action="" method="POST" id="search-form" autocomplete="off">
+                 <!-- csft_token -->
+                {% csrf_token %}
+                <!-- csrf_token_end -->
+                <div class="input-group input-group-sm">
+                    <div class="tag-suggestion">
+{#                   <input type="text" name="q" size="30" class="form-control search-tag-query typeahead" id="typeahead" autofocus="autofocus" placeholder="Search Here" required>#}
+                    <div class="md-form my-0">
+                        <input class="form-control mr-sm-2 search-tag-query black-text typeahead"  id="typeahead" name="q" type="text" placeholder="Search" aria-label="Search"><i class="fa fa-fw fa-search"></i
+                    </div>
+                    </div>
+                    </div>
+
+                    <span class="input-group-btn">
+                        <button class="btn btn-search" type="submit">search</button>
+                    </span>
+                </div>
+            </form>
+ 
+ <!-- here forms end -->
+
+        </div>
+
+    </div>
+
+
+    <div class="row clearfix">
+        <div class="col-md-12 column posts">
+            {% for tag in tags %}
+{#                {% for book in tag.books.all %}#}
+                    <div class="well">
+                       {{ tag.title }}
+                    </div>
+{#                {% endfor %}#}
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+{% block js %}
+        <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <script src="{% static 'ajax-search/typahead.js' %}"></script>
+    <script src="{% static 'ajax-search/search_tag.js' %}"></script>
+
+{% endblock %}

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'paypal.standard.ipn',
     'book',
     'accounts',
+    'tag',
     'search',
     'category',
     'borrower',

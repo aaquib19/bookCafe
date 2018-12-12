@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import include,path
+from django.urls import include,path,re_path
 
 from .import settings
 from django.conf.urls.static import static
@@ -23,8 +23,11 @@ from django.contrib.auth.views import LogoutView
 from . import views
 from accounts.views.views import  LoginView
 
+from tag.views import SearchTag,TagJson
 
 urlpatterns = [
+    re_path(r'^search/hashtag$', SearchTag.as_view()),
+    re_path(r'^hashtag.json$', TagJson.as_view()),
     path("",views.home,name="home"),
     #path("home",views.home,name="home1"),
     path('login/', LoginView.as_view(), name='login'),
@@ -38,9 +41,8 @@ urlpatterns = [
     path('accounts/', include(('accounts.urls', 'accounts'), namespace='accounts')),
     path('account/', include('accounts.passwords.urls')),
     path('search/', include(('search.urls', 'search'), namespace='search')),
+    #path('search/', include(('tag.urls', 'tag'), namespace='tag')),
 
-
-#    path('cat1books/', include(('cat1books.urls', 'cat1books'), namespace='cat1books')),
 
     # notification part
     path('notification/', include(('notification.urls', 'notification'), namespace='notification')),

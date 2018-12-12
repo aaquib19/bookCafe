@@ -23,3 +23,5 @@ class SearchBookView(ListView):
         __icontains = field contains this
         __iexact = fields is exactly this
         '''
+
+        #you have to define post and get function to use method=POST in form
