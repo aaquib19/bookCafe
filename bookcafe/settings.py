@@ -195,7 +195,7 @@ EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS =True
 EMAIL_HOST_USER = "rehanmallick4080@gmail.com"
-EMAIL_HOST_PASSWORD = "iamalilwayne19"
+EMAIL_HOST_PASSWORD = "iamalilwayne"
 
 # ADMINS = (
 #     ('Aaquib', 'bookcafe110@gmail.com'),

@@ -11,14 +11,15 @@ from book.models import Book
 
 
 class borrower_detail(models.Model):
-    #borrowed_id         = models.CharField(max_length=123,null=True,blank=True)
+    borrowed_id         = models.CharField(max_length=123,null=True,blank=True)
     name                = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
-    book_name           = models.ForeignKey(Book,on_delete=models.CASCADE)
+    book_name           = models.ForeignKey(Book,on_delete=models.CASCADE,null=True,blank=True)
     issue_date          = models.DateField()
     returning_date      = models.DateField(null=True,blank=True)
     submission_date     = models.DateField()
     pooled_users        = models.ManyToManyField(settings.AUTH_USER_MODEL,related_name='book_pooling_users')
     deleted             = models.BooleanField(default=False)
+    #title               = models.BooleanField(default=True)
 
     #slug
     class Meta:

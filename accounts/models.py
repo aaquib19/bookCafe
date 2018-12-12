@@ -219,7 +219,7 @@ pre_save.connect(pre_save_email_activation, sender=EmailActivation)
 def post_save_user_create_reciever(sender, instance, created, *args, **kwargs):
     if created:
         obj = EmailActivation.objects.create(user=instance, email=instance.email)
-        #obj.send_activation()
+        obj.send_activation()
 
 post_save.connect(post_save_user_create_reciever, sender=User)
 

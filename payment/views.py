@@ -5,15 +5,16 @@ from bookcafe.utils import random_string_generator
 from django.contrib.auth.decorators import login_required
 from del_borrower.views import cal_fine
 from events.models import borrower_detail
+from datetime import datetime
 
 @login_required
 def payment(request,pk):
     p = borrower_detail.objects.get(id = pk)
-    print(cal_fine(p.returning_date,p.submission_date))
+    print(cal_fine(datetime.now().date(),p.submission_date))
     domain = request.META['HTTP_HOST']
     paypal_dict = {
     'business': request.user,
-    'amount': cal_fine(p.returning_date,p.submission_date),
+    'amount': cal_fine(datetime.now().date(),p.submission_date),
     'item_name': p.book_name,
     'invoice': random_string_generator(),
     'notify_url': domain +'/paypal/',
