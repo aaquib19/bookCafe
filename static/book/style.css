@@ -12,9 +12,9 @@
 	transform: translateY(-50%);
 }
 
-#booking {
+body {
 	font-family: 'Montserrat', sans-serif;
-	background-image: url('img/1b.jpg');
+	background-image: url('img/1.jpg');
 	background-size: cover;
 	background-position: center;
 }
@@ -29,9 +29,7 @@
 	background: rgba(255, 255, 255, 0.8);
 }
 
-.booking-cta {
-	margin-top: 45px;
-}
+
 
 .booking-cta h1 {
 	font-size: 52px;
