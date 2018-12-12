@@ -128,6 +128,7 @@ class review(models.Model):
     review=models.TextField(blank=True)
     book = models.ForeignKey(Book,on_delete=models.CASCADE,null=True,blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,null=True,blank=True)
+
 # class token(models.Model):
 #     token=models.IntegerField()
 #     user_name = models.ForeignKey(settings.AUTH_USER_MODEL,related_name="un",on_delete=models.CASCADE,null=True)
