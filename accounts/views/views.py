@@ -125,3 +125,12 @@ class borrowed_books(LoginRequiredMixin,ListView):
     def get_queryset(self):
         #Notification.objects.mark_all_as_read(recipient = self.request.user)
         return borrower_detail.objects.filter(name = self.request.user)
+
+
+
+def view_slides(request):
+    slides = File.objects.all()
+
+    if request.user.is_teacher or request.user.is_student:
+        return  render(request,'accounts/slides/slides.html',{"slides":slides})
+    return  redirect('/')

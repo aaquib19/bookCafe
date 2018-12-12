@@ -23,7 +23,8 @@ urlpatterns = [
     path('profile/edit/', views.edit_profile, name='edit_profile'),
 
     url(r'^clear/$', views.clear_database, name='clear_database'),
-    url(r'^progress-bar-upload/$', views.ProgressBarUploadView.as_view(), name='progress_bar_upload'),
+    url(r'^teachers/slides/$', views.ProgressBarUploadView.as_view(), name='progress_bar_upload'),
     path('borrowed-books/', views.borrowed_books.as_view(), name='borrowed_books'),
+    path('view-slides/', views.view_slides, name='view_slides'),
 
 ]
