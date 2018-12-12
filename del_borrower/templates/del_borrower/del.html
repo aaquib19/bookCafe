@@ -1,9 +1,6 @@
-
-{% load static%}
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
 	<style>
 		td,th{
 			padding: 5px;
@@ -13,8 +10,7 @@
     color: black;
     }
 	</style>
-</head>
-<body>
+<div class="container">
 	<center>
 <table>
 
@@ -58,6 +54,6 @@
 
 {% endfor %}
 </table>
+    </div>
 </center>
-</body>
-</html>
+{% endblock %}
