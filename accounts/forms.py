@@ -147,8 +147,6 @@ class EditProfileForm(ModelForm):
     helper.layout = Layout(
         Field('email', css_class='form-control '),
         Field('first_name', css_class='form-control'),
-        Field('image', css_class='form-control'),
-        Field('phone_no', css_class='form-control'),
         Field('last_name', css_class='form-control'),
         Field('phone_no', css_class='form-control'),
         Field('image', css_class='form-control'),

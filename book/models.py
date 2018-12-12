@@ -90,7 +90,7 @@ class Book(models.Model):
     no_of_copy_left = models.IntegerField()
     category = models.ManyToManyField(Category,related_name="books")
     image = models.ImageField(upload_to=upload_image_path)
-    description=models.TextField(null=True,blank=True)
+    #description=models.TextField(null=True,blank=True)
 
     objects = BookManager()
 
@@ -118,11 +118,11 @@ pre_save.connect(book_pre_save_reciever, sender=Book)
 
 class review(models.Model):
     rating=models.IntegerField()
-    review=models.TextField(blank=True)
+    review=models.TextField(blank=True,null=True)
     book = models.ForeignKey(Book,on_delete=models.CASCADE,null=True,blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,null=True,blank=True)
-
-# class token(models.Model):
+#
+# # class token(models.Model):
 #     token=models.IntegerField()
 #     user_name = models.ForeignKey(settings.AUTH_USER_MODEL,related_name="un",on_delete=models.CASCADE,null=True)
 #     #user_name = models.CharField(max_length=255,blank=True,null=True)

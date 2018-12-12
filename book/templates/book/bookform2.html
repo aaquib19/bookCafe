@@ -7,11 +7,29 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
 
 	<!-- Bootstrap -->
-	<link type="text/css" rel="stylesheet" href="{% static 'book/bootstrap.min.css' %}" />
+{#	<link type="text/css" rel="stylesheet" href="{% static 'book/bootstrap.min.css' %}" />#}
 
 	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="{% static 'book/styleb.css' %}" />
+{#	<link type="text/css" rel="stylesheet" href="{% static 'book/styleb.css' %}" />#}
+ <style>
 
+     body{
+    background-image: url('{% static "img/a1.jpg" %}');
+    color: black;
+    }
+ .section-center{
+     margin-top: 160px;
+ }
+     .booking-form {
+    background: ghostwhite;
+    -webkit-box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.3);
+    max-width: 642px;
+    width: 100%;
+    margin: auto;
+    padding: 40px 30px;
+}
+    </style>
 
 {% endblock head %}
 
@@ -45,9 +63,10 @@
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<input class="form-control" type="text" id="bookname" name="bookname" value="{{ values.title }}" readonly>
 											<span class="form-label">Bookname</span>
-											
+
+											<input class="form-control" type="text" id="bookname" name="bookname" value="{{ values.title }}" readonly>
+
 										</div>
 									</div>
 								</div>
@@ -80,7 +99,7 @@
 									</div>
 								</div>
 								<div class="form-btn">
-									<button class="submit-btn" formaction="{% url 'book:gen_token' values.slug %}">Book Now</button>
+									<button class="submit-btn btn btn-success" formaction="{% url 'book:gen_token' values.slug %}">Book Now</button>
 								</div>
 							</form>
 						</div>
