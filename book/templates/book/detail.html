@@ -20,6 +20,8 @@
     .sign-up{
         background-color: ghostwhite;
     }
+    td{padding: 20px;
+      padding-right: 65px;padding-left: 55px}
     </style>
    <!--  <div class='row'>
         <div class='col-12 col-md-6'>
@@ -32,24 +34,25 @@
     {% endif %} -->
 
 
-
-    <main style="padding-top: 5.5rem">
+<table>
+<tr>
+<td  >
+    <main >
                 <h1>{{ object.title }}</h1>
                 {{ object.isbn|linebreaks }}<br/>
                 {% if object.image %}
-                    <img src='{{ object.image.url }}' class='img-fluid' style="height:50vh;" />
+                    <img src='{{ object.image.url }}' class='img-fluid' style="height:300px;width: 300px" />
                 {% endif %}
         <div class="col-12 col-md-6">
             <form  method='POST' > {% csrf_token %}
                 <input type='hidden' name='book_id' value='{{ object.id }}' />
-                  <span class='submit-span'>
-<!-- {#                {% if check if the user has requested for issue or not %} make a function like get_absolute_url#}
-                    {% if get_absolute_url %}
-                    Requested <button type='submit' class='btn btn-link'>undo the request</button>
-                {% else %}
-                    <button type='submit' formaction="{% url 'book:check_book' object.slug %}" class='btn btn-success'>Request to issue</button>
-                {% endif %}
- -->
+ </td>
+
+
+ <td>
+ <br><br><br>
+ <div><h3> {{ object.description }} </h3></div>
+
 
                     <br><br>
             <h2>Total Stock</h2>
@@ -63,7 +66,7 @@
             {% if token %}
                 {%  if borrower_detail %}
 
-                Book borrowed already
+               <h3 style="color: red"> Book borrowed already  </h3>
 
                   {% else %}
                     {% if object in request.user.book_issued.all  %}
@@ -83,9 +86,10 @@
                 <button type='submit' formaction="{% url 'book:check_bookp' object.slug %}" class='btn btn-success'>Book Pool</button>
 
             {% endif %}
+            </td>
+            </tr>
 
-            
-
+      </table>      
 <div class="cont" style="margin-top:150px;">
   <div class="title">
   <h1><span>rate us</span></h1>

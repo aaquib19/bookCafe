@@ -13,21 +13,24 @@
     }
 
     </style>
-        <div class='row'>
+       
 
-                {% if messages %}
+            <div class="container">
+
+  {% if messages %}
                      {% for message in messages %}
                          <div class="alert alert-{{ message.tags }}">
                         {{message}}
                          </div>
                     {% endfor %}
                 {% endif %}
+ 
 
-
-            <div class="container">
+            
                 <div class='row'>
+ 
 
-
+              
                     {% for obj in object_list %}
                         <div class='col'>
                         {{ forloop.counter }}
@@ -40,7 +43,7 @@
 
 
 
-        </div>
+        
     <div class="container">
     {% if is_paginated %}
                 <div class="pagination">

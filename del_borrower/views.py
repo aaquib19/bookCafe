@@ -58,7 +58,7 @@ def del_borrower(request):
 
 
 	fine=cal_fine(rdate,sdate)
-
+	book.no_of_copy_left=book.no_of_copy_left+1
 	b.delete()
 	if fine:
 		messages.error(request,"{} fine is Rs.{}".format(name1,fine))
