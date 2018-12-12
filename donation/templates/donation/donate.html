@@ -70,10 +70,21 @@
 								<input class="form-control" type="text" id="name" name="name" placeholder="Enter your Name" required>
 								<span class="form-label"  >Name</span>
 							</div>
+                           {% if request.user.is_authenticated %}
 							<div class="form-group">
-								<input class="form-control" type="email" id="email" name="email" placeholder="Enter your Email" required>
-								<span class="form-label" >Email</span>
+								<input class="form-control" type="email" id="email" name="email" placeholder="Enter your Email" value="{{ request.user.email }}">
+								<span class="form-label">Email</span>
 							</div>
+							{% else %}
+
+								<div class="form-group">
+								<input class="form-control" type="email" id="email" name="email" placeholder="Enter your Email">
+								<span class="form-label">Email</span>
+							</div>
+							{% endif %}
+
+
+
 							<div class="form-group">
 								<input class="form-control" type="text" id="book_name" name="book_name" placeholder="Enter book name" required>
 								<span class="form-label">Name of the book</span>

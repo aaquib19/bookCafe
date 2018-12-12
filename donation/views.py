@@ -11,15 +11,20 @@ def donate(request):
     # return HttpResponse(templates.render())
 	return render(request,"donation/donate.html")
 
+
 def adduser(request):
+	if request.method == "POST":
 
-	if request.method=="POST":
-		name=request.POST.get("name")
-		email=request.POST.get("email")
-		book_name=request.POST.get('book_name')
+		if request.user.is_authenticated:
+			user = request.user
+			email = user.email
+		else:
+			email = request.POST.get("email")
 
-		donation.objects.create(name=name,emaild=email,bookname=book_name)
-		messages.success(request,"Please go to the library and donate your book ,Thank You!!")
+		name = request.POST.get("name")
+		book_name = request.POST.get('book_name')
 
-	return render(request,"donation/donate.html")
+		donation.objects.create(name=name, emaild=email, bookname=book_name)
+		messages.success(request, "Please go to the library and donate your book ,Thank You!!")
 
+	return render(request, "donation/donate.html")

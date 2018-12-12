@@ -13,7 +13,7 @@ class EventCalendar(HTMLCalendar):
         """
         Return a day as a table cell.
         """
-        events_from_day = events.filter(issue_date__day=day)
+        events_from_day = events.filter(submission_date__day=day)
         events_html = "<ul>"
         for event in events_from_day:
             events_html += event.get_absolute_url() + "<br>"
