@@ -56,21 +56,21 @@
                 
                     {% if object in request.user.book_issued.all  %}
                          Requested <button type='submit' formaction="{% url 'book:undo' object.slug %}" class='btn btn-link'>undo the request</button>
-                      {% else %}
+                    {% else %}
                          <button type='submit' formaction="{% url 'book:check_book' object.slug %}" class='btn btn-success'>Request to issue</button>
 
                          <button type='submit' formaction="{% url 'book:check_bookp' object.slug %}" class='btn btn-success'>Book Pool</button>
                     {% endif %}
 
                 
-                {% else %}
+            {% else %}
                     
 
                  <button type='submit' formaction="{% url 'book:check_book' object.slug %}" class='btn btn-success'>Request to issue</button>
 
                 <button type='submit' formaction="{% url 'book:check_bookp' object.slug %}" class='btn btn-success'>Book Pool</button>
 
-{% endif %}
+            {% endif %}
 
 <div class="cont" style="margin-top:150px;">
   <div class="title">
@@ -119,18 +119,16 @@
 </div>
 {%  endif %}
 {% endfor %}    
-<!--
-{% for t in token %}
-{{ t.book_name }}
-{% ifequal  t.book_name|stringformat:"s" object.title  %}
-{{ object.title }}
-    
-{% endifequal %}
- {% endfor %}
--->
+
                 </span>
             </form>
-
+<form method="post" action="{% url 'form:feedback-page' %}">
+                {% csrf_token %}
+                <input type="text" name='book_id' value="{{ object.id }}">
+                <div class="col-md-3" >
+                    <button class="btn btn-outline-success">Feedback</button>
+                </div>
+            </form>
 
         </div>
         </main>
