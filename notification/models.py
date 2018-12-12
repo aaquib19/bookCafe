@@ -6,6 +6,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from accounts.models import User
 from borrower.models import token,pooled_token
+from events.models import borrower_detail
 
 class NotificationQuerySet(models.query.QuerySet):
     ''' Notification QuerySet '''
@@ -90,4 +91,21 @@ def sendnotification(sender,**kwargs):
                 recipient = user,
                 notification_title = title,
                 description="your token no. "+str(tokens.token)+" for the book "+str(tokens.book)+".it will expire in 3 hours please go and collect before that",
+            )
+
+@receiver(post_save,sender = borrower_detail)
+def welcome_msg(sender,**kwargs):
+    if kwargs['created']:
+        data = kwargs['instance']
+        query = data.pooled_users.all()
+        Notification.objects.create(
+            recipient = data.name,
+            notification_title = ("your book {} is issued").format(),
+            description="we have succesfully received your book issue comfirmation",
+        )
+        for user in query:
+            Notification.objects.create(
+                recipient = user,
+                notification_title = ("your book {} is issued").format(),
+                description="we have succesfully received your book issue comfirmation",
             )

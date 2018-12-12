@@ -1,8 +1,10 @@
 from borrower.models import token
 from django.utils import timezone,duration
 import datetime
+from datetime import datetime,timedelta
 from notification.models import Notification
 from book.models import Book
+from events.models import borrower_detail
 
 def TokenExpire():
     '''for now it will work for every second'''
@@ -29,3 +31,19 @@ def TokenExpire():
             copies = Book.objects.get(title = tokens.book).no_of_copy_left
             Book.objects.filter(title = tokens.book).update(no_of_copy_left = copies+1)
             token.objects.filter(token = tokens.token).delete()
+
+    qset = borrower_detail.objects.all()
+    for detail in qset:
+        if (detail.returning_date-timedelta(days = 1)) == timezone.now().date():
+            users = detail.pooled_users.all()
+            Notification.objects.create(
+                recipient = detail.name,
+                notification_title = ("due date tommorow book {}").format(detail.book_name),
+                description=("your due date of submission for book {} is tommorow.please go and submit your book otherwise after that you have to pay fine").format(detail.book_name),
+            )
+            for user in users:
+                Notification.objects.create(
+                    recipient = user,
+                    notification_title = ("due date tommorow book {}").format(detail.book_name),
+                    description=("your due date of submission for book {} is tommorow.please go and submit your book otherwise after that you have to pay fine").format(detail.book_name),
+                )

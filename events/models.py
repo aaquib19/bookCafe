@@ -56,4 +56,3 @@ def pooled_users_check(sender,**kwargs):
         raise ValidationError("user is in pooled list")
 
 m2m_changed.connect(pooled_users_check,sender=borrower_detail.pooled_users.through)
-
