@@ -11,14 +11,18 @@ from book.models import Book
 
 
 class borrower_detail(models.Model):
+    #borrowed_id         = models.CharField(max_length=123,null=True,blank=True)
     name                = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
-    book_name           = models.ForeignKey(Book,on_delete=models.CASCADE,null=True,blank=True)
+    book_name           = models.ForeignKey(Book,on_delete=models.CASCADE)
     issue_date          = models.DateField()
     returning_date      = models.DateField(null=True,blank=True)
-    submission_date     = models.DateField(null=True,blank=True)
+    submission_date     = models.DateField()
     pooled_users        = models.ManyToManyField(settings.AUTH_USER_MODEL,related_name='book_pooling_users')
-    
+    deleted             = models.BooleanField(default=False)
+
     #slug
+    class Meta:
+        unique_together = ('name','book_name')
 
     def __str__(self):
         return str(self.name)
@@ -44,6 +48,8 @@ class borrower_detail(models.Model):
 #         raise ValidationError("you cannot issue more than 2 book")
 
 # m2m_changed.connect(book_issued,sender=borrower_detail.book_name.through)
+
+#
 
 # def pooled_users_check(sender,**kwargs):
 #     instance = kwargs["instance"]

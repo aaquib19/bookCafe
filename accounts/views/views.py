@@ -14,6 +14,8 @@ from django.shortcuts import reverse
 
 from accounts.models import EmailActivation
 from accounts.forms import LoginForm, EditProfileForm
+from events.models import borrower_detail
+
 from django.utils.safestring import mark_safe
 
 class AccountEmailActivateView(View):
@@ -84,3 +86,10 @@ def edit_profile(request):
         return render(request, 'accounts/edit_profile.html', args)
 
 
+def borrowed_books(request):
+    user = request.user
+    borrowed_book_data = borrower_detail.objects.filter(name=user)
+    books_borrwed =[]
+    for i in borrowed_book_data:
+        books_borrwed.append(i.book_name)
+    return render(request,'accounts/borrowed_book.html',{"books":books_borrwed })

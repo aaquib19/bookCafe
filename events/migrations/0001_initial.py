@@ -9,8 +9,8 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('book', '0002_auto_20181210_1327'),
-        ('accounts', '0002_auto_20181211_1658'),
+        ('accounts', '0001_initial'),
+        ('book', '0001_initial'),
     ]
 
     operations = [
@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
                 ('deleted', models.BooleanField(default=False)),
                 ('fine', models.IntegerField(blank=True, null=True)),
                 ('book_name', models.ManyToManyField(to='book.Book')),
-                ('name', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='accounts.User')),
+                ('name', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='accounts.User')),
                 ('pooled_users', models.ManyToManyField(blank=True, null=True, related_name='book_pooling_users', to='accounts.User')),
             ],
             options={
