@@ -28,3 +28,4 @@ def addmail(sender,**kwargs):
 			mail_body = kwargs['instance'].description,
 		)
 		kwargs['instance'].emailed = True
+		kwargs['instance'].save()
