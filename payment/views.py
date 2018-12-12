@@ -18,7 +18,7 @@ def payment(request):
 
     form = PayPalPaymentsForm(initial=paypal_dict)
 
-    return render_to_response('payment.html',{"form":form})
+    return render_to_response('payment.html',{"form":form,'userid':paypal_dict['business'],'amount':paypal_dict['amount'],'book_name':paypal_dict['item_name']})
 
 @csrf_exempt
 def paypal_return(request):
