@@ -5,6 +5,9 @@ from django.contrib import messages
 from .models import Book,review
 from borrower.models import token,pooled_token
 from django.utils import timezone
+from django.utils.timezone import utc
+
+from datetime import timedelta
 # Create your views here.
 from accounts.models import User
 
@@ -58,6 +61,14 @@ def check_book(request,url_string):
     book=Book.objects.get(slug=url_string)
 
     user = request.user
+
+    date=timezone.now().date()
+    rdate=timezone.now()+timedelta(days=15)
+    rdate=rdate.date()
+    print(date,rdate)
+    book_name=book.title
+    authors=book.authors.all()
+    publisher=book.publisher
     values=book
     if not request.user.is_authenticated:
         messages.error(request,"You need to login inorder to issue a book")
@@ -68,13 +79,19 @@ def check_book(request,url_string):
             messages.error(request,"There is no stock available!")
             return redirect('book:list')
         else:
-            return render(request, 'book/bookform2.html',{'user':user,'values':values})
+            return render(request, 'book/bookform2.html',{'user':user,'values':values,'date':date,'rdate':rdate})
 
 
 def check_bookp(request,url_string):
 
     book=Book.objects.get(slug=url_string)
 
+    placeholder = ""
+    values=[]
+    date=timezone.now().date()
+    rdate=timezone.now()+timedelta(days=15)
+    
+    print(date,rdate)
     user = request.user
     values=book
     if not request.user.is_authenticated:
@@ -86,28 +103,44 @@ def check_bookp(request,url_string):
             messages.error(request,"There is no stock available!")
             return redirect('book:list')
         else:
-            return render(request, 'book/bookformp2.html',{'user':user,'values':values})
+            return render(request, 'book/bookformp2.html',{'user':user,'values':values,'date':date,'rdate':rdate})
 
 
 
 def gen_token(request,booktoken):
-
+    # print(request.POST)
     n=token.objects.all().last()
-    checkout=request.POST.get("returndate")
+    # checkout=request.POST.get("returndate")
+    rdate=timezone.now()+timedelta(days=15)
     book=Book.objects.get(slug=booktoken)
+    # t0=time.time()
+    # tokens=random.randint(1, 3910209312)
+
+    # for t in at.token:
+    #     if t == tokens:
+    #         tokens=random.randint(1, 3910209312)
+    # print ("----------------------")
+    # print(timezone.now().date())
+    # print(n.date.date())
+    
     if n:
         date=n.date.date()
         if date==timezone.now().date():
             tokens=n.token+1
         else:
-            tokens=1
+            tokens=1345
     else:
-        tokens=0
+        date=timezone.now().date()
+        tokens=32675
 
     messages.success(request,"Your token is {}".format(tokens))
     user1 = request.user
     user1.book_issued.add(book)
-    token.objects.create(token=tokens,user=user1,book=book,rdate=checkout)
+    #user=User.objects.filter(username=user1)
+   
+    token.objects.create(token=tokens,user=user1,book=book,rdate=rdate)
+    #token.save()
+    
     book.no_of_copy_left=book.no_of_copy_left-1
     book.save()
     
@@ -119,7 +152,7 @@ def gen_tokenp(request,booktoken):
     email2=request.POST.get("username2")
     print(email2)    
     email3=request.POST.get("username3")
-    checkout=request.POST.get("returndate")
+    rdate=timezone.now()+timedelta(days=15)
     try :
         user2 = User.objects.get(email=email2)
         user3 = User.objects.get(email=email3)
@@ -156,7 +189,8 @@ def gen_tokenp(request,booktoken):
         else:
             tokens=1
     else:
-        tokens=0
+        date=timezone.now().date()
+        tokens=32675
 
     messages.success(request,"Your token is {}".format(tokens))
     user1 = request.user
@@ -164,7 +198,7 @@ def gen_tokenp(request,booktoken):
     user2.book_issued.add(book)
     user3.book_issued.add(book)
     #user=User.objects.filter(username=user1)
-    object1 =token.objects.create(token=tokens,user=user1,user2=user2,user3=user3,book=book,rdate=checkout)
+    object1 =token.objects.create(token=tokens,user=user1,user2=user2,user3=user3,book=book,rdate=rdate)
     # object1.pooled_user.add(user2)
     # object1.pooled_user.add(user3)
     # #token.save()

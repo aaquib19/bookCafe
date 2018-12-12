@@ -10,6 +10,7 @@ from .views.teachers import TeacherSignup
 from .views.general import GeneralSignup
 urlpatterns = [
 
+    #path('', home1.home, name='home'),
     re_path(r'^email/confirm/(?P<key>[0-9A-Za-z]+)/$',
             views.AccountEmailActivateView.as_view(),
             name='email-activate'),
@@ -23,4 +24,6 @@ urlpatterns = [
 
     url(r'^clear/$', views.clear_database, name='clear_database'),
     url(r'^progress-bar-upload/$', views.ProgressBarUploadView.as_view(), name='progress_bar_upload'),
+    path('borrowed-books/', views.borrowed_books, name='borrowed_books'),
+
 ]

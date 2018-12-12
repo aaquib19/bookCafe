@@ -10,7 +10,7 @@
 	<link type="text/css" rel="stylesheet" href="{% static 'book/bootstrap.min.css' %}" />
 
 	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="{% static 'book/style.css' %}" />
+	<link type="text/css" rel="stylesheet" href="{% static 'book/styleb.css' %}" />
 
 
 {% endblock head %}
@@ -30,7 +30,7 @@
 					</div>
 					<div class="col-md-6 col-md-offset-1">
 						<div class="booking-form">
-							<form>
+							<form method="POST" action="" >{% csrf_token %}
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
@@ -38,12 +38,12 @@
 											<span class="form-label">Username</span>
 											<input class="form-control" type="text" id="username" name="username" 
 												 value="{{ user }}"
-							       			disabled>
+							       			readonly>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<input class="form-control" type="text" id="bookname" name="bookname" value="{{ values.title }}" disabled>
+											<input class="form-control" type="text" id="bookname" name="bookname" value="{{ values.title }}" readonly>
 											<span class="form-label">Bookname</span>
 											
 										</div>
@@ -59,20 +59,20 @@
 											{% for author in values.authors.all %}
 							       				 value="{{ author.name }}"
 											{% endfor %}"
-											disabled>
+											readonly>
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<input class="form-control" type="text" id="date" name="issuedate" disabled>
+											<input class="form-control" type="text" id="date" name="issuedate"              value="{{ date }}" readonly>
 											<span class="form-label">Check In</span>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<input class="form-control" type="text" id="returndate" name="returndate" disabled>
+											<input class="form-control" type="text" id="returndate" name="returndate"         value="{{ rdate }}" readonly>
 											<span class="form-label">Check Out</span>
 										</div>
 									</div>
@@ -93,43 +93,45 @@
 	<script src="{% static 'book/jquery.min.js' %}"></script>
 	<script>
 
-		n =  new Date();
-		y = n.getFullYear();
-		m = n.getMonth() + 1;
-		d = n.getDate();
-		r=n.getDate()+15;
-		// m=r.split('/')[1]
-		// d=r.split('/')[0]
-		// y=r.split('/')[2]
-		 switch(m){
-		case 1: case 3: case 5: case 7: case 8: case 10: case 12:
-			if(r > 31)
-				r=r-31;
-				m=m+1;
-		case 2:
-			if (y % 4 == 0)
-				if(d > 29){
-				r=r-29;
-				m=m+1	
-				}
+	// 	n =  new Date();
+	// 	y = n.getFullYear();
+
+	// 	m = n.getMonth() + 1 ;
+
+	// 	d = n.getDate();
+	// 	r = n.getDate()+15;
+	// 	// m=r.split('/')[1]
+	// 	// d=r.split('/')[0]
+	// 	// y=r.split('/')[2]
+	// 	 switch(m){
+	// 	case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+	// 		if(r > 31)
+	// 			r=r-31;
+	// 			m=m+1;
+	// 	case 2:
+	// 		if (y % 4 == 0)
+	// 			if(d > 29){
+	// 			r=r-29;
+	// 			m=m+1	
+	// 			}
 				
-			if(r > 28){
-				r=r-28;
-				m=m+1	
+	// 		if(r > 28){
+	// 			r=r-28;
+	// 			m=m+1	
 			
-			}
+	// 		}
 		
-		case 4: case 6: case 9: case 11:
-			if(r > 30){
-				r=r-30;
-				m=m+1;
-			}
+	// 	case 4: case 6: case 9: case 11:
+	// 		if(r > 30){
+	// 			r=r-30;
+	// 			m=m+1;
+	// 		}
 	
-	}
+	// }
 
 
-		document.getElementById("date").value = d + "/" + m + "/" + y;
-		document.getElementById("returndate").value = r + "/" + m + "/" + y;
+	// 	document.getElementById("date").value = d + "/" + m + "/" + y;
+	// 	document.getElementById("returndate").value = r + "/" + m + "/" + y;
 
 
 

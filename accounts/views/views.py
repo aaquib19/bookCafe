@@ -13,6 +13,8 @@ from accounts.forms import FileForm
 
 from accounts.models import EmailActivation
 from accounts.forms import LoginForm, EditProfileForm
+from events.models import borrower_detail
+
 from django.utils.safestring import mark_safe
 
 class AccountEmailActivateView(View):
@@ -114,3 +116,12 @@ def clear_database(request):
         file.file.delete()
         file.delete()
     return redirect(request.POST.get('next'))
+
+    
+def borrowed_books(request):
+    user = request.user
+    borrowed_book_data = borrower_detail.objects.filter(name=user)
+    books_borrwed =[]
+    for i in borrowed_book_data:
+        books_borrwed.append(i.book_name)
+    return render(request,'accounts/borrowed_book.html',{"books":books_borrwed })

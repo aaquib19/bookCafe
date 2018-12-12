@@ -20,7 +20,6 @@
     .sign-up{
         background-color: ghostwhite;
     }
-
     </style>
    <!--  <div class='row'>
         <div class='col-12 col-md-6'>
@@ -32,7 +31,7 @@
                     {% endfor %}
     {% endif %} -->
 
-    
+
 
     <main style="padding-top: 5.5rem">
                 <h1>{{ object.title }}</h1>
@@ -58,12 +57,12 @@
 
                 <h2>Available</h2>
             <h3>{{ object.no_of_copy_left }}</h3>
-                
+
 
 
             {% if token %}
 
-                
+
                     {% if object in request.user.book_issued.all  %}
                          Requested <button type='submit' formaction="{% url 'book:undo' object.slug %}" class='btn btn-link'>undo the request</button>
                     {% else %}
@@ -72,9 +71,9 @@
                          <button type='submit' formaction="{% url 'book:check_bookp' object.slug %}" class='btn btn-success'>Book Pool</button>
                     {% endif %}
 
-                
+
             {% else %}
-                    
+
 
                  <button type='submit' formaction="{% url 'book:check_book' object.slug %}" class='btn btn-success'>Request to issue</button>
 
