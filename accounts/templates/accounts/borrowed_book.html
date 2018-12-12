@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+    <style>
+     body{
+    background-image: url('{% static "img/a1.jpg" %}');
+    color: black;
+    }
+    </style>
 {%load count_tags %}
 <div class="container">
   <div class="col-sm-7" style="padding-left:30%">

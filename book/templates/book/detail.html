@@ -52,47 +52,48 @@
  <td>
  <br><br><br>
  <div><h3> {{ object.description }} </h3></div>
-
-
-                    <br><br>
-            <h2>Total Stock</h2>
+     <br><br>
+            <h2 style="font-family: 'Comic Sans MS';">Total Stock</h2>
             <h3>{{ object.no_of_actual_copy }}</h3>
 
-                <h2>Available</h2>
+                <h2 style="font-family: 'Comic Sans MS';">Available</h2>
             <h3>{{ object.no_of_copy_left }}</h3>
+            <br><br>
+
 
 
 
             {% if token %}
                 {%  if borrower_detail %}
 
-               <h3 style="color: red"> Book borrowed already  </h3>
+               <h3 style="color: red;font-family: 'Comic Sans MS'"> Book borrowed already  </h3>
 
                   {% else %}
                     {% if object in request.user.book_issued.all  %}
-                         Requested <button type='submit' formaction="{% url 'book:undo' object.slug %}" class='btn btn-link'>undo the request</button>
+                         Requested <button type='submit' formaction="{% url 'book:undo' object.slug %}" class='btn btn-link' style="font-family: 'Comic Sans MS';">undo the request</button>
                     {% else %}
-                         <button type='submit' formaction="{% url 'book:check_book' object.slug %}" class='btn btn-success'>Request to issue</button>
+                         <button type='submit' formaction="{% url 'book:check_book' object.slug %}" class='btn btn-success' style="font-family: 'Comic Sans MS';">Request to issue</button>
 
-                         <button type='submit' formaction="{% url 'book:check_bookp' object.slug %}" class='btn btn-success'>Book Pool</button>
+                         <button type='submit' formaction="{% url 'book:check_bookp' object.slug %}" class='btn btn-success' style="font-family: 'Comic Sans MS';">Book Pool</button>
                     {% endif %}
 
                       {% endif %}
             {% else %}
 
 
-                 <button type='submit' formaction="{% url 'book:check_book' object.slug %}" class='btn btn-success'>Request to issue</button>
+                 <button type='submit' formaction="{% url 'book:check_book' object.slug %}" class='btn btn-success' style="font-family: 'Comic Sans MS';">Request to issue</button>
 
-                <button type='submit' formaction="{% url 'book:check_bookp' object.slug %}" class='btn btn-success'>Book Pool</button>
+                <button type='submit' formaction="{% url 'book:check_bookp' object.slug %}" class='btn btn-success' style="font-family: 'Comic Sans MS';">Book Pool</button>
 
             {% endif %}
             </td>
             </tr>
 
-      </table>      
-<div class="cont" style="margin-top:150px;">
+</table>
+
+<div class="cont" style="margin-top:150px;background:#535466">
   <div class="title">
-  <h1><span>rate us</span></h1>
+  <h1 style="font-family: 'Comic Sans MS';"><span style="color: black">Rate us</span></h1>
   </div>
   <div class="stars">
    <!--  <form method="POST" action="{% url 'book:reviews' object.slug %}">{% csrf_token %} -->
@@ -108,15 +109,21 @@
       <input class="star star-1" id="star-1" type="radio" name="star" value="1"/>
       <label class="star star-1" for="star-1"></label>
 <!--       <input type="text" placeholder="write a review" />
- -->      <textarea rows="5" cols="25" placeholder="write a review" name="text"></textarea>
-        <input type="submit" formaction="{% url 'book:reviews' object.slug %}" /> 
+ -->      <textarea rows="5" cols="25" placeholder="write a review" name="text" type="hidden" style="display: none;"></textarea>
+        <input type="submit" formaction="{% url 'book:reviews' object.slug %}" />
    <!--  </form> -->
    <!-- <script type="text/javascript">
        if document.getElementById("star-5").checked==true
    </script> -->
   </div>
 </div>
+<div style="float: right"><form method="post" action="{% url 'form:feedback-page' %}">
+                {% csrf_token %}
 
+                <div class="col-md-3" >
+                    <button class="btn btn-success">Feedback</button>
+                </div>
+</form></div>
 {% for p in review %}
 {% if p.user != request.user %}
 <div>
@@ -139,13 +146,6 @@
 {% endfor %}    
 
                 </span>
-            </form>
-<form method="post" action="{% url 'form:feedback-page' %}">
-                {% csrf_token %}
-                <input type="text" name='book_id' value="{{ object.id }}">
-                <div class="col-md-3" >
-                    <button class="btn btn-outline-success">Feedback</button>
-                </div>
             </form>
 
         </div>
