@@ -1,6 +1,7 @@
 {% load static %}
 {% load count_tags %}
 {% url 'logout' as logout_url %}
+{% url 'hash_ajax' as ajax_url %}
 {% url 'accounts:signup_all' as signup_url %}
 {% url 'accounts:view_profile' as profile_url %}
 {% url 'login' as login_url %}
@@ -75,6 +76,8 @@
           <a class="dropdown-item" href="{{ profile_url }}">My Profile</a>
           <a class="dropdown-item" href="{{ notification_url }}">Notifications<span class="badge" style='background-color:darkred;float:right'>{%unreadtag%}</span></a>
           <a class="dropdown-item" href="{{ edit_url }}">Edit</a>
+           <a class="dropdown-item" href="{{ ajax_url }}">Ajax search</a>
+
 
           <a class="dropdown-item" href="{{ borrowed_books_url }}">Borrowed Books</a>
             {% if request.user.is_teacher %}

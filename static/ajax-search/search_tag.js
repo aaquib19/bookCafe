@@ -23,7 +23,7 @@ $('.search-tag-query').typeahead({
     templates: {
         empty: 'No results...',
         suggestion: function (data) {
-            return '<p><span>' + data.q + '</span> – <span class="">' + data.count + '</span></p>';
+            return '<p><span>' + data.q + '</span> </span></p>';
         }
     }
 });

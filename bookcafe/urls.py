@@ -26,7 +26,7 @@ from accounts.views.views import  LoginView
 from tag.views import SearchTag,TagJson
 
 urlpatterns = [
-    re_path(r'^search/hashtag$', SearchTag.as_view()),
+    re_path(r'^search/hashtag$', SearchTag.as_view(),name="hash_ajax"),
     re_path(r'^hashtag.json$', TagJson.as_view()),
     path("",views.home,name="home"),
     #path("home",views.home,name="home1"),
