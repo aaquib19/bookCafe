@@ -97,7 +97,7 @@ def check_bookp(request,url_string):
     values=[]
     date=timezone.now().date()
     rdate=timezone.now()+timedelta(days=15)
-    rdate=rdate.date().utnow().replace(tzinfo=utc)
+    
     print(date,rdate)
     user = request.user
     book_name=book.title
@@ -170,7 +170,7 @@ def gen_tokenp(request,booktoken):
     email2=request.POST.get("username2")
     print(email2)    
     email3=request.POST.get("username3")
-    checkout=request.POST.get("returndate")
+    rdate=timezone.now()+timedelta(days=15)
     try :
         user2 = User.objects.get(email=email2)
         user3 = User.objects.get(email=email3)
@@ -216,7 +216,7 @@ def gen_tokenp(request,booktoken):
     user2.book_issued.add(book)
     user3.book_issued.add(book)
     #user=User.objects.filter(username=user1)
-    object1 =token.objects.create(token=tokens,user=user1,user2=user2,user3=user3,book=book,rdate=checkout)
+    object1 =token.objects.create(token=tokens,user=user1,user2=user2,user3=user3,book=book,rdate=rdate)
     # object1.pooled_user.add(user2)
     # object1.pooled_user.add(user3)
     # #token.save()

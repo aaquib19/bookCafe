@@ -16,14 +16,28 @@ def disp_tokens(request):
 def add_book(request,tokenNo):
 
 	t=token.objects.get(token=tokenNo)
+	
+
 	user=t.user
 	book=t.book
 	date=t.date
 	rdate=t.rdate
+
+
+	if t.user2 and t.user3:
+		user2=t.user2
+		user3=t.user3
+		b=borrower_detail.objects.create(name=user,book_name=book,issue_date=date,submission_date=rdate)
+		b.pooled_users.add(user2)
+		b.pooled_users.add(user3)
+
+	else:	
+		b=borrower_detail.objects.create(name=user,book_name=book,issue_date=date,submission_date=rdate)
+
+
 	t.deleted=True
 	t.save()
 	print(rdate)
-	b=borrower_detail.objects.create(name=user,book_name=book,issue_date=date,submission_date=rdate)
 	# b.book_name.add(book)
 	b.save()
 

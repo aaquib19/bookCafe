@@ -11,7 +11,7 @@ from book.models import Book
 
 
 class borrower_detail(models.Model):
-    name                = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    name                = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     book_name           = models.ForeignKey(Book,on_delete=models.CASCADE,null=True,blank=True)
     issue_date          = models.DateField()
     returning_date      = models.DateField(null=True,blank=True)
@@ -28,9 +28,9 @@ class borrower_detail(models.Model):
     #         print("count = ",self.book_name.count())
     #         raise ValidationError("you cannot issue for more than 2 books")
     #     super(Borrower_detail,self).clean(*agrs,**kwargs)
-    class Meta:
-        verbose_name = u'Scheduling'
-        verbose_name_plural = u'Scheduling'
+    # class Meta:
+    #     verbose_name = u'Scheduling'
+    #     verbose_name_plural = u'Scheduling'
 
     def get_absolute_url(self):
         url = reverse('admin:%s_%s_change' % (self._meta.app_label, self._meta.model_name), args=[self.id])

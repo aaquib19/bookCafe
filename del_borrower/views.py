@@ -29,11 +29,17 @@ def del_borrower(request):
 	book=b.book_name
 	rdate=timezone.now().date()
 	sdate=b.submission_date
+	book=Book.objects.get(id=book.id)
 	# print(user,book,rdate,sdate)
 	print(book)
-	book=Book.objects.get(id=book.id)
 
-	name1.book_issued.remove(book)
+	if b.pooled_users.all():
+		
+		for p in b.pooled_users.all():
+			p.book_issued.remove(book)
+	else:	
+	
+		name1.book_issued.remove(book)
 
 	if rdate>sdate:
 		days=rdate-sdate

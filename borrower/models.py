@@ -15,8 +15,8 @@ class token(models.Model):
     rdate = models.DateTimeField(null=True)
     deleted = models.BooleanField(default=False)
 
-    class Meta:
-        unique_together=('user','book')
+    # class Meta:
+    #     unique_together=('user','book')
 
 
 class pooled_token(models.Model):
