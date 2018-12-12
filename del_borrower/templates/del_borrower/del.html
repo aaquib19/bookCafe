@@ -14,15 +14,31 @@
     {% endif %}
 
 
+<br><br><br>
+	<tr>
+	<td colspan="8"> Email Id's </td>
+	<td colspan="8">  Request to delete </td>
+	</tr>
+
+
+
 {% for b in borrowers %}
 	{% if not b.deleted %}
-	<div>Email :: {{ b.name }}</div>
 	
+	<tr>
+	<td colspan="8"> 
+	<div>{{ b.name }}</div>
+	<div>{{ b.book_name }} </div>
+	</td>
+	<td colspan="8"> 
 	<form  method='POST' > {% csrf_token %}
 	<input type="hidden" name="borrow-id" value="{{b.name}}">
+	<input type="hidden" name="book_name" value="{{b.book_name}}">
 	<button type='submit' formaction="{% url 'del_borrower:del' %}" >Request to delete</button>
 	</form>
+</td>
 
+</tr>
 	<br>
 {% endif %}
 
