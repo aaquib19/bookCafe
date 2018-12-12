@@ -13,7 +13,7 @@
     }
 
     </style>
-<div class=#mydiv></div>
+<div class="container">
 	<center>
 <table>
 {% for t in tokens %}
@@ -25,7 +25,7 @@
 	<td>token No. :: {{ t.token }}</td>
 	<td>
 	<form  method='POST' > {% csrf_token %}
-	<button type='submit' formaction="{% url 'tokena:add_book' t.token %}" >Request to issue</button>
+	<button type='submit' class="btn btn-success" formaction="{% url 'tokena:add_book' t.token %}" >Request to issue</button>
 	</form>
     </td>
 	</tr>
@@ -34,4 +34,5 @@
 
 {% endfor %}
 </table>
+    </div>
 {% endblock %}
