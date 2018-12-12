@@ -1,15 +1,25 @@
 {% extends 'base1.html' %}
 {% load crispy_forms_tags %}
-
+{% load static %}
 {% block body %}
 
     <div class="container">
+      <style>
+    body{
+    background-image: url('{% static "img/a1.jpg" %}');
+    color: black;
+    }
+    .sign-up{
+        background-color: ghostwhite;
+    }
+
+    </style>
         <div class="row">
             <div class="col-xl mt-5">
                 <form method="POST">
                     {% csrf_token %}
 
-                    <h1 class="heading" style="text-align: center">FEEDBACK</h1>
+                    <h1 class="heading" style="text-align: center;font-family: 'Lucida Handwriting';">FEEDBACK</h1>
 
                     <div class="form-group row">
                         <label for="staticEmail" class="col-sm-2 col-form-label">Username :</label>
