@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
-     <style>
+
+
+{% block content %}
+         <style>
     body{
     background-image: url('{% static "img/a1.jpg" %}');
     color: black;
@@ -10,8 +13,6 @@
     }
 
     </style>
-
-{% block content %}
 <div class=#mydiv></div>
 	<center>
 <table>
