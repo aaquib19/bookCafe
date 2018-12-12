@@ -12,6 +12,16 @@
 
 {% block content %}
 <div class="container">
+ <style>
+    body{
+    background-image: url('{% static "img/a1.jpg" %}');
+    color: black;
+    }
+    .sign-up{
+        background-color: ghostwhite;
+    }
+
+    </style>
    <!--  <div class='row'>
         <div class='col-12 col-md-6'>
                 {% if messages %}
@@ -28,7 +38,7 @@
                 <h1>{{ object.title }}</h1>
                 {{ object.isbn|linebreaks }}<br/>
                 {% if object.image %}
-                    <img src='{{ object.image.url }}' class='img-fluid' />
+                    <img src='{{ object.image.url }}' class='img-fluid' style="height:50vh;" />
                 {% endif %}
         <div class="col-12 col-md-6">
             <form  method='POST' > {% csrf_token %}

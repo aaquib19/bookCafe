@@ -6,8 +6,18 @@
 {% url 'accounts:edit_profile' as edit_url %}
 {% url 'category:home' 'all' as category_url %}
 {% url 'book:list' as book_list_url %}
+{%  load static %}
 
+ <style>
+    body{
+    background-image: url('{% static "img/a1.jpg" %}');
+    color: black;
+    }
+    .sign-up{
+        background-color: ghostwhite;
+    }
 
+    </style>
 <!DOCTYPE html>
 <!-- saved from url=(0072)https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html# -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -19,7 +29,7 @@
 
     <!-- Font Awesome -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-     <link rel="stylesheet" href="{% static 'category_base/css/card.css' %}">
+
 {#    <link rel="stylesheet" href="./category_base/css/font-awesome.css">#}
       <link rel="stylesheet" href="{% static 'category_base/css/font-awesome.css' %}">
     <!-- Bootstrap core CSS -->
@@ -35,7 +45,6 @@
         .main{
         padding-left: 15rem;
         padding-top: 5.5rem;
-        }
     </style>
 
 <style type="text/css">/* Chart.js */

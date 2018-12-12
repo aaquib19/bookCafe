@@ -1,8 +1,18 @@
 {% extends "base.html" %}
+{%  load static %}
 
 {% block content %}
 
+     <style>
+    body{
+    background-image: url('{% static "img/a1.jpg" %}');
+    color: black;
+    }
+    .sign-up{
+        background-color: ghostwhite;
+    }
 
+    </style>
         <div class='row'>
 
                 {% if messages %}
