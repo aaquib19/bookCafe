@@ -17,7 +17,7 @@ class SearchBookView(ListView):
         query = method_dict.get('q', None) # method_dict['q']
         if query is not None:
             return Book.objects.search(query)
-        return Book.objects.featured()
+        return Book.objects.all()
 
         '''
         __icontains = field contains this
