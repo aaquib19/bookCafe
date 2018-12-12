@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'category',
     'borrower',
     #'social_django',
+    # 'social_django',
     'donation',
 
     'tokena',
@@ -194,7 +195,7 @@ EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS =True
 EMAIL_HOST_USER = "rehanmallick4080@gmail.com"
-EMAIL_HOST_PASSWORD = "iamalilwayne"
+EMAIL_HOST_PASSWORD = "iamalilwayne19"
 
 # ADMINS = (
 #     ('Aaquib', 'bookcafe110@gmail.com'),

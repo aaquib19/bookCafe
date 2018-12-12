@@ -36,7 +36,7 @@ class EventCalendar(HTMLCalendar):
         Return a formatted month as a table.
         """
 
-        events = borrower_detail.objects.filter(issue_date__month=themonth)
+        events = borrower_detail.objects.filter(submission_date__month=themonth)
 
         v = []
         a = v.append

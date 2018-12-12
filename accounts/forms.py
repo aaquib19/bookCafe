@@ -1,3 +1,6 @@
+
+from crispy_forms.bootstrap import FormActions
+from django import forms
 from django.contrib.auth import get_user_model, authenticate
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.contrib.auth.forms import UserCreationForm
@@ -10,6 +13,8 @@ from crispy_forms.layout import Layout, ButtonHolder, Submit, Field
 from accounts.models import File
 
 from accounts.models import Student,General,Teacher
+from crispy_forms.layout import Layout, ButtonHolder, Submit, Field, Button
+from django.core.files.images import get_image_dimensions
 
 User = get_user_model()
 
@@ -82,6 +87,7 @@ class TeacherSignUpForm(UserCreationForm):
 
 
 
+
 class generalSignUpForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(generalSignUpForm, self).__init__(*args, **kwargs)
@@ -99,7 +105,6 @@ class generalSignUpForm(UserCreationForm):
         Field('password2', css_class='form-control'),
 
     )
-
 
 
 class StudentSignUpForm(UserCreationForm):
@@ -124,8 +129,8 @@ class StudentSignUpForm(UserCreationForm):
     helper.form_tag = False
 
 
-class EditProfileForm(ModelForm):
 
+class EditProfileForm(ModelForm):
 
     class Meta:
         model = User
@@ -135,12 +140,15 @@ class EditProfileForm(ModelForm):
             'last_name',
             'phone_no',
             'image'
+
         )
 
     helper = FormHelper()
     helper.layout = Layout(
         Field('email', css_class='form-control '),
         Field('first_name', css_class='form-control'),
+        Field('image', css_class='form-control'),
+        Field('phone_no', css_class='form-control'),
         Field('last_name', css_class='form-control'),
         Field('phone_no', css_class='form-control'),
         Field('image', css_class='form-control'),
@@ -216,6 +224,16 @@ class StudentExtraForm(ModelForm):
     helper = FormHelper()
     helper.layout = Layout(
         Field('college', css_class='form-control')
+    )
+    helper.form_tag = False
+
+    helper = FormHelper()
+    helper.layout = Layout(
+        Field('bio', css_class='form-control '),
+        Field('college', css_class='form-control'),
+        # ButtonHolder(
+        #     Submit('submit', 'Submit', css_class='form-submit')
+        # )
     )
     helper.form_tag = False
 
