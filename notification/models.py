@@ -100,12 +100,12 @@ def welcome_msg(sender,**kwargs):
         query = data.pooled_users.all()
         Notification.objects.create(
             recipient = data.name,
-            notification_title = ("your book {} is issued").format(),
+            notification_title = ("your book {} is issued").format(data.book_name),
             description="we have succesfully received your book issue comfirmation",
         )
         for user in query:
             Notification.objects.create(
                 recipient = user,
-                notification_title = ("your book {} is issued").format(),
+                notification_title = ("your book {} is issued").format(data.book_name),
                 description="we have succesfully received your book issue comfirmation",
             )
