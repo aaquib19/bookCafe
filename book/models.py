@@ -91,6 +91,7 @@ class Book(models.Model):
     no_of_copy_left = models.IntegerField()
     category = models.ManyToManyField(Category,related_name="books")
     image = models.ImageField(upload_to=upload_image_path)
+    description=models.TextField(null=True,blank=True)
 
     objects = BookManager()
 

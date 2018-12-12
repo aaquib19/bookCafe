@@ -50,6 +50,8 @@
                     <button type='submit' formaction="{% url 'book:check_book' object.slug %}" class='btn btn-success'>Request to issue</button>
                 {% endif %}
  -->
+ <div><h3> {{ object.description }} </h3></div>
+
 
                     <br><br>
             <h2>Total Stock</h2>
@@ -85,7 +87,6 @@
             {% endif %}
 
             
-
 <div class="cont" style="margin-top:150px;">
   <div class="title">
   <h1><span>rate us</span></h1>
