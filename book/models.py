@@ -20,8 +20,7 @@ def get_filename_ext(filepath):
 
 
 def upload_image_path(instance, filename):
-    # print(instance)
-    # print(filename)
+    
     new_filename = random.randint(1, 3910209312)
     name, ext = get_filename_ext(filename)
     final_filename = '{new_filename}{ext}'.format(new_filename=new_filename, ext=ext)
@@ -91,6 +90,7 @@ class Book(models.Model):
     no_of_copy_left = models.IntegerField()
     category = models.ManyToManyField(Category,related_name="books")
     image = models.ImageField(upload_to=upload_image_path)
+    description=models.TextField(null=True,blank=True)
 
     objects = BookManager()
 
@@ -100,13 +100,6 @@ class Book(models.Model):
     def get_absolute_url(self):
         # similar to f"/book/{self.slug}/"
         return reverse("book:detail",kwargs={"slug":self.slug})
-
-    #def get_issued_users(self):
-        
-
-
-
-    #def get_borrowed_users(self):
 
 
 def book_pre_save_reciever(sender, instance, *args, **kwargs):
@@ -137,6 +130,5 @@ class review(models.Model):
 #     date = models.DateField(default=timezone.now)
 #     class Meta:
 #         unique_together=('user_name','book_name')
-
 
 
