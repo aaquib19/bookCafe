@@ -7,6 +7,8 @@
 {% url 'category:home' 'all' as category_url %}
 {% url 'book:list' as book_list_url %}
 {% url 'donation:donate' as donate_url %}
+{% url 'accounts:borrowed_books' as borrowed_books_url %}
+{% url 'contact:submit' as contact_url %}
 {% url 'notification:notifications_list' as notification_url%}
 {% load count_tags %}
 
@@ -131,11 +133,9 @@
         <li class="nav-item">
           <a class="nav-link black-text" href="{{ book_list_url }}">All Books</a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link black-text" href="#">Issue A Book</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link black-text" href="#">Contact Us</a>
+          <a class="nav-link " href="{{ contact_url }}">Contact Us</a>
         </li>
 
 
@@ -143,14 +143,7 @@
 
       <!-- Links -->
         <li style="padding-left: 300px;padding-right: 50px;">
-      <form class="form-inline" method="GET" action="{% url 'search:query' %}">
-
-        <div class="md-form my-0">
-
-          <input class="form-control mr-sm-2 black-text" name="q" type="text" placeholder="Search" aria-label="Search"><i class="fa fa-fw fa-search"></i
-        </div>
-
-      </form >
+     {% include 'search/snippets/search-form.html' %}
       </li>
        {% if not request.user.is_authenticated %}
 
@@ -171,6 +164,7 @@
           <a class="dropdown-item" href="{{ profile_url }}">My Profile</a>
             <a class="dropdown-item" href="{{ notification_url }}">Notifications<span class="badge" style='background-color:darkred;float:right'>{%unreadtag%}</span></a>
           <a class="dropdown-item" href="{{ edit_url }}">Edit</a>
+           <a class="dropdown-item" href="{{ borrowed_books_url }}">Borrowed Books</a>
             <a class="dropdown-item" href="{{ donate_url }}">Donate your books</a>
           <a class="dropdown-item" href="{{ logout_url }}">Logout</a>
         </div>

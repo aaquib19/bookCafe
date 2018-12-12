@@ -29,10 +29,14 @@
   background-image: -ms-linear-gradient(to left, #74ebd5, #9face6);
   background-image: -o-linear-gradient(to left, #74ebd5, #9face6);
   background-image: -webkit-linear-gradient(to left, #74ebd5, #9face6);
-  background-image: linear-gradient(to left, #74ebd5, #9face6); }
+  background-image: linear-gradient(to left, #74ebd5, #9face6);
+    }
 
+    </style>
+    <style>
     ul{
-        display: none;
+    display: none;
+    }
     }
     </style>
         <div class="main container">
@@ -48,7 +52,7 @@
     {% crispy form1 %}
     {% crispy form2 %}
         <br>
-<button class="form-submit">click here</button>
+<button class="form-submit btn btn-success">click here</button>
 
  <p class="loginhere ">
                         Have already an account ? <a href="{% url 'login' %}" class="loginhere-link">Login here</a>

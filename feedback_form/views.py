@@ -13,6 +13,7 @@ def home(request):
 
 def feedback_form(request):
     id = request.POST.get("book_id")
+    email = request.user.email
     book = Book.objects.get(id=id)
     print(book.title)
     if request.user.is_authenticated:
@@ -20,10 +21,16 @@ def feedback_form(request):
         user = request.user.username
         email = request.user.email
         if request.method == 'POST':
-            form = FeedbackForm(request.POST)
+            form = FeedbackForm(request.POST or None)
             if form.is_valid():
-                form.save()
-                return redirect('form:home')
+                ins = form.save(commit=False)
+                ins.book_name = book
+                ins.email=email
+                print(email)
+                ins.save()
+
+
+                return redirect('/')
         else:
             form = FeedbackForm()
         return render(request, 'feedback_form.html', {'form': form, 'user': user, 'email': email ,"object" :book })

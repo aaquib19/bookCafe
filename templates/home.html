@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% url 'category:home' 'all' as category_url %}
+
 {% load static %}
 {% block content %}<link href="{% static 'css/card.css' %}" rel="stylesheet">
 
@@ -267,17 +269,11 @@ The entire genre has been seen as having "a continuous and comprehensive history
           <h6 class="text-uppercase font-weight-bold">Features</h6>
           <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
           <p>
-            <a class="dark-grey-text" href="/">Home</a>
+            <a class="dark-grey-text" href="{% url 'category:home' 'all' %}">Home</a>
           </p>
-          <p>
-            <a class="dark-grey-text" href="/">Issue</a>
-          </p>
-          <p>
-            <a class="dark-grey-text" href="/">Categories</a>
-          </p>
-          <p>
-            <a class="dark-grey-text" href="/">Feedback</a>
-          </p>
+
+
+
 
         </div>
         <!-- Grid column -->
@@ -289,14 +285,11 @@ The entire genre has been seen as having "a continuous and comprehensive history
           <h6 class="text-uppercase font-weight-bold">Useful links</h6>
           <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
           <p>
-            <a class="dark-grey-text" href="#!">Your Account</a>
+            <a class="dark-grey-text" href="{% url 'accounts:view_profile' %}">Your Account</a>
           </p>
           <p>
-            <a class="dark-grey-text" href="#!">Issue a Book</a>
           </p>
-          <p>
-            <a class="dark-grey-text" href="#!">Recommended</a>
-          </p>
+
           <p>
             <a class="dark-grey-text" href="#!">Help</a>
           </p>
