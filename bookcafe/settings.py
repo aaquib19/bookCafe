@@ -64,7 +64,7 @@ INSTALLED_APPS = [
 ]
 
 PAYPAL_RECIEVER_EMAIL ='aaquibniaz3600@gmail.com'
-
+PAYPAL_BUY_BUTTON_IMAGE="http://spiritdrumcorps.org/wp-content/uploads/2018/08/paynow-button.png"
 AUTH_USER_MODEL = 'accounts.user'
 
 MIDDLEWARE = [

@@ -15,4 +15,4 @@ class UsersListViewTest(TestCase):
 
     # def test_views_detailview(self):
     #     response = self.client.get(reverse('book:detail'))
-    #     self.assertEquals(response.status_code, 200)
+#     self.assertEquals(response.status_code, 200)

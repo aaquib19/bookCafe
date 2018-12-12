@@ -5,6 +5,8 @@ from django.contrib import messages
 from .models import Book,review
 from borrower.models import token,pooled_token
 from django.utils import timezone
+from events.models import borrower_detail
+
 from django.utils.timezone import utc
 
 from datetime import timedelta
@@ -45,6 +47,7 @@ class BookDetailView(DetailView):
             context['user'] = user
             context['token'] = token.objects.filter(user=user)
             context['review']=review.objects.filter(book=instance)
+            context['borrower_detail']=borrower_detail.objects.filter(name=user,book_name=instance)
         # Add in a QuerySet of all the books
         
         print(token.book)

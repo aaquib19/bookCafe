@@ -27,3 +27,4 @@ def addmail(sender,**kwargs):
 			mail_subject = kwargs['instance'].notification_title,
 			mail_body = kwargs['instance'].description,
 		)
+		kwargs['instance'].emailed = True

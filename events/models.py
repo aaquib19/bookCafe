@@ -60,5 +60,6 @@ class borrower_detail(models.Model):
 #     if instance.name in instance.pooled_users.all():
 #         raise ValidationError("user is in pooled list")
 
+#m2m_changed.connect(pooled_users_check,sender=borrower_detail.pooled_users.through)
 # m2m_changed.connect(pooled_users_check,sender=borrower_detail.pooled_users.through)
 
