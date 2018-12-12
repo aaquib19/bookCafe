@@ -3,7 +3,7 @@ from . import views
 
 app_name ='payment'
 urlpatterns = [
-    path('',views.payment,name="payment"),
+    path('<int:pk>/',views.payment,name="payment"),
     path('paypal-return/',views.paypal_return,name='paypal_return'),
     path('paypal-cancel/',views.paypal_cancel,name="paypal_cancel"),
 ]

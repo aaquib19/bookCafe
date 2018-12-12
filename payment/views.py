@@ -3,14 +3,18 @@ from django.views.decorators.csrf import csrf_exempt
 from paypal.standard.forms import PayPalPaymentsForm
 from bookcafe.utils import random_string_generator
 from django.contrib.auth.decorators import login_required
+from del_borrower.views import cal_fine
+from events.models import borrower_detail
 
 @login_required
-def payment(request):
+def payment(request,pk):
+    p = borrower_detail.objects.get(id = pk)
+    print(cal_fine(p.returning_date,p.submission_date))
     domain = request.META['HTTP_HOST']
     paypal_dict = {
     'business': request.user,
-    'amount': '100',
-    'item_name': 'Item_Name_xyz',
+    'amount': cal_fine(p.returning_date,p.submission_date),
+    'item_name': p.book_name,
     'invoice': random_string_generator(),
     'notify_url': domain +'/paypal/',
     'return_url':domain +'/paypal-return/',
