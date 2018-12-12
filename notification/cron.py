@@ -1,7 +1,6 @@
 from borrower.models import token
 from django.utils import timezone,duration
 import datetime
-from datetime import datetime,timedelta
 from notification.models import Notification
 from book.models import Book
 from events.models import borrower_detail
@@ -11,7 +10,7 @@ def TokenExpire():
     qset = token.objects.filter(deleted=False)
     for tokens in qset:
         duration = timezone.now() - tokens.date
-        if duration.total_seconds() > 1:
+        if duration.total_seconds() > (2*60):
             query = list()
             if tokens.user is not None:
                 query.append(tokens.user)
@@ -32,9 +31,10 @@ def TokenExpire():
             Book.objects.filter(title = tokens.book).update(no_of_copy_left = copies+1)
             token.objects.filter(token = tokens.token).delete()
 
+
     qset = borrower_detail.objects.all()
     for detail in qset:
-        if (detail.returning_date-timedelta(days = 1)) == timezone.now().date():
+        if detail.returning_date == timezone.now().date()+datetime.timedelta(days = 1):
             users = detail.pooled_users.all()
             Notification.objects.create(
                 recipient = detail.name,
