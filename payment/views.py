@@ -2,8 +2,9 @@ from django.shortcuts import render,render_to_response
 from django.views.decorators.csrf import csrf_exempt
 from paypal.standard.forms import PayPalPaymentsForm
 from bookcafe.utils import random_string_generator
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def payment(request):
     domain = request.META['HTTP_HOST']
     paypal_dict = {
