@@ -21,11 +21,17 @@ class borrower_detail(models.Model):
     deleted             = models.BooleanField(default=False)
 
     #slug
+    class Meta:
+        unique_together = ('name','book_name')
 
     def __str__(self):
         return str(self.name)
 
-
+    # def clean(self,*agrs,**kwargs):
+    #     if self.book_name.count() > 2:
+    #         print("count = ",self.book_name.count())
+    #         raise ValidationError("you cannot issue for more than 2 books")
+    #     super(Borrower_detail,self).clean(*agrs,**kwargs)
     # class Meta:
     #     verbose_name = u'Scheduling'
     #     verbose_name_plural = u'Scheduling'
@@ -42,7 +48,9 @@ class borrower_detail(models.Model):
 #         raise ValidationError("you cannot issue more than 2 book")
 
 # m2m_changed.connect(book_issued,sender=borrower_detail.book_name.through)
+
 #
+
 # def pooled_users_check(sender,**kwargs):
 #     instance = kwargs["instance"]
 #     print("people  ",instance.pooled_users)
@@ -51,6 +59,6 @@ class borrower_detail(models.Model):
 #         raise ValidationError("only 3 people can pool a single book")
 #     if instance.name in instance.pooled_users.all():
 #         raise ValidationError("user is in pooled list")
-#
+
 # m2m_changed.connect(pooled_users_check,sender=borrower_detail.pooled_users.through)
-#
+

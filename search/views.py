@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.views.generic import ListView
 from book.models import Book
 
@@ -18,7 +17,7 @@ class SearchBookView(ListView):
         query = method_dict.get('q', None) # method_dict['q']
         if query is not None:
             return Book.objects.search(query)
-        return Product.objects.featured()
+        return Book.objects.featured()
 
         '''
         __icontains = field contains this
