@@ -49,17 +49,16 @@
     </div>
 
 
-    <div class="row clearfix">
-        <div class="col-md-12 column posts">
-            {% for tag in tags %}
-{#                {% for book in tag.books.all %}#}
-                    <div class="well">
-                       {{ tag.title }}
-                    </div>
-{#                {% endfor %}#}
-            {% endfor %}
+    <div class="row ">
+                    {% for tag in tags %}
 
+        <div class="col-4 column posts">
+                        {% include 'book/snippets/card.html' with instance=tag %}
+            <br>
         </div>
+                        <br>
+                {% endfor %}
+
     </div>
 </div>
 
