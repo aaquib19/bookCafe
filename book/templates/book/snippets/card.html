@@ -1,0 +1,27 @@
+
+<div class="card" style="width:20rem;height: 25rem">
+
+  <!-- Card image -->
+  <div class="view overlay">
+    <a href="{{ instance.get_absolute_url }}">
+        <img class="card-img-top " src="{{ instance.image.url }}" alt="{{ instance.title }} logo">
+      <div class="mask rgba-white-slight"></div>
+    </a>
+  </div>
+
+  <!-- Card content -->
+  <div class="card-body" style="background-color: blanchedalmond;">
+
+    <!-- Title -->
+   <h4 class="card-title">{{ instance.title }}</h4>
+    <!-- Text -->
+
+    <p class="card-text">{{ instance.isbn|linebreaks|truncatewords:14 }}</p>
+    <!-- Button -->
+    <a href="{{ instance.get_absolute_url }}" class="btn btn-primary">View</a>
+
+
+  </div>
+
+</div>
+<!-- Card -->

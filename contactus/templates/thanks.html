@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+   <style>
+    body{
+    background-image: url('{% static "img/a1.jpg" %}');
+    color: black;
+    }
+    .sign-up{
+        background-color: ghostwhite;
+    }
+
+    </style>
+{% block title %}Thanks{% endblock %}
+ 
+{% block body %}
+<h1 style="font-family: 'Comic Sans MS'">Thanks for your response.</h1>
+<p><a href="{% url 'form:feedback-page' %}" style="font-family: 'Comic Sans MS'">Response again?</a></p>
+{% endblock %}

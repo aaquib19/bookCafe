@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+
+
+<link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="{% static 'donation/bootstrap.min.css' %}" />
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="{% static 'donation/style.css' %}" />
+
+
+{% endblock head %}
+
+
+
+{% block content %}
+    <style>
+    body{
+    background-image: url('{% static "img/a1.jpg" %}');
+    color: black;
+    }
+    .sign-up{
+        background-color: ghostwhite;
+    }
+    .form-submit {
+  width: 100%;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  padding: 17px 20px;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  border: none;
+
+  background-image: -ms-linear-gradient(to left, #74ebd5, #9face6);
+  background-image: -o-linear-gradient(to left, #74ebd5, #9face6);
+  background-image: -webkit-linear-gradient(to left, #74ebd5, #9face6);
+  background-image: linear-gradient(to left, #74ebd5, #9face6); }
+    </style>
+	
+<div id="booking" class="section">
+		<div class="section-center">
+			<div class="container">
+				<div class="row">
+					{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{message}}
+        </div>
+    {% endfor %}
+    {% endif %}
+
+					<div class="booking-form">
+						<div class="booking-bg"></div>
+						<form method="POST" action="">{% csrf_token %}
+							<div class="form-header">
+								<h2>Donate Your Books</h2>
+							</div>
+							<div class="form-group">
+								<input class="form-control" type="text" id="name" name="name" placeholder="Enter your Name">
+								<span class="form-label">Name</span>
+							</div>
+							<div class="form-group">
+								<input class="form-control" type="email" id="email" name="email" placeholder="Enter your Email">
+								<span class="form-label">Email</span>
+							</div>
+							<div class="form-group">
+								<input class="form-control" type="text" id="book_name" name="book_name" placeholder="Enter book name">
+								<span class="form-label">Name of the book</span>
+							</div>
+							
+							<div class="form-btn">
+								<button class="submit-btn" formaction="{% url 'donation:adduser' %}">Donate Now</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+{% endblock content %}
+
+{% block script %}
+	<script src="js/jquery.min.js"></script>
+	<script>
+		$('.form-control').each(function () {
+			floatedLabel($(this));
+		});
+
+		$('.form-control').on('input', function () {
+			floatedLabel($(this));
+		});
+
+		function floatedLabel(input) {
+			var $field = input.closest('.form-group');
+			if (input.val()) {
+				$field.addClass('input-not-empty');
+			} else {
+				$field.removeClass('input-not-empty');
+			}
+		}
+	</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+{% endblock script %}
+</body>
+
+</html>

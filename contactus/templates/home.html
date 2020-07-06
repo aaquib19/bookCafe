@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+      <style>
+    body{
+    background-image: url('{% static "img/a1.jpg" %}');
+    color: black;
+    }
+    .sign-up{
+        background-color: ghostwhite;
+    }
+
+    </style>
+    <h2 style="font-family: 'Lucida Handwriting';">Welcome to home</h2>
+    {% if user.is_authenticated %}
+
+        <h4 style="font-family: 'Comic Sans MS';">You are logged in</h4>
+
+    {% else %}
+        <h4 style="font-family: 'Comic Sans MS';">You are not logged in!!</h4>
+        <h5 style="font-family: 'Comic Sans MS';">Please login to give your feedback.</h5>
+    {% endif %}
+
+{% endblock body %}

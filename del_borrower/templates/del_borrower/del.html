@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		td,th{
+			padding: 5px;
+		}
+	</style>
+</head>
+<body>
+	<center>
+<table>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{message}}
+        </div>
+    {% endfor %}
+    {% endif %}
+
+
+<br><br><br>
+	<tr>
+	<th > Email Id's </th>
+	<th> Book's Name</th>
+	<th>  Request to delete </th>
+	</tr>
+
+
+
+{% for b in borrowers %}
+	{% if not b.deleted %}
+	
+	<tr>
+	<td> 
+	{{ b.name }}</td>
+	<td>{{ b.book_name }} 
+	</td>
+	<td > 
+	<form  method='POST' > {% csrf_token %}
+	<input type="hidden" name="borrow-id" value="{{b.name}}">
+	<input type="hidden" name="book_name" value="{{b.book_name}}">
+	<button type='submit' formaction="{% url 'del_borrower:del' %}" >Request to delete</button>
+	</form>
+</td>
+
+</tr>
+	<br>
+{% endif %}
+
+{% endfor %}
+</table>
+</center>
+</body>
+</html>

@@ -1,0 +1,487 @@
+[
+{
+  "model": "book.category",
+  "pk": 2,
+  "fields": {
+    "name": "history"
+  }
+},
+{
+  "model": "book.category",
+  "pk": 3,
+  "fields": {
+    "name": "science"
+  }
+},
+{
+  "model": "book.publisher",
+  "pk": 2,
+  "fields": {
+    "name": "Haridas Publication"
+  }
+},
+{
+  "model": "book.publisher",
+  "pk": 3,
+  "fields": {
+    "name": "Ramesh Publication"
+  }
+},
+{
+  "model": "book.publisher",
+  "pk": 4,
+  "fields": {
+    "name": "Jaico Publication House"
+  }
+},
+{
+  "model": "book.publisher",
+  "pk": 5,
+  "fields": {
+    "name": "Hachtte Publication"
+  }
+},
+{
+  "model": "book.author",
+  "pk": 2,
+  "fields": {
+    "name": "Ram chandra",
+    "age": 45
+  }
+},
+{
+  "model": "book.author",
+  "pk": 3,
+  "fields": {
+    "name": "Hari Ram",
+    "age": 67
+  }
+},
+{
+  "model": "book.author",
+  "pk": 4,
+  "fields": {
+    "name": "Dinesh",
+    "age": 43
+  }
+},
+{
+  "model": "book.author",
+  "pk": 5,
+  "fields": {
+    "name": "Mukesh",
+    "age": 43
+  }
+},
+{
+  "model": "book.author",
+  "pk": 6,
+  "fields": {
+    "name": "Paras",
+    "age": 39
+  }
+},
+{
+  "model": "book.book",
+  "pk": 2,
+  "fields": {
+    "title": "French Revolution",
+    "slug": "french-revolution",
+    "isbn": "ASBN234",
+    "pub_date": "2018-11-14",
+    "publisher": 2,
+    "no_of_actual_copy": 31,
+    "no_of_copy_left": 23,
+    "image": "media_/books/1125880725/1125880725.jpg",
+    "authors": [
+      3,
+      5
+    ],
+    "category": [
+      2
+    ]
+  }
+},
+{
+  "model": "book.book",
+  "pk": 3,
+  "fields": {
+    "title": "Internation History",
+    "slug": "internation-history",
+    "isbn": "SDFDFSG23",
+    "pub_date": "2018-11-18",
+    "publisher": 4,
+    "no_of_actual_copy": 23,
+    "no_of_copy_left": 4,
+    "image": "media_/books/2475827864/2475827864.jpg",
+    "authors": [
+      2,
+      5
+    ],
+    "category": [
+      2
+    ]
+  }
+},
+{
+  "model": "book.book",
+  "pk": 4,
+  "fields": {
+    "title": "Roman Empire",
+    "slug": "roman-empire",
+    "isbn": "RSDTYFUG",
+    "pub_date": "2018-11-18",
+    "publisher": 4,
+    "no_of_actual_copy": 23,
+    "no_of_copy_left": 22,
+    "image": "media_/books/1618703200/1618703200.jpg",
+    "authors": [
+      5
+    ],
+    "category": [
+      2
+    ]
+  }
+},
+{
+  "model": "book.book",
+  "pk": 5,
+  "fields": {
+    "title": "Concise History of the World",
+    "slug": "concise-history-of-the-world",
+    "isbn": "ASDFGGHHJ",
+    "pub_date": "2018-11-18",
+    "publisher": 2,
+    "no_of_actual_copy": 34,
+    "no_of_copy_left": 2,
+    "image": "media_/books/2507491732/2507491732.jpg",
+    "authors": [
+      3,
+      5
+    ],
+    "category": [
+      2
+    ]
+  }
+},
+{
+  "model": "book.book",
+  "pk": 6,
+  "fields": {
+    "title": "The Black Sea",
+    "slug": "the-black-sea",
+    "isbn": "DSFGTRGF",
+    "pub_date": "2018-11-18",
+    "publisher": 2,
+    "no_of_actual_copy": 23,
+    "no_of_copy_left": 2,
+    "image": "media_/books/1736912991/1736912991.jpg",
+    "authors": [
+      4
+    ],
+    "category": [
+      2
+    ]
+  }
+},
+{
+  "model": "book.book",
+  "pk": 7,
+  "fields": {
+    "title": "Kings and Queens of Britain",
+    "slug": "kings-and-queens-of-britain",
+    "isbn": "ASDFGHJ",
+    "pub_date": "2018-11-18",
+    "publisher": 5,
+    "no_of_actual_copy": 22,
+    "no_of_copy_left": 12,
+    "image": "media_/books/156342521/156342521.jpg",
+    "authors": [
+      5
+    ],
+    "category": [
+      2
+    ]
+  }
+},
+{
+  "model": "book.book",
+  "pk": 8,
+  "fields": {
+    "title": "The Secret History",
+    "slug": "the-secret-history",
+    "isbn": "ASDSFDGF",
+    "pub_date": "2018-11-18",
+    "publisher": 4,
+    "no_of_actual_copy": 123,
+    "no_of_copy_left": 22,
+    "image": "media_/books/3191439571/3191439571.jpg",
+    "authors": [
+      4
+    ],
+    "category": [
+      2
+    ]
+  }
+},
+{
+  "model": "book.book",
+  "pk": 9,
+  "fields": {
+    "title": "The History of Cricket",
+    "slug": "the-history-of-cricket",
+    "isbn": "ASDFDGHJ",
+    "pub_date": "2018-11-18",
+    "publisher": 3,
+    "no_of_actual_copy": 123,
+    "no_of_copy_left": 22,
+    "image": "media_/books/174207784/174207784.jpg",
+    "authors": [
+      4
+    ],
+    "category": [
+      2
+    ]
+  }
+},
+{
+  "model": "book.book",
+  "pk": 10,
+  "fields": {
+    "title": "A Secret History Of witches",
+    "slug": "a-secret-history-of-witches",
+    "isbn": "AASDFGH",
+    "pub_date": "2018-11-18",
+    "publisher": 3,
+    "no_of_actual_copy": 2345,
+    "no_of_copy_left": 22,
+    "image": "media_/books/351859439/351859439.jpg",
+    "authors": [
+      5
+    ],
+    "category": [
+      2
+    ]
+  }
+},
+{
+  "model": "book.book",
+  "pk": 11,
+  "fields": {
+    "title": "Ancient Indian History",
+    "slug": "ancient-indian-history",
+    "isbn": "ADSDFGHGHJ",
+    "pub_date": "2018-11-18",
+    "publisher": 5,
+    "no_of_actual_copy": 1234,
+    "no_of_copy_left": 12,
+    "image": "media_/books/2643896966/2643896966.jpg",
+    "authors": [
+      5
+    ],
+    "category": [
+      2
+    ]
+  }
+},
+{
+  "model": "book.book",
+  "pk": 12,
+  "fields": {
+    "title": "A Brief History of Time",
+    "slug": "a-brief-history-of-time",
+    "isbn": "ASDFGHJSADSFD",
+    "pub_date": "2018-11-18",
+    "publisher": 4,
+    "no_of_actual_copy": 233,
+    "no_of_copy_left": 23,
+    "image": "media_/books/2663898728/2663898728.jpg",
+    "authors": [
+      5
+    ],
+    "category": [
+      3
+    ]
+  }
+},
+{
+  "model": "book.book",
+  "pk": 13,
+  "fields": {
+    "title": "On the Origin of Species",
+    "slug": "on-the-origin-of-species",
+    "isbn": "ASDFGHJKK",
+    "pub_date": "2018-11-18",
+    "publisher": 4,
+    "no_of_actual_copy": 123,
+    "no_of_copy_left": 1,
+    "image": "media_/books/1392191035/1392191035.jpg",
+    "authors": [
+      3
+    ],
+    "category": [
+      3
+    ]
+  }
+},
+{
+  "model": "book.book",
+  "pk": 14,
+  "fields": {
+    "title": "The Selfish Gene",
+    "slug": "the-selfish-gene",
+    "isbn": "ASDFGHCZXVCBVNB",
+    "pub_date": "2018-11-18",
+    "publisher": 2,
+    "no_of_actual_copy": 232,
+    "no_of_copy_left": 32,
+    "image": "media_/books/2039362941/2039362941.jpg",
+    "authors": [
+      5
+    ],
+    "category": [
+      3
+    ]
+  }
+},
+{
+  "model": "book.book",
+  "pk": 15,
+  "fields": {
+    "title": "Bad Science",
+    "slug": "bad-science",
+    "isbn": "OIKJHNGBFV",
+    "pub_date": "2018-11-18",
+    "publisher": 4,
+    "no_of_actual_copy": 442,
+    "no_of_copy_left": 12,
+    "image": "media_/books/1187609880/1187609880.jpg",
+    "authors": [
+      3
+    ],
+    "category": [
+      3
+    ]
+  }
+},
+{
+  "model": "book.book",
+  "pk": 16,
+  "fields": {
+    "title": "The Science Book",
+    "slug": "the-science-book",
+    "isbn": "ESDDSA",
+    "pub_date": "2018-11-18",
+    "publisher": 4,
+    "no_of_actual_copy": 342,
+    "no_of_copy_left": 123,
+    "image": "media_/books/311851644/311851644.jpg",
+    "authors": [
+      4
+    ],
+    "category": [
+      3
+    ]
+  }
+},
+{
+  "model": "book.book",
+  "pk": 17,
+  "fields": {
+    "title": "The Astronomy Book",
+    "slug": "the-astronomy-book",
+    "isbn": "AESRDF",
+    "pub_date": "2018-11-18",
+    "publisher": 2,
+    "no_of_actual_copy": 9,
+    "no_of_copy_left": 2,
+    "image": "media_/books/1850109392/1850109392.jpeg",
+    "authors": [
+      5
+    ],
+    "category": [
+      3
+    ]
+  }
+},
+{
+  "model": "book.book",
+  "pk": 18,
+  "fields": {
+    "title": "Philosophi\u00e6 Naturalis Principia Mathematica",
+    "slug": "philosophi-naturalis-principia-mathematica",
+    "isbn": "TEGF",
+    "pub_date": "2018-11-18",
+    "publisher": 5,
+    "no_of_actual_copy": 234,
+    "no_of_copy_left": 23,
+    "image": "media_/books/2175572328/2175572328.jpg",
+    "authors": [
+      4
+    ],
+    "category": [
+      3
+    ]
+  }
+},
+{
+  "model": "book.book",
+  "pk": 19,
+  "fields": {
+    "title": "Astrophysics for People in a Hurry",
+    "slug": "astrophysics-for-people-in-a-hurry",
+    "isbn": "ADSFGDH",
+    "pub_date": "2018-11-18",
+    "publisher": 2,
+    "no_of_actual_copy": 32,
+    "no_of_copy_left": 2,
+    "image": "media_/books/591749756/591749756.jpg",
+    "authors": [
+      3
+    ],
+    "category": [
+      3
+    ]
+  }
+},
+{
+  "model": "book.book",
+  "pk": 20,
+  "fields": {
+    "title": "The Making of the Atomic Bomb",
+    "slug": "the-making-of-the-atomic-bomb",
+    "isbn": "WETREHGSV",
+    "pub_date": "2018-11-18",
+    "publisher": 5,
+    "no_of_actual_copy": 23,
+    "no_of_copy_left": 14,
+    "image": "media_/books/106421330/106421330.jpg",
+    "authors": [
+      4
+    ],
+    "category": [
+      3
+    ]
+  }
+},
+{
+  "model": "book.book",
+  "pk": 21,
+  "fields": {
+    "title": "Unweaving the Rainbow",
+    "slug": "unweaving-the-rainbow",
+    "isbn": "EAFRGSETGVVS",
+    "pub_date": "2018-11-18",
+    "publisher": 4,
+    "no_of_actual_copy": 43,
+    "no_of_copy_left": 12,
+    "image": "media_/books/3773674963/3773674963.jpg",
+    "authors": [
+      3
+    ],
+    "category": [
+      3
+    ]
+  }
+}
+]

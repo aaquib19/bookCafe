@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="padding:20vh 35% 40vh 35%">
+  <div style="card" class="float:none;margin-left: auto;margin-right: auto;">
+    <h1 style="card-title">PAYMENT</h1>
+    <ul class="card-body list-group">
+      <li class="card-text list-group-item"><b>userid</b> : {{userid}}</li>
+      <li class="card-text list-group-item"><b>book name</b> : {{book_name}}</li>
+      <li class="card-text list-group-item"><b>amount</b> : {{amount}}</li><br>
+      <div style="text-align:center;">
+        {{ form.sandbox }}
+      </div>
+    </ul>
+  </div>
+</div>
+<script type="text/javascript">
+  var b = document.getElementsByName("submit");
+  console.log(b[0])
+  b[0].style.width = '150px';
+</script>
+{% endblock %}

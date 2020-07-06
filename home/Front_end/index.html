@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Book Cafe</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/card.css" rel="stylesheet">
+    
+    <style>
+    .navbar {
+  /* padding-top: 30px;
+  padding-bottom: 30px;
+  padding-right: 0px;
+  padding-left: 0px; */
+  transition: all 0.8s;
+}
+    #nav-item{
+    color: red;
+}
+
+
+
+/*  @media only screen and (max-width: 600px) {
+.navbar-toggler-icon {
+background-color: white;
+}*/
+}
+
+
+
+    
+    </style>
+
+</head>
+
+<body>
+
+   <!--Double navigation-->
+    <header>
+        <!-- Sidebar navigation -->
+        <div id="slide-out" class="side-nav sn-bg-4 fixed" style="transform: translateX(0%);">
+            <ul class="custom-scrollbar">
+                <!-- Logo -->
+                <li>
+                    <div class="logo-wrapper waves-light waves-effect waves-light">
+                        <a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#"><img src="./Material Design Bootstrap Template_files/mdb-transparent.png" class="img-fluid flex-center"></a>
+                    </div>
+                </li>
+                <!--/. Logo -->
+                <!--Social-->
+                <li>
+                    <ul class="social">
+                        <li><a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#" class="icons-sm fb-ic"><i class="fa fa-facebook"> </i></a></li>
+                        <li><a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#" class="icons-sm pin-ic"><i class="fa fa-pinterest"> </i></a></li>
+                        <li><a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#" class="icons-sm gplus-ic"><i class="fa fa-google-plus"> </i></a></li>
+                        <li><a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#" class="icons-sm tw-ic"><i class="fa fa-twitter"> </i></a></li>
+                    </ul>
+                </li>
+                <!--/Social-->
+                <!--Search Form-->
+                <li>
+                    <form class="search-form" role="search">
+                        <div class="form-group md-form mt-0 pt-1 waves-light waves-effect waves-light">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                    </form>
+                </li>
+                <!--/.Search Form-->
+                <!-- Side navigation links -->
+                <li>
+                    <ul class="collapsible collapsible-accordion">
+                        <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-chevron-right"></i> Submit blog<i class="fa fa-angle-down rotate-icon"></i></a>
+                            <div class="collapsible-body">
+                                <ul class="list-unstyled">
+                                    <li><a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#" class="waves-effect">Submit listing</a>
+                                    </li>
+                                    <li><a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#" class="waves-effect">Registration form</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-hand-pointer-o"></i> Instruction<i class="fa fa-angle-down rotate-icon"></i></a>
+                            <div class="collapsible-body">
+                                <ul class="list-unstyled">
+                                    <li><a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#" class="waves-effect">For bloggers</a>
+                                    </li>
+                                    <li><a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#" class="waves-effect">For authors</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-eye"></i> About<i class="fa fa-angle-down rotate-icon"></i></a>
+                            <div class="collapsible-body">
+                                <ul class="list-unstyled">
+                                    <li><a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#" class="waves-effect">Introduction</a>
+                                    </li>
+                                    <li><a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#" class="waves-effect">Monthly meetings</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a class="collapsible-header waves-effect arrow-r"><i class="fa fa-envelope-o"></i> Contact me<i class="fa fa-angle-down rotate-icon"></i></a>
+                            <div class="collapsible-body">
+                                <ul class="list-unstyled">
+                                    <li><a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#" class="waves-effect">FAQ</a>
+                                    </li>
+                                    <li><a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#" class="waves-effect">Write a message</a>
+                                    </li>
+                                    <li><a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#" class="waves-effect">FAQ</a>
+                                    </li>
+                                    <li><a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#" class="waves-effect">Write a message</a>
+                                    </li>
+                                    <li><a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#" class="waves-effect">FAQ</a>
+                                    </li>
+                                    <li><a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#" class="waves-effect">Write a message</a>
+                                    </li>
+                                    <li><a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#" class="waves-effect">FAQ</a>
+                                    </li>
+                                    <li><a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#" class="waves-effect">Write a message</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <!--/. Side navigation links -->
+            </ul>
+            <div class="sidenav-bg mask-strong"></div>
+        </div>
+        <!--/. Sidebar navigation -->
+        <!-- Navbar -->
+        <nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav">
+            <!-- SideNav slide-out button -->
+            <div class="float-left">
+                <a href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#" data-activates="slide-out" class="button-collapse black-text"><i class="fa fa-bars"></i></a>
+            </div>
+            <!-- Breadcrumb-->
+            <div class="breadcrumb-dn mr-auto">
+                <p>Material Design for Bootstrap</p>
+            </div>
+            <ul class="nav navbar-nav nav-flex-icons ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link waves-effect waves-light"><i class="fa fa-envelope"></i> <span class="clearfix d-none d-sm-inline-block">Contact</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-effect waves-light"><i class="fa fa-comments-o"></i> <span class="clearfix d-none d-sm-inline-block">Support</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-effect waves-light"><i class="fa fa-user"></i> <span class="clearfix d-none d-sm-inline-block">Account</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle waves-effect waves-light" href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item waves-effect waves-light" href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#">Action</a>
+                        <a class="dropdown-item waves-effect waves-light" href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#">Another action</a>
+                        <a class="dropdown-item waves-effect waves-light" href="https://mdbootstrap.com/previews/docs/latest/html/skins/white-skin.html#">Something else here</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.Navbar -->
+    </header>
+    <!--/.Double navigation-->
+
+<div class="main">
+  <!--Carousel Wrapper-->
+<!--Carousel Wrapper-->
+<div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
+  <!--Indicators-->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-2" data-slide-to="1"></li>
+    <li data-target="#carousel-example-2" data-slide-to="2"></li>
+  </ol>
+  <!--/.Indicators-->
+  <!--Slides-->
+  <div class="carousel-inner" role="listbox">
+    <div class="carousel-item active">
+      <div class="view">
+        <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(68).jpg" alt="First slide">
+        <div class="mask rgba-black-light"></div>
+      </div>
+      <div class="carousel-caption">
+        <h3 class="h3-responsive">BOOK CAFE</h3>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <!--Mask color-->
+      <div class="view">
+        <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(6).jpg" alt="Second slide">
+        <div class="mask rgba-black-strong"></div>
+      </div>
+      <div class="carousel-caption">
+        <h3 class="h3-responsive">BOOK CAFE</h3>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <!--Mask color-->
+      <div class="view">
+        <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(9).jpg" alt="Third slide">
+        <div class="mask rgba-black-slight"></div>
+      </div>
+      <div class="carousel-caption">
+        <h3 class="h3-responsive">BOOK CAFE</h3>
+      </div>
+    </div>
+  </div>
+  <!--/.Slides-->
+  <!--Controls-->
+  <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+  <!--/.Controls-->
+</div>
+<!--/.Carousel Wrapper-->      <!--Carousel Wrapper-->
+      <!-- Projects section v.4 -->
+<section class="text-center my-5">
+
+  <!-- Section heading --><div class="container">
+  <h2 class="black-text h1-responsive font-weight-bold text-center my-5">Categories</h2>
+  <!-- Section description -->
+  <p class="black-text text-center w-responsive mx-auto mb-5">Our site helps you browse different categories of books and then choose and issue any book you like.Some of the most viewed categories are shown below.</p>
+
+  <!-- Grid row -->
+  <div class="row">
+
+    <!-- Grid column -->
+    <div class="col-md-6 mb-md-0 mb-4">
+      <div class="card card-image" style="background-image: url(4.jpg);">
+        <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
+          <div>
+            <h6 class="purple-text">
+              <i class="fa fa-plane"></i>
+              <strong> AI</strong>
+            </h6>
+            <h3 class="py-3 font-weight-bold">
+              <strong>Artificial Intelligence</strong>
+            </h3>
+            <p class="pb-3">Artificial Intelligence is a way of making a computer, a computer-controlled robot, or a software think intelligently, in the similar manner the intelligent humans think.
+              Explore this category to get some good books on AI.The scope of AI is disputed: as machines become increasingly capable, tasks considered as requiring "intelligence" are often removed from the definition, a phenomenon known as the AI effect, leading to the quip in Tesler's Theorem, "AI is whatever hasn't been done yet."
+            </p>
+            <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-md-0 mb-4">
+      <div class="card card-image" style="background-image: url(3.jpg);">
+        <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
+          <div>
+            <h6 class="purple-text">
+              <i class="fa fa-plane"></i>
+              <strong> Image Processing</strong>
+            </h6>
+            <h3 class="py-3 font-weight-bold">
+              <strong>Image Processing</strong>
+            </h3>
+            <p class="pb-3">In computer science, digital image processing is the use of computer algorithms to perform image processing on digital images.[1] As a subcategory or field of digital signal processing, digital image processing has many advantages over analog image processing. It allows a much wider range of algorithms to be applied to the input data and can avoid problems such as the build-up of noise and signal distortion during processing. Since images are defined over two dimensions (perhaps more) digital image processing may 
+            </p>
+            <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <!-- Grid column -->
+    <br><br><div class="row">
+    <!-- Grid column -->
+    <div class="col-md-6 mb-md-0 mb-4">
+      <div class="card card-image" style="background-image: url(5.jpg);">
+        <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
+          <div>
+            <h6 class="pink-text">
+              <i class="fa fa-pie-chart"></i>
+              <strong> Algorithms</strong>
+            </h6>
+            <h3 class="py-3 font-weight-bold">
+              <strong>Algorithms</strong>
+            </h3>
+            <p class="pb-3">In mathematics and computer science, an algorithm (/ˈælɡərɪðəm/ ( listen)) is an unambiguous specification of how to solve a class of problems. Algorithms can perform calculation, data processing and automated reasoning tasks.As an effective method, an algorithm can be expressed within a finite amount of space and time and in a well-defined formal language for calculating a function.
+
+            </p>
+            <a class="btn btn-pink btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Grid column -->
+
+    <!-- Grid column -->
+    <div class="col-md-6">
+      <div class="card card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/City/6-col/img%20%2847%29.jpg);">
+        <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
+          <div>
+            <h6 class="green-text">
+              <i class="fa fa-eye"></i>
+              <strong> Entertainment</strong>
+            </h6>
+            <h3 class="py-3 font-weight-bold">
+              <strong>Novels</strong>
+            </h3>
+            <p class="pb-3">A novel is a relatively long work of narrative fiction, normally in prose, which is typically published as a book.
+
+The entire genre has been seen as having "a continuous and comprehensive history of about two thousand years", with its origins in classical Greece and Rome, in medieval and early modern romance, and in the tradition of the Italian renaissance novella
+
+            </p>
+            <a class="btn btn-success btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Grid column -->
+
+  </div>
+  <!-- Grid row -->
+</div>
+</section>
+<!-- Projects section v.4 -->
+
+  <div class="container">
+    <!-- Section: Products v.3 -->
+<section class="text-center my-5">
+
+        <!-- Section heading -->
+        <h2 class="black-text h1-responsive font-weight-bold text-center my-5">Most Viewed</h2>
+        <!-- Section description -->
+        <!-- Card --><div class ="row">
+          <div class="col-lg-3 col-md-6 mb-lg-0 mb-4">
+<div class="card card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+
+  <!-- Content -->
+  <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+    <div>
+      <h3 class="card-title pt-2"><strong>Wings Of Fire</strong></h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
+        optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
+        Odit sed qui, dolorum!.</p>
+      <a class="btn btn-pink"><i class="fa fa-clone left"></i> Read</a>
+    </div>
+  </div>
+
+</div>
+</div>
+<div class="col-lg-3 col-md-6 mb-lg-0 mb-4">
+<div class="card card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+
+  <!-- Content -->
+  <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+    <div>
+      <h3 class="card-title pt-2"><strong>Stark Woods</strong></h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
+        optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
+        Odit sed qui, dolorum!.</p>
+      <a class="btn btn-pink"><i class="fa fa-clone left"></i> Read</a>
+    </div>
+  </div>
+
+</div>
+</div>
+<div class="col-lg-3 col-md-6 mb-lg-0 mb-4">
+<div class="card card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+
+  <!-- Content -->
+  <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+    <div>
+      <h3 class="card-title pt-2"><strong>Harry Potter</strong></h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
+        optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
+        Odit sed qui, dolorum!.</p>
+      <a class="btn btn-pink"><i class="fa fa-clone left"></i> Read</a>
+    </div>
+  </div>
+
+</div>
+</div>
+<div class="col-lg-3 col-md-6 mb-lg-0 mb-4">
+<div class="card card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+
+  <!-- Content -->
+  <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+    <div>
+      <h3 class="card-title pt-2"><strong>The Kite Runner</strong></h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
+        optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
+        Odit sed qui, dolorum!.</p>
+      <a class="btn btn-pink"><i class="fa fa-clone left"></i> Read</a>
+    </div>
+  </div>
+
+</div>
+</div>
+</div>
+</div>
+<!-- Card -->
+<form>
+  <div class="form-row">
+    <div class="col-md-4 mb-3 md-form">
+      <label for="validationServer015">First name</label>
+      <input type="text" class="form-control is-valid" id="validationServer015" value="Mark" required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4 mb-3 md-form">
+      <label for="validationServer025">Last name</label>
+      <input type="text" class="form-control is-valid" id="validationServer025" value="Otto" required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4 mb-3 md-form">
+      <label for="validationServerUsername55">Username</label>
+      <input type="text" class="form-control is-invalid" id="validationServerUsername55" required>
+      <div class="invalid-feedback">
+        Please choose a username.
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-6 mb-3 md-form">
+      <label for="validationServer035">City</label>
+      <input type="text" class="form-control is-invalid" id="validationServer035" required>
+      <div class="invalid-feedback">
+        Please provide a valid city.
+      </div>
+    </div>
+    <div class="col-md-3 mb-3 md-form">
+      <label for="validationServer045">State</label>
+      <input type="text" class="form-control is-invalid" id="validationServer045" required>
+      <div class="invalid-feedback">
+        Please provide a valid state.
+      </div>
+    </div>
+    <div class="col-md-3 mb-3 md-form">
+      <label for="validationServer055">Zip</label>
+      <input type="text" class="form-control is-invalid" id="validationServer055" required>
+      <div class="invalid-feedback">
+        Please provide a valid zip.
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-check pl-0 md-form m-0">
+      <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck35" required>
+      <label class="form-check-label" for="invalidCheck35">
+        Agree to terms and conditions
+      </label>
+    </div>
+    <div class="invalid-feedback mt-3 ml-4">
+      You must agree before submitting.
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">Submit form</button>
+</form>
+    <!-- Footer -->
+<footer class="page-footer font-small blue-grey lighten-5">
+
+    <div style="background-color: #21d192;">
+      <div class="container">
+
+        <!-- Grid row-->
+        <div class="row py-4 d-flex align-items-center">
+
+          <!-- Grid column -->
+          <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+            <h6 class="mb-0">Get connected with us on social networks!</h6>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-6 col-lg-7 text-center text-md-right">
+
+            <!-- Facebook -->
+            <a class="fb-ic">
+              <i class="fa fa-facebook white-text mr-4"> </i>
+            </a>
+            <!-- Twitter -->
+            <a class="tw-ic">
+              <i class="fa fa-twitter white-text mr-4"> </i>
+            </a>
+            <!-- Google +-->
+            <a class="gplus-ic">
+              <i class="fa fa-google-plus white-text mr-4"> </i>
+            </a>
+            <!--Linkedin -->
+            <a class="li-ic">
+              <i class="fa fa-linkedin white-text mr-4"> </i>
+            </a>
+            <!--Instagram-->
+            <a class="ins-ic">
+              <i class="fa fa-instagram white-text"> </i>
+            </a>
+
+          </div>
+          <!-- Grid column -->
+
+        </div>
+        <!-- Grid row-->
+
+      </div>
+    </div>
+
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left mt-5">
+
+      <!-- Grid row -->
+      <div class="row mt-3 dark-grey-text">
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mb-4">
+
+          <!-- Content -->
+          <h6 class="text-uppercase font-weight-bold">Book Cafe</h6>
+          <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+          <p>A library management website for the students to go through different categories of books and then choose the desired book and issue it.</p>
+
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+
+          <!-- Links -->
+          <h6 class="text-uppercase font-weight-bold">Features</h6>
+          <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+          <p>
+            <a class="dark-grey-text" href="#!">Home</a>
+          </p>
+          <p>
+            <a class="dark-grey-text" href="#!">Issue</a>
+          </p>
+          <p>
+            <a class="dark-grey-text" href="#!">Categories</a>
+          </p>
+          <p>
+            <a class="dark-grey-text" href="#!">Feedback</a>
+          </p>
+
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+          <!-- Links -->
+          <h6 class="text-uppercase font-weight-bold">Useful links</h6>
+          <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+          <p>
+            <a class="dark-grey-text" href="#!">Your Account</a>
+          </p>
+          <p>
+            <a class="dark-grey-text" href="#!">Issue a Book</a>
+          </p>
+          <p>
+            <a class="dark-grey-text" href="#!">Recommended</a>
+          </p>
+          <p>
+            <a class="dark-grey-text" href="#!">Help</a>
+          </p>
+
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+          <!-- Links -->
+          <h6 class="text-uppercase font-weight-bold">Contact</h6>
+          <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+          <p>
+            <i class="fa fa-home mr-3"></i> Indian Institute Of Information Technology Sricity, Chittoor - 517646</p>
+          <p>
+            <i class="fa fa-envelope mr-3"></i> ronytowilson3097@gmail.com</p>
+          <p>
+            <i class="fa fa-phone mr-3"></i> + 91 720 233 71</p>
+          <p>
+            <i class="fa fa-print mr-3"></i> + 91 231 462 08</p>
+
+        </div>
+        <!-- Grid column -->
+
+      </div>
+      <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center text-black-50 py-3">© 2018 Copyright:
+      <a class="dark-grey-text" href="https://mdbootstrap.com/education/bootstrap/"> www.bookcafe.com</a>
+    </div>
+    <!-- Copyright -->
+
+  </footer>
+  <!-- Footer -->
+  </div>
+
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+
+    <script>
+         $(document).ready(function () {
+
+            $(window).on('scroll', function () {
+                if ($(window).scrollTop() >= 10) { // use any value lower than the navbar height, [20] is an example
+
+                    $('.navbar').css({ // reducing the vertical padding from 25px to 10px
+                        'padding-top': '10px',
+                        'padding-bottom': '10px',
+                        'background': '#4B515D',
+                        'color': 'black',
+
+
+                    });
+
+                } else {
+
+                    $('.navbar').css({ // reset the vertical padding to its initial value [25px]
+                        'padding-top': '25px',
+                        'padding-bottom': '25px',
+                        'background':'transparent',
+                        
+                    });
+
+                }
+            });
+
+        });
+
+    
+    </script>
+
+</body>
+
+</html>
